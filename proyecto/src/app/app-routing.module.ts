@@ -15,6 +15,7 @@ import { ProveedoresComponent } from './proveedores/proveedores.component';
 import { ArticulosComponent } from './articulos/articulos.component';
 import { ComprasComponent } from './compras/compras.component';
 import { VentasComponent } from './ventas/ventas.component';
+import { LogingGuard } from './loging.guard'; 
 
 
 const routes: Routes = [
@@ -26,13 +27,13 @@ const routes: Routes = [
   {path: 'Iniciar', component:IniciarComponent},
   {path: 'Registrar', component:RegistrarComponent},
   {path: 'Copy', component:CopyComponent},
-  {path: 'Empleados', component:EmpleadosComponent},
-  {path: 'Tarimas', component:TarimasComponent},
-  {path: 'Clientes', component: ClientesComponent},
-  {path: 'Proveedores', component:ProveedoresComponent },
-  {path: 'Articulos', component: ArticulosComponent },
-  {path: 'Compras', component: ComprasComponent },
-  {path: 'Ventas', component: VentasComponent} ,
+  {path: 'Empleados', component:EmpleadosComponent, canActivate:[LogingGuard]},
+  {path: 'Tarimas', component:TarimasComponent, canActivate:[LogingGuard]},
+  {path: 'Clientes', component: ClientesComponent, canActivate:[LogingGuard]},
+  {path: 'Proveedores', component:ProveedoresComponent, canActivate:[LogingGuard]},
+  {path: 'Articulos', component: ArticulosComponent, canActivate:[LogingGuard]},
+  {path: 'Compras', component: ComprasComponent, canActivate:[LogingGuard]},
+  {path: 'Ventas', component: VentasComponent, canActivate:[LogingGuard]} ,
   
   
 

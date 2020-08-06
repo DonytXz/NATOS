@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { LoginService } from '../servicios/login.service';
 import { Router } from '@angular/router';
 
@@ -19,11 +19,14 @@ export class IniciarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  @HostListener('login')
+
   login(){
     this.loginservicio.login(this.usuario).subscribe(res =>{
       alert('¡Bienvenido!')
     localStorage.setItem('token',res.jwtoken) //backend
-    this.router.navigate(['/inicio'])
+    this.loginservicio.eslogueado()
+    this.router.navigate(['/Inicio'])
   },
     err => console.log(err)
     )

@@ -16,6 +16,8 @@ import { VentasService } from './servicios/ventas.service';
 import { ComprasService } from './servicios/compras.service';
 import { RegistrarService } from './servicios/registrar.service';
 
+import { LogingGuard } from './loging.guard';
+
 //declaración de componentes
 import { AppComponent } from './app.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
@@ -71,7 +73,8 @@ import { VentasComponent } from './ventas/ventas.component';
     LoginService,
     ComprasService,
     VentasService,
-    RegistrarService
+    RegistrarService,
+    LogingGuard
   ],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,HostBinding } from '@angular/core';
 import { LoginService } from '../servicios/login.service';
 
 @Component({
@@ -8,11 +8,26 @@ import { LoginService } from '../servicios/login.service';
 })
 export class SidenavComponent implements OnInit {
 
-  entrar=''
+  @HostBinding('class.is-open')
+  entrar=false
 
-  constructor(private loginservicio:LoginService) { }
+  constructor(private loginservicio:LoginService ) { }
 
   ngOnInit(): void {
+    this.loginservicio.change.subscribe(isOpen =>{
+      this.entrar = isOpen;
+    })
+    this.llenarentrar();
+  }
+
+  llenarentrar(){
+    this.entrar=this.loginservicio.eslogueado();
+
+  }
+
+  cerrarsesion(){
+    localStorage.removeItem('token');
+    this.llenarentrar()
   }
 
 }

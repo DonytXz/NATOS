@@ -1,17 +1,17 @@
-<!--<h3>Inicio de sesion</h3>
+<h3>Inicio de sesion</h3>
 
     <label class="text-primary"><b>Ingresa tu nombre de usuario</b></label><br>
-    <input class="text-primary" [(ngModel)]="usuario.username"  placeholder="cbarbosa@email.com">
+    <input class="text-primary" [(ngModel)]="usuario.username"  placeholder="nombre de usuario">
     <br>
     <label class="text-primary"><b>Ingresa tu contraseña</b></label> <br>
     <input class="text-primary" [(ngModel)]="usuario.password"  placeholder="Password"><br>
-    <button class="btn-dark" (click)="login()">Iniciar sesión</button>-->
+    <button class="btn-dark" (click)="login()">Iniciar sesión</button>
 
-    
-<div class="caca">
+
+<!--<div class="caca">
 
   <div id="back">
-    <!--Imagenes-->
+    
     <div class="backRight"></div>
     <div class="backLeft" style="border-radius: 20px 0px 0px 20px;"></div>
   </div>
@@ -24,20 +24,20 @@
           <form method="post" onsubmit="return false;">
             <div class="form-group">
               <label for="username" class="form-label">Usuario</label>
-              <input type="text" [(ngModel)]="usuario.username"/>
+              <input [(ngModel)]="usuario.username"  placeholder="Nombre de usuario">
             </div>
             <div class="form-group">
               <label for="password" class="form-label">Contraseña</label>
-              <input type="password" [(ngModel)]="usuario.password"/>
+              <input [(ngModel)]="usuario.password"  placeholder="Contraseña"><br>
             </div>
-            <button id="login" type="submit" style="border-radius: 20px;">Confirmar</button>
+            <button id="login" type="submit" style="border-radius: 20px;" (click)="login()">Confirmar</button>
           </form>
         </div>
       </div>
     </div>
   </div>
 
-</div>
+</div> -->
 
 
 

@@ -21,7 +21,7 @@
     <li><a href="#!" routerLink="Iniciar"><i class="material-icons">vertical_align_top</i>Iniciar</a></li>
     </ng-template>
     <li class="divider" tabindex="-1"></li>
-    <li *ngIf="entrar; else esfalsa"><a href="#!"><i class="material-icons">vertical_align_bottom</i>Cerrar</a></li>
+    <li *ngIf="entrar; else esfalsa"><a href="#!" (click)="cerrarsesion()"><i class="material-icons">vertical_align_bottom</i>Cerrar</a></li>
   </ul>
 
 
