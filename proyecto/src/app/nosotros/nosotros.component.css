@@ -106,21 +106,36 @@ img:hover {
   Responsive 
 ///////////////////////////*/ 
 @media (max-width: 400.98px) { 
-
+    .mvv{
+        display: inline-block;
+    }
+    div.card{
+        width: 80vw;
+    }
     .anio{
         display: none;
     }
 
 }
 @media (min-width: 401px) and (max-width: 575.98px) { 
-
+    .mvv{
+        display: inline-block;
+    }
+    div.card{
+        width: 80vw;
+    }
     .anio{
         display: none;
     }
 }
 
 @media (min-width: 576px) and (max-width: 768px) { 
-
+    .mvv{
+        display: inline-block;
+    }
+    div.card{
+        width: 80vw;
+    }
     .anio{
         display: none;
     }
