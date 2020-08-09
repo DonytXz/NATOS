@@ -1,4 +1,4 @@
-<div class="black white-text center">
+<!--<div class="black white-text center">
     <div class="container">
 
         <div class="row">
@@ -59,4 +59,89 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->
+
+<div class="container-fluid">    
+    <img class="img-responsive" src="../../assets/gempleados.gif" alt="" width="1550" height="740" style="max-width:100%;height:auto;border-radius: 20px;">
+    </div>
+    
+    
+    <br>
+    <div class="container-fluid">
+        <div class="row">
+          &nbsp;
+          &nbsp;
+          <div class="col-md-3" style="background-color: black; border-radius: 20px; color: white;">
+    
+                <img src="../../assets/icon.gif" alt="" class="circle" width="120" height="120" style="display: block; margin: auto;">
+            
+    
+    Codigo &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input  style="color: white;" class="col-6" type="text" [(ngModel)]="articulo.id"><br>
+    Descripción &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; <input style="color: white;" class="col-6" type="text" [(ngModel)]="articulo.descripcion"><br>
+    Cantidad &nbsp; <input style="color: white;" class="col-6" type="text" [(ngModel)]="articulo.cantidad"><br>
+    Precio &nbsp; <input style="color: white;" class="col-6"  type="text" [(ngModel)]="articulo.precio"><br>
+    Proveedor &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input style="color: white;" class="col-6" type="text" [(ngModel)]="articulo.proveedor"><br>
+    
+    
+    
+    <br>
+    <a value="Guardar" (click)="guardararticulo()" class="waves-effect waves= btn-small"><i class="material-icons left">save</i>guardar</a>
+    &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp; 
+    <a value="Modificar" (click)="modificararticulo()" class="waves-effect waves-light btn-small"><i class="material-icons left">refresh</i>modificar</a>
+    <br><br>
+    <a  value="Eliminar" (click)="eliminararticulo()" class="waves-effect waves-light btn-small"><i class="material-icons left">delete</i>eliminar</a>
+    &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp; 
+    <a value="Consultar todo" (click)="consultartodoarticulo()" class="waves-effect waves-light btn-small"><i class="material-icons left">zoom_in</i>consultar</a>
+    <br><br>
+    
+    
+          </div>
+    
+          &nbsp;
+          &nbsp;
+          &nbsp; 
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          <div class="col-md-8" style="background-color: black; border-radius: 20px; color: white;">
+            <br>
+            <table class="table table-striped table-dark" style="border-radius: 20px ;"> 
+                <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>DESCRIPCIÓN</td>
+                    <td>CANTIDAD</td>
+                    <td>PRECIO</td>
+                    <td>PROVEEDOR</td>
+                </tr>
+            </thead>
+            <thead>
+                <tr *ngFor="let art of articulos | async">
+                    <td>{{ art.id }}</td>
+                    <td>{{ art.descripcion }}</td>
+                    <td>{{ art.cantidad }}</td>
+                    <td>{{ art.precio }}</td>
+                    <td>{{ art.proveedor }}</td>
+                </tr>
+            </thead>
+            </table>
+    
+    
+          </div>
+        </div>
+      </div>
+    
+  
+    
+    
+    
+    
+    
+    

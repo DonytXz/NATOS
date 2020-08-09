@@ -1,4 +1,4 @@
-<h1>clientes</h1>
+<!--<h1>clientes</h1>
 
 Codigo<input type="text" [(ngModel)]="cliente.id"><br>
 Empresa<input type="text" [(ngModel)]="cliente.empresa"><br>
@@ -36,4 +36,104 @@ Tipo de persona<input type="text" [(ngModel)]="cliente.tipo_persona"><br>
         <td>{{ cli.tipo_persona }}</td>
 
     </tr>
-</table>
+</table>-->
+
+<div class="container-fluid">    
+    <img class="img-responsive" src="../../assets/gempleados.gif" alt="" width="1550" height="740" style="max-width:100%;height:auto;border-radius: 20px;">
+    </div>
+    
+    
+    <br>
+    <div class="container-fluid">
+        <div class="row">
+          &nbsp;
+          &nbsp;
+          <div class="col-md-3" style="background-color: black; border-radius: 20px; color: white;">
+    
+                <img src="../../assets/icon.gif" alt="" class="circle" width="120" height="120" style="display: block; margin: auto;">
+            
+    
+    Codigo &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input  style="color: white;" class="col-6" type="text" [(ngModel)]="cliente.id"><br>
+    Empresa &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; <input style="color: white;" class="col-6" type="text" [(ngModel)]="cliente.empresa"><br>
+    Nombre &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input style="color: white;" class="col-6" type="text" [(ngModel)]="cliente.nombre"><br>
+    Apellido Paterno &nbsp; <input style="color: white;" class="col-6"  type="text" [(ngModel)]="cliente.apellido_paterno"><br>
+    Apellido Materno   &nbsp; &nbsp; <input style="color: white;" class="col-6" type="text" [(ngModel)]="cliente.apellido_materno"><br>
+    Puesto &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input style="color: white;" class="col-6" type="text" [(ngModel)]="cliente.puesto"><br>
+    Tipo de persona &nbsp; &nbsp; <input style="color: white;" class="col-6" type="text" [(ngModel)]="cliente.tipo_persona"><br>
+    
+    
+    <br>
+    <a value="Guardar" (click)="guardarcliente()" class="waves-effect waves= btn-small"><i class="material-icons left">save</i>guardar</a>
+    &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp; 
+    <a value="Modificar" (click)="modificarcliente()" class="waves-effect waves-light btn-small"><i class="material-icons left">refresh</i>modificar</a>
+    <br><br>
+    <a  value="Eliminar" (click)="eliminarcliente()" class="waves-effect waves-light btn-small"><i class="material-icons left">delete</i>eliminar</a>
+    &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp; 
+    <a value="Consultar todo" (click)="consultartodocliente()" class="waves-effect waves-light btn-small"><i class="material-icons left">zoom_in</i>consultar</a>
+    <br><br>
+    
+    
+          </div>
+    
+          &nbsp;
+          &nbsp;
+          &nbsp; 
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          <div class="col-md-8" style="background-color: black; border-radius: 20px; color: white;">
+            <br>
+            <table class="table table-striped table-dark" style="border-radius: 20px ;"> 
+                <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>EMPRESA</td>
+                    <td>NOMBRE</td>
+                    <td>APELLIDO PATERNO</td>
+                    <td>APELLIDO MATERNO</td>
+                    <td>PUESTO</td>
+                    <!--<td>RFC</td>-->
+                    <td>TIPO DE PERSONA</td>
+                </tr>
+            </thead>
+            <thead>
+                <tr *ngFor="let cli of clientes | async">
+                    <td>{{ cli.id }}</td>
+                    <td>{{ cli.empresa }}</td>
+                    <td>{{ cli.nombre }}</td>
+                    <td>{{ cli.apellido_paterno }}</td>
+                    <td>{{ cli.apellido_materno }}</td>
+                    <td>{{ cli.puesto }}</td>
+                    <!--<td>{{ cli.rfc }}</td>-->
+                    <td>{{ cli.tipo_persona }}</td>
+                </tr>
+            </thead>
+            </table>
+    
+    
+          </div>
+        </div>
+      </div>
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    

@@ -1,4 +1,4 @@
-<div class="black white-text center">
+<!--<div class="black white-text center">
     <div class="container">
 
         <div class="row">
@@ -62,4 +62,90 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->
+<div class="container-fluid">    
+    <img class="img-responsive" src="../../assets/gempleados.gif" alt="" width="1550" height="740" style="max-width:100%;height:auto;border-radius: 20px;">
+    </div>
+    
+    
+    <br>
+    <div class="container-fluid">
+        <div class="row">
+          &nbsp;
+          &nbsp;
+         <div class="col-md-3" style="background-color: black; border-radius: 20px; color: white;">
+    
+                <img src="../../assets/icon.gif" alt="" class="circle" width="120" height="120" style="display: block; margin: auto;">
+            
+    
+    Codigo &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input  style="color: white;" class="col-6" type="text" [(ngModel)]="compra.id"><br>
+    Proveedor &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; <input style="color: white;" class="col-6" type="text" [(ngModel)]="compra.proveedor"><br>
+    Codigo de articulo &nbsp; <input style="color: white;" class="col-6" type="text" [(ngModel)]="compra.id_articulo"><br>
+    Descripción &nbsp; <input style="color: white;" class="col-6"  type="text" (ngModel)]="compra.descripcion_articulo"><br>
+    Cantidad &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input style="color: white;" class="col-6" type="text" [(ngModel)]="compra.cantidad_articulo"><br>
+    Precio &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input style="color: white;" class="col-6" type="text" [(ngModel)]="compra.precio_articulo"><br>
+    
+    
+    <br>
+    <a value="Guardar" (click)="guardarcompra()" class="waves-effect waves= btn-small"><i class="material-icons left">save</i>guardar</a>
+    &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp; 
+    <a value="Modificar" (click)="modificarcompra()" class="waves-effect waves-light btn-small"><i class="material-icons left">refresh</i>modificar</a>
+    <br><br>
+    <a  value="Eliminar" (click)="eliminarcompra()" class="waves-effect waves-light btn-small"><i class="material-icons left">delete</i>eliminar</a>
+    &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp; 
+    <a value="Consultar todo" (click)="consultartodocompra()" class="waves-effect waves-light btn-small"><i class="material-icons left">zoom_in</i>consultar</a>
+    <br><br>
+    
+    
+          </div>
+    
+          &nbsp;
+          &nbsp;
+          &nbsp; 
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          <div class="col-md-8" style="background-color: black; border-radius: 20px; color: white;">
+            <br>
+            <table class="table table-striped table-dark" style="border-radius: 20px ;"> 
+                <thead>
+                <tr>
+                    <td>CODIGO</td>
+                    <td>PROVEEDOR</td>
+                    <td>CODIGO DE ARTÍCULO</td>
+                    <td>DESCRIPCIÓN</td>
+                    <td>CANTIDAD</td>
+                    <td>PRECIO</td>
+                </tr>
+            </thead>
+            <thead>
+                <tr *ngFor="let com of compras | async">
+                    <td>{{ com.id }}</td>
+                    <td>{{ com.proveedor }}</td>
+                    <td>{{ com.id_articulo }}</td>
+                    <td>{{ com.descripcion_articulo }}</td>
+                    <td>{{ com.cantidad_articulo }}</td>
+                    <td>{{ com.precio_articulo }}</td>
+                </tr>
+            </thead>
+            </table>
+    
+    
+          </div>
+        </div>
+      </div>
+
+    
+    
+    
+    
+    
+    
+    
