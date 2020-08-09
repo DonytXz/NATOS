@@ -1,4 +1,4 @@
-<h1>Proveedores</h1>
+<!--<h1>Proveedores</h1>
 
 Codigo<input type="text" [(ngModel)]="proveedor.id"><br>
 Empresa<input type="text" [(ngModel)]="proveedor.empresa"><br>
@@ -38,5 +38,104 @@ tipo_persona<input type="text" [(ngModel)]="proveedor.tipo_persona"><br>
         <td>{{ pro.tipo_persona }}</td>
 
     </tr>
-</table>
+</table>-->
+
+<div class="container-fluid">    
+    <img class="img-responsive" src="../../assets/gempleados.gif" alt="" width="1550" height="740" style="max-width:100%;height:auto;border-radius: 20px;">
+    </div>
+    
+    
+    <br>
+    <div class="container-fluid">
+        <div class="row">
+          &nbsp;
+          &nbsp;
+          <div class="col-md-3" style="background-color: black; border-radius: 20px; color: white;">
+    
+                <img src="../../assets/icon.gif" alt="" class="circle" width="120" height="120" style="display: block; margin: auto;">
+            
+    
+    Codigo &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input  style="color: white;" class="col-6" type="text" [(ngModel)]="proveedor.id"><br>
+    Empresa &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; <input style="color: white;" class="col-6" type="text" [(ngModel)]="proveedor.empresa"><br>
+    Nombre &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <input style="color: white;" class="col-6" type="text" [(ngModel)]="proveedor.nombre"><br>
+    Apellido Paterno &nbsp; <input style="color: white;" class="col-6"  type="text" [(ngModel)]="proveedor.apellido_paterno"><br>
+    Apellido Materno   &nbsp; <input style="color: white;" class="col-6" type="text" [(ngModel)]="proveedor.apellido_materno"><br>
+    Puesto &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input style="color: white;" class="col-6" type="text" [(ngModel)]="proveedor.puesto"><br>
+    Rfc &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input style="color: white;" class="col-6" type="text" [(ngModel)]="proveedor.rfc"><br>
+    tipo de persona &nbsp; <input style="color: white;" class="col-6" type="text" [(ngModel)]="proveedor.tipo_persona"><br>
+    
+    
+    <br>
+    <a value="Guardar" (click)="guardarproveedor()" class="waves-effect waves= btn-small"><i class="material-icons left">save</i>guardar</a>
+    &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp; 
+    <a value="Modificar" (click)="modificarproveedor()" class="waves-effect waves-light btn-small"><i class="material-icons left">refresh</i>modificar</a>
+    <br><br>
+    <a  value="Eliminar" (click)="eliminarproveedor()" class="waves-effect waves-light btn-small"><i class="material-icons left">delete</i>eliminar</a>
+    &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp; 
+    <a value="Consultar todo" (click)="consultartodoproveedor()" class="waves-effect waves-light btn-small"><i class="material-icons left">zoom_in</i>consultar</a>
+    <br><br>
+    
+    
+          </div>
+    
+          &nbsp;
+          &nbsp;
+          &nbsp; 
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          &nbsp;
+          <div class="col-md-8" style="background-color: black; border-radius: 20px; color: white;">
+            <br>
+            <table class="table table-striped table-dark" style="border-radius: 20px ;"> 
+                <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>EMPRESA</td>
+                    <td>NOMBRE</td>
+                    <td>APELLIDO PATERNO</td>
+                    <td>APELLIDO MATERNO</td>
+                    <td>PUESTO</td>
+                    <td>RFC</td>
+                    <td>TIPO DE PERSONA</td>
+                </tr>
+            </thead>
+            <thead>
+                <tr *ngFor="let pro of proveedores | async">
+                    <td>{{ pro.id }}</td>
+                    <td>{{ pro.empresa }}</td>
+                    <td>{{ pro.nombre }}</td>
+                    <td>{{ pro.apellido_paterno }}</td>
+                    <td>{{ pro.apellido_materno }}</td>
+                    <td>{{ pro.puesto }}</td>
+                    <td>{{ pro.rfc }}</td>
+                    <td>{{ pro.tipo_persona }}</td>
+            </thead>
+            </table>
+    
+    
+          </div>
+        </div>
+      </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
