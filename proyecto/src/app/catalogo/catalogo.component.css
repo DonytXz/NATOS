@@ -1,0 +1,13 @@
+.product-wrapper { 
+    /*border: 1px solid grey;*/
+    color: black;
+    padding: 10px;
+    text-align: center;
+    background-color: white;
+    margin: 1em;
+}
+
+.product-item img{
+    max-width: 100%;
+    max-height: 200px;
+}

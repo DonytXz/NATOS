@@ -16,6 +16,7 @@ import { ArticulosComponent } from './articulos/articulos.component';
 import { ComprasComponent } from './compras/compras.component';
 import { VentasComponent } from './ventas/ventas.component';
 import { LogingGuard } from './loging.guard'; 
+import { ShopComponent } from './shop/shop.component';
 
 
 const routes: Routes = [
@@ -34,6 +35,8 @@ const routes: Routes = [
   {path: 'Articulos', component: ArticulosComponent, canActivate:[LogingGuard]},
   {path: 'Compras', component: ComprasComponent, canActivate:[LogingGuard]},
   {path: 'Ventas', component: VentasComponent, canActivate:[LogingGuard]} ,
+  { path: '', redirectTo: '/shop', pathMatch: 'full' },
+  { path: 'shop', component: ShopComponent },
   
   
 
@@ -50,7 +53,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

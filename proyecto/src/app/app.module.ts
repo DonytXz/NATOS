@@ -37,6 +37,10 @@ import { TarimasComponent } from './tarimas/tarimas.component';
 import { ComprasComponent } from './compras/compras.component';
 import { VentasComponent } from './ventas/ventas.component';
 
+import { CartComponent } from './cart/cart.component';
+import { CartitemComponent } from './cart/cartitem/cartitem.component';
+import { ShopComponent } from './shop/shop.component';
+
 
 @NgModule({
   declarations: [
@@ -57,6 +61,9 @@ import { VentasComponent } from './ventas/ventas.component';
     TarimasComponent,
     ComprasComponent,
     VentasComponent,
+    CartComponent,
+    CartitemComponent,
+    ShopComponent
   ],
   imports: [ 
     BrowserModule,

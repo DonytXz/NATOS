@@ -1,65 +1,39 @@
 
-  <!--<div class="container-fluid" style="background-color: black;" >
-    <div class="row style_featured" > 
-        <div class="col-md-4">
-            <div>
-                <img src="../../assets/tarima1.png" alt="" class="img-rounded img-thumbnail"/>
-                <h2>Item A</h2>
-                <p style="text-align: left;">
-                    <span class="fa fa-info-circle"></span>
-                    A quality item for purchase. Features state of the art technology
-                </p>
-                <p style="text-align: left;">
-                    <span class="fa fa-bank "></span>
-                    0% Financing available
-                </p>
-                <p style="text-align: left;">
-                    <span class="fa fa-calendar "></span>
-                    12 months full warranty
-                </p>
-                <a class="btn" onclick="M.toast({html: 'Agregado a su lista', completeCallback: function(){alert('¡Oh no! Usted necesita iniciar sesion/Registrarse en esta pagina para poder hacer encargos')}})">Encargar</a>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div>
-                <img src="../../assets/tarima 2.png" alt="" class="img-rounded img-thumbnail"/>
-                <h2>Item A</h2>
-                <p style="text-align: left;">
-                    <span class="fa fa-info-circle"></span>
-                    A quality item for purchase. Features state of the art technology
-                </p>
-                <p style="text-align: left;">
-                    <span class="fa fa-bank "></span>
-                    0% Financing available
-                </p>
-                <p style="text-align: left;">
-                    <span class="fa fa-calendar "></span>
-                    21 months full warranty
-                </p>
-                <a class="btn" onclick="M.toast({html: 'Agregado a su lista', completeCallback: function(){alert('¡Oh no! Usted necesita iniciar sesion/Registrarse en esta pagina para poder hacer encargos')}})">Encargar</a>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div>
-                <img src="http://www.prepbootstrap.com/Content/images/template/featureditems/product_003.jpg" alt="" class="img-rounded img-thumbnail"/>
-                <h2>Item A</h2>
-                <p style="text-align: left;">
-                    <span class="fa fa-info-circle"></span>
-                    A quality item for purchase. Features state of the art technology
-                </p>
-                <p style="text-align: left;">
-                    <span class="fa fa-bank "></span>
-                    0% Financing available
-                </p>
-                <p style="text-align: left;">
-                    <span class="fa fa-calendar "></span>
-                    4 months full warranty
-                </p>
-                <a href="#" class="btn btn-success" title="More">more »</a>
-            </div>
-        </div>
+
+
+
+
+<div class="row product-wrapper">
+  <div class="col-sm-6 col-md-4 col-lg-3 product-item"
+    *ngFor="let item of productItem"  >
+    <div class="thumbnail">
+      <img [src]="item.imageUrl"
+        alt="{{item.name}}">
+      <div class="caption">
+        <h3>{{item.name}}</h3>
+        <p>
+          Price {{item.price}} MX
+        </p>
+        <button class="btn btn-primary"
+          role="button"
+          id={{item.id}}
+          (click)="onCartUpdated($event)"
+          >
+          Add to Cart
+        </button>
+      </div>
     </div>
-</div>-->
+  </div>
+  
+</div>
+
+
+
+
+
+
+
+
 
 <div class="container-fluid" >
     <div class="row" >
@@ -70,10 +44,11 @@
             <div class="card-body black white-text">
               <h1 >20 Tarimas Chep + 30 tarimas Tacon  <a class="btn-floating btn-large red pulse">-40%</a> </h1>
               <p class="card-text">Tres capas de madera de pino de la mejor temporada, aseguradas con tornillos de acero de nuestros mejores proveedores.</p>
+              <br>
               <a class="waves-effect waves-light btn-small"><i class="material-icons left">add_shopping_cart</i>Encargar.</a> 
               
 
-           
+            <br><br>
             </div>
           </div>
       
@@ -94,90 +69,5 @@
       </div>
 
     </div>
-    <div class="row">
-      <div class="col-6 col-md-4">
 
-        <div class="card" style="border-radius: 20px;">
-            <img class="card-img-top" src="../../assets/chep.jpg" alt="Card image cap" width="250px" height="300px">
-            <div class="card-body" style="background-color: black;"  >
-              <h5 class="card-title" style="color:white;"><i class="material-icons">shopping_basket</i> Tarima "Chep" <a class="btn-floating btn-large yellow black-text pulse" style="color: white;">180mx</a></h5>
-              <p class="card-text" style="color:white;">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item" style="background-color: black; color: white;">Cras justo odio</li>
-              <li class="list-group-item" style="background-color: black; color: white;">Dapibus ac facilisis in</li>
-              <li class="list-group-item" style="background-color: black; color: white;">Vestibulum at eros</li>
-            </ul>
-            <div class="card-body" style="background-color: black; color: white;">
-                <a class="waves-effect waves-light btn-small"><i class="material-icons left">add_shopping_cart</i>Encargar.</a> 
-                
-            </div>
-          </div>
-
-      </div>
-
-      <div class="col-6 col-md-4">
-
-        <div class="card" style="border-radius: 20px;">
-            <img class="card-img-top" src="../../assets/personalizada.gif" alt="Card image cap" width="250px" height="300px" style="background-color: black;">
-            <div class="card-body">
-              <h5 class="card-title"><i class="material-icons">shopping_basket</i> Tarima "medidas especiales" <a class="btn-floating btn-large yellow black-text pulse">$300mx</a></h5>
-              <p class="card-text">Si necesitas algo a la medida para tus proyectos, esta es tu mejor opcion.</p>
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">Medidas personalizadas</li>
-              <li class="list-group-item">Diseño personalizado</li>
-              <li class="list-group-item">Capas de madera al gusto</li>
-            </ul>
-            <div class="card-body">
-              <a class="waves-effect waves-light btn-small"><i class="material-icons left">add_shopping_cart</i>Encargar.</a> 
-            </div>
-          </div>
-
-      </div>
-
-      <div class="col-6 col-md-4">
-
-        <div class="card" style="border-radius: 20px;">
-          <img class="card-img-top" src="../../assets/tarima1.png" alt="Card image cap" width="250px" height="300px">
-          <div class="card-body" style="background-color: black;"  >
-            <h5 class="card-title" style="color:white;"><i class="material-icons">shopping_basket</i> Tarima "Tacon" <a class="btn-floating btn-large yellow black-text pulse" style="color: white;">180mx</a></h5>
-            <p class="card-text" style="color:white;">Pieza sumamente resistente, diseñada para un uso rudo</p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item" style="background-color: black; color: white;">4 capas de madera maple</li>
-            <li class="list-group-item" style="background-color: black; color: white;">Medidas personalizadas (bajo encargo)</li>
-            <li class="list-group-item" style="background-color: black; color: white;">4 unidades de madera por ambos lados</li>
-          </ul>
-          <div class="card-body" style="background-color: black; color: white;">
-              <a class="waves-effect waves-light btn-small"><i class="material-icons left">add_shopping_cart</i>Encargar.</a> 
-              
-          </div>
-        </div>
-
-      </div>
     </div>
-    <div class="row">
-      <div class="col-4">
-
-        <div class="card mb-4">
-          <img class="card-img-top" src="../../assets/plastico.png" alt="Card image cap" width="250px" height="300px">
-          <div class="card-body black white-text">
-            <h1 ><i class="material-icons">shopping_basket</i> Tarima de plastico <a class="btn-floating btn-large yellow black-text pulse">200Mx</a> </h1>
-            <p class="card-text">Tres capas de madera de pino de la mejor temporada, aseguradas con tornillos de acero de nuestros mejores proveedores.</p>
-            <a class="waves-effect waves-light btn-small"><i class="material-icons left">add_shopping_cart</i>Encargar.</a> 
-            
-
-         
-          </div>
-        </div>
-
-      </div>
-
-      <div class="col-6">
-
-       
-        
-      </div>
-    </div>
-  </div>
