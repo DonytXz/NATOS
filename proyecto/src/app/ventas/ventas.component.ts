@@ -27,7 +27,7 @@ export class VentasComponent implements OnInit {
 
 //metodo guardar empleado
 guardarventa() {
-  this.ventaservicio.insertarVenta(this.ventas)
+  this.ventaservicio.insertarVenta(this.venta)
     .subscribe(res => {
       alert("La solicitud de venta ha sido registrado con éxito")
       this.limpiarventa()

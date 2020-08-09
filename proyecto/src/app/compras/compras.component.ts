@@ -27,7 +27,7 @@ export class ComprasComponent implements OnInit {
 
   //metodo guardar empleado
   guardarcompra() {
-    this.compraservicio.insertarCompra(this.compras)
+    this.compraservicio.insertarCompra(this.compra)
       .subscribe(res => {
         alert("La solicitud de compra ha sido registrado con éxito")
         this.limpiarcompra()

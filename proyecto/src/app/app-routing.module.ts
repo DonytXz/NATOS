@@ -34,15 +34,8 @@ const routes: Routes = [
   {path: 'Proveedores', component:ProveedoresComponent, canActivate:[LogingGuard]},
   {path: 'Articulos', component: ArticulosComponent, canActivate:[LogingGuard]},
   {path: 'Compras', component: ComprasComponent, canActivate:[LogingGuard]},
-  {path: 'Ventas', component: VentasComponent, canActivate:[LogingGuard]} ,
-  { path: '', redirectTo: '/shop', pathMatch: 'full' },
+  {path: 'Ventas', component: VentasComponent, canActivate:[LogingGuard]},
   { path: 'shop', component: ShopComponent },
-  
-  
-
-
-
-
 
 
   //Comodines de redireccionamiento
