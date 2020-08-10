@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { ProductItem } from './product.model'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-catalogo',
@@ -25,9 +26,10 @@ export class CatalogoComponent implements OnInit {
     productPrice: number
   }>();
 
-  constructor() { }
+  constructor(public router: Router) { }
 
   ngOnInit() {
+    this.router.navigate(['shop']);
   }
 
   onCartUpdated(event) {
