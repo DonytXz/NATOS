@@ -12,14 +12,14 @@
       <div class="caption">
         <h3>{{item.name}}</h3>
         <p>
-          Price {{item.price}} MX
+          Precio: {{item.price}} MX
         </p>
-        <button class="btn btn-primary"
+        <button class="btn btn-primary" style="margin-bottom: 20px;"
           role="button"
           id={{item.id}}
           (click)="onCartUpdated($event)"
           >
-          Add to Cart
+          Agregar al carrito
         </button>
       </div>
     </div>
