@@ -22,6 +22,8 @@ export class EmpleadosComponent implements OnInit {
 
   constructor(private empleadoservicio:EmpleadosService) { }
 
+  p: number = 1;
+
   ngOnInit(): void {
     this.consultartodoempleado()
   }
@@ -67,7 +69,7 @@ export class EmpleadosComponent implements OnInit {
     //esto para que se limpien los campos
     this.empleado.id=""
     this.empleado.nombre=""
-    this.empleado.apellido_paterno=""
+    this.empleado.apellido_materno=""
     this.empleado.apellido_paterno=""
     this.empleado.puesto=""
     this.empleado.sueldo=""
