@@ -15,3 +15,144 @@ input {
     color: #436f85; 
     text-align: center;
 }
+/*////////////////////////////
+  Responsive 
+///////////////////////////*/ 
+@media (max-width: 400.98px) { 
+    .nombre{
+        font-size:12px!important;
+        width: 5em!important; 
+        margin: 1px!important;
+    }
+    .precio{
+        font-size:12px!important;
+        width: 5em!important; 
+        margin: 1px!important;
+    }
+    .cantidad{
+        font-size:12px!important;
+        width: 5em!important; 
+        margin: 1px!important;
+    }
+    .precioTotal{
+        font-size:12px!important;
+        width: 5em!important; 
+        margin: 1px!important;
+    }
+}
+
+@media (min-width: 401px) and (max-width: 575.98px) { 
+    .nombre{
+        font-size:14px!important;
+        width: 7em!important; 
+        margin: 1px!important;
+    }
+    .precio{
+        font-size:14px!important;
+        width: 7em!important; 
+        margin: 1px!important;
+    }
+    .cantidad{
+        font-size:14px!important;
+        width: 7em!important; 
+        margin: 1px!important;
+    }
+    .precioTotal{
+        font-size:14px!important;
+        width: 7em!important; 
+        margin: 1px!important;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 768px) { 
+    .nombre{
+        font-size:16px!important;
+        width: 10em!important; 
+        margin: 1px!important;
+    }
+    .precio{
+        font-size:16px!important;
+        width: 10em!important; 
+        margin: 1px!important;
+    }
+    .cantidad{
+        font-size:16px!important;
+        width: 10em!important; 
+        margin: 1px!important;
+    }
+    .precioTotal{
+        font-size:16px!important;
+        width: 10em!important; 
+        margin: 1px!important;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 991.98px) { 
+    .nombre{
+        font-size:16px!important;
+        width: 12em!important; 
+        margin: 1px!important;
+    }
+    .precio{
+        font-size:16px!important;
+        width: 12em!important; 
+        margin: 1px!important;
+    }
+    .cantidad{
+        font-size:16px!important;
+        width: 12em!important; 
+        margin: 1px!important;
+    }
+    .precioTotal{
+        font-size:16px!important;
+        width: 12em!important; 
+        margin: 1px!important;
+    }
+}
+    
+
+@media (min-width: 992px) and (max-width: 1199.98px) { 
+    .nombre{
+        font-size:18px!important;
+        width: 12em!important; 
+        margin: 1px!important;
+    }
+    .precio{
+        font-size:18px!important;
+        width: 12em!important; 
+        margin: 1px!important;
+    }
+    .cantidad{
+        font-size:18px!important;
+        width: 12em!important; 
+        margin: 1px!important;
+    }
+    .precioTotal{
+        font-size:18px!important;
+        width: 12em!important; 
+        margin: 1px!important;
+    }
+ }
+
+@media (min-width: 1200px) {  
+    .nombre{
+        font-size:18px!important;
+        width: 12em!important; 
+        margin: 1px!important;
+    }
+    .precio{
+        font-size:18px!important;
+        width: 12em!important; 
+        margin: 1px!important;
+    }
+    .cantidad{
+        font-size:18px!important;
+        width: 12em!important; 
+        margin: 1px!important;
+    }
+    .precioTotal{
+        font-size:18px!important;
+        width: 12em!important; 
+        margin: 1px!important;
+    }
+}

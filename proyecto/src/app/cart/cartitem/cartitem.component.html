@@ -1,13 +1,13 @@
 <div class="cart-item-wrapper"
     [ngStyle]="{color: 'blue'}"  
     >
-    <div>
+    <div class="nombre" style="width:8vw; margin: 2em;">
       {{cartItem.name}}
     </div>
-    <div>
-      {{cartItem.price}} MX
+    <div class="precio" style="width: 2vw; margin: 2em;">
+      {{cartItem.price}} <br>MX
     </div>
-    <div>
+    <div class="cantidad" style="width:10vw; margin: 2em;">
       <input type="number"
         value={{cartItem.quantity}}
         min=1
@@ -16,17 +16,17 @@
         (change)="onCartItemChanged($event)"
         >
     </div>
-    <div>
-      {{cartItem.quantity * cartItem.price}} MX
+    <div class="precioTotal" style="width: 10vw; margin: 2em;">
+      {{cartItem.quantity * cartItem.price}}
+       MX
     </div>
     <div>
-      <button type="button"
-        class="btn btn-default"
+      <button type="button" class="fas fa-trash" style="margin: 1px;"
         aria-label="Left Align"
         id={{cartItem.id}}
         (click)="onCartItemDeleted($event)"
         >
-        <span class="glyphicon glyphicon-remove"
+        <span 
           aria-hidden="true"
           id={{cartItem.id}}>
         </span>
