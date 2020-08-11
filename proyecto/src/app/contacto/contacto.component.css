@@ -6,7 +6,7 @@ body {
   }
   
   #contact {
-    width: 100%;
+    width: 105vw;
     height: 100vh;
     background-color: #111;
     overflow: hidden;
@@ -190,7 +190,7 @@ body {
   /* Begin Media Queries*/
   @media screen and (max-width: 760px) {
       #contact {
-          height: 1000px;
+          height: 1300px;
       }
     .section-header {
       font-size: 65px;
@@ -217,7 +217,7 @@ body {
   
   @media screen and (max-width: 569px) {
     #contact {
-      height: 1200px;
+      height: 1500px;
       }
     .section-header{
       font-size: 50px;
@@ -257,8 +257,11 @@ body {
   
   @media screen and (max-width: 410px) {
     .send-button {
-      width: 99%;
+      width: 100%;
     }
+    #contact {
+      width: 108vmin;
+      }
   }
   
 
