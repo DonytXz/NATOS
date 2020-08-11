@@ -46,6 +46,9 @@ export class EmpleadosComponent implements OnInit {
       this.limpiarempleado()
     })
   }
+  editEste(emp){
+    this.empleado = emp
+  }
 
   //metodo eliminar
   eliminarempleado(){
@@ -57,6 +60,10 @@ export class EmpleadosComponent implements OnInit {
     })
   }
 
+
+
+
+
   //metodo consultar
   consultartodoempleado(){
       this.empleados=this.empleadoservicio.consultartodoEmpleado();
@@ -67,7 +74,7 @@ export class EmpleadosComponent implements OnInit {
     //esto para que se limpien los campos
     this.empleado.id=""
     this.empleado.nombre=""
-    this.empleado.apellido_paterno=""
+    this.empleado.apellido_materno=""
     this.empleado.apellido_paterno=""
     this.empleado.puesto=""
     this.empleado.sueldo=""
