@@ -26,9 +26,6 @@ export class CatalogoComponent implements OnInit {
     productPrice: number
   }>();
 
-
-  
-
   constructor(public router: Router) { }
 
   ngOnInit() {
