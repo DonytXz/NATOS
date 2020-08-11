@@ -33,8 +33,9 @@ export class EmpleadosComponent implements OnInit {
     this.empleadoservicio.insertarEmpleado(this.empleado)
     .subscribe(res=>{
       alert("El empleado ha sido registrado con éxito")
-      this.consultartodoempleado()
+
       this.limpiarempleado()
+      this.consultartodoempleado()
     },
     err=> console.log(err))
   }
@@ -44,8 +45,9 @@ export class EmpleadosComponent implements OnInit {
     this.empleadoservicio.modificarEmpleado(this.empleado)
     .subscribe(res=>{
       alert("El empleado ha sido modificado con éxito")
-      this.consultartodoempleado();
+
       this.limpiarempleado()
+      this.consultartodoempleado();
     })
   }
   editEste(emp){

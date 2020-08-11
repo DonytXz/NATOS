@@ -57,13 +57,13 @@ Precio<input type="text" [(ngModel)]="tarima.precio"><br>
     
     
     <br>
-    <a value="Guardar" (click)="guardartarima()" class="waves-effect waves= btn-small"><i class="material-icons left">save</i>guardar</a>
+    <a value="Guardar" (click)="guardarTarima()" class="waves-effect waves= btn-small"><i class="material-icons left">save</i>guardar</a>
     &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp; 
-    <a value="Modificar" (click)="modificartarima()" class="waves-effect waves-light btn-small"><i class="material-icons left">refresh</i>modificar</a>
+    <a value="Modificar" (click)="modificarTarima()" class="waves-effect waves-light btn-small"><i class="material-icons left">refresh</i>modificar</a>
     <br><br>
-    <a  value="Eliminar" (click)="eliminartarima()" class="waves-effect waves-light btn-small"><i class="material-icons left">delete</i>eliminar</a>
+    <a  value="Eliminar" (click)="eliminarTarima()" class="waves-effect waves-light btn-small"><i class="material-icons left">delete</i>eliminar</a>
     &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp; 
-    <a value="Consultar todo" (click)="consultartodotarima()" class="waves-effect waves-light btn-small"><i class="material-icons left">zoom_in</i>consultar</a>
+    <a value="Consultar todo" (click)="consultarTodoTarima()" class="waves-effect waves-light btn-small"><i class="material-icons left">zoom_in</i>consultar</a>
     <br><br>
     
     
@@ -95,16 +95,19 @@ Precio<input type="text" [(ngModel)]="tarima.precio"><br>
                 </tr>
             </thead>
             <thead>
-                <tr *ngFor="let tar of tarimas | async">
+                <tr *ngFor="let tar of tarimas | async | paginate: { itemsPerPage: 5, currentPage: p }">
                     <td>{{ tar.id }}</td>
                     <td>{{ tar.descripcion }}</td>
                     <td>{{ tar.tipo }}</td>
                     <td>{{ tar.cantidad }}</td>
                     <td>{{ tar.precio }}</td>
+                    <a value="Consultar todo" (click)="editEste(tar)" class="fas fa-edit"></a>
                 </tr>
             </thead>
             </table>
-    
+            <div style="background-color: white; color: white; width: 15vw;">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>
     
           </div>
         </div>

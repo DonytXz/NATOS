@@ -17,6 +17,7 @@ import { ComprasComponent } from './compras/compras.component';
 import { VentasComponent } from './ventas/ventas.component';
 import { LogingGuard } from './loging.guard'; 
 import { ShopComponent } from './shop/shop.component';
+import { TempComponent } from './temp/temp.component';
 
 
 const routes: Routes = [
@@ -36,6 +37,7 @@ const routes: Routes = [
   {path: 'Compras', component: ComprasComponent, canActivate:[LogingGuard]},
   {path: 'Ventas', component: VentasComponent, canActivate:[LogingGuard]},
   { path: 'shop', component: ShopComponent },
+  { path: 'temp', component: TempComponent },
 
 
   //Comodines de redireccionamiento

@@ -21,52 +21,65 @@ export class TarimasComponent implements OnInit {
 
   constructor(private tarimaservicio: TarimasService) { }
 
-  ngOnInit(): void {}
+  p : number = 0;
+
+  ngOnInit(): void {
+    this.consultarTodoTarima()
+  }
   
   //metodo guardar empleado
-  guardartarima(){
+  guardarTarima(){
     this.tarimaservicio.insertarTarima(this.tarima)
     .subscribe(res=>{
-      alert("El artículo ha sido registrado con éxito")
-      //this.limpiarempleado()
+      alert("El tarima ha sido registrado con éxito")
+      this.consultarTodoTarima()
+      this.limpiarTarima()
     },
     err=> console.log(err))
   }
 
   //metodo modificar
-  modificartarima(){
+  modificarTarima(){
     this.tarimaservicio.modificarTarima(this.tarima)
     .subscribe(res=>{
-      alert("El artículo ha sido modificado con éxito")
-      this.consultartodotarima();
-      //this.limpiarempleado()
+      alert("El empleado ha sido modificado con éxito")
+      this.consultarTodoTarima();
+      this.limpiarTarima()
     })
+  }
+  editEste(tar){
+    this.tarima = tar
   }
 
   //metodo eliminar
-  eliminartarima(){
+  eliminarTarima(){
     this.tarimaservicio.eliminarTarima(this.tarima)
     .subscribe(res=>{
-      alert("El producto ha sido eliminado con éxito")
-      //this.limpiarempleado()
+      alert("El empleado ha sido eliminado con éxito")
+      this.consultarTodoTarima()
+      this.limpiarTarima()
     })
   }
 
+
+
+
+
   //metodo consultar
-  consultartodotarima(){
+  consultarTodoTarima(){
       this.tarimas=this.tarimaservicio.consultartodoTarima();
   }
 
+
   //metodo limpiar campos
-  /*limpiarempleado(){
+  limpiarTarima(){
     //esto para que se limpien los campos
-    this.empleado.id=""
-    this.empleado.nombre=""
-    this.empleado.apellido_paterno=""
-    this.empleado.apellido_paterno=""
-    this.empleado.puesto=""
-    this.empleado.sueldo=""
-  }*/
+    this.tarima.id=""
+    this.tarima.descripcion=""
+    this.tarima.tipo=""
+    this.tarima.cantidad=""
+    this.tarima.precio=""
+  }
 
 
 }
