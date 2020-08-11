@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../servicios/login.service';
 
 @Component({
   selector: 'app-sugerencias',
@@ -11,6 +12,7 @@ export class SugerenciasComponent implements OnInit {
   correo: string;
   txt: string;
   url: string;
+  entrar=false;
 
   getAsunto(val){
     this.asunto = val;
@@ -32,9 +34,17 @@ export class SugerenciasComponent implements OnInit {
       this.url = "https://api.whatsapp.com/send?phone=+5216644198479"+"&text="+this.txt;
    }
 
-  constructor() { }
+  constructor(private loginservicio:LoginService) { }
 
   ngOnInit(): void {
+    this.loginservicio.change.subscribe(isOpen =>{
+      this.entrar = isOpen;
+    })
+    this.llenarentrar();
+  }
+  llenarentrar(){
+    this.entrar=this.loginservicio.eslogueado();
+
   }
 
 }
