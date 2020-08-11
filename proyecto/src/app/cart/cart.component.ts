@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, Input,  EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms'; 
 import { CartItem } from './cart.model';
+import { jsPDF } from "jspdf";
 
 @Component({
   selector: 'app-cart',
@@ -30,10 +31,26 @@ export class CartComponent implements OnInit {
       });    
   }
 
+  // print(){
+  //   // window.print();
+  //   var printContents = document.getElementById('printDiv').innerHTML;
+  //   var originalContents = document.body.innerHTML;
+  //   document.body.innerHTML = printContents;
+  //   window.print();
+  //   document.body.innerHTML = originalContents;
+  // }
+
+  
+
+  
   constructor() {
-  }
+    
+
+  } 
  
   ngOnInit() {
+
+
   }
 
 }
