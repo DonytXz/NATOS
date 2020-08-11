@@ -22,6 +22,8 @@ export class ProveedoresComponent implements OnInit {
   }
 
   constructor(private proveedorservicio:ProveedoresService) { }
+ 
+  p :number = 0; 
 
   ngOnInit(): void {
   }
@@ -31,7 +33,8 @@ export class ProveedoresComponent implements OnInit {
     this.proveedorservicio.insertarProveedor(this.proveedor)
     .subscribe(res=>{
       alert("El proveedor ha sido registrado con éxito")
-      //this.limpiarempleado()
+      this.consultartodoproveedor();
+      this.limpiarProvedores()
     },
     err=> console.log(err))
   }
@@ -42,16 +45,23 @@ export class ProveedoresComponent implements OnInit {
     .subscribe(res=>{
       alert("El proveedor ha sido modificado con éxito")
       this.consultartodoproveedor();
-      //this.limpiarempleado()
+      this.limpiarProvedores()
     })
   }
+
+  editEste(pro){
+    this.proveedor = pro
+  }
+
 
   //metodo eliminar
   eliminarproveedor(){
     this.proveedorservicio.eliminarProveedor(this.proveedor)
     .subscribe(res=>{
       alert("El proveeedor ha sido eliminado con éxito")
-      //this.limpiarempleado()
+      this.limpiarProvedores()
+      this.consultartodoproveedor()
+
     })
   }
 
@@ -61,14 +71,16 @@ export class ProveedoresComponent implements OnInit {
   }
 
   //metodo limpiar campos
-  /*limpiarempleado(){
+  limpiarProvedores(){
     //esto para que se limpien los campos
-    this.empleado.id=""
-    this.empleado.nombre=""
-    this.empleado.apellido_paterno=""
-    this.empleado.apellido_paterno=""
-    this.empleado.puesto=""
-    this.empleado.sueldo=""
-  }*/
+    this.proveedor.id=""
+    this.proveedor.empresa=""
+    this.proveedor.nombre=""
+    this.proveedor.apellido_paterno=""
+    this.proveedor.apellido_materno=""
+    this.proveedor.puesto=""
+    this.proveedor.rfc=""
+    this.proveedor.tipo_persona=""
+  }
 
 }

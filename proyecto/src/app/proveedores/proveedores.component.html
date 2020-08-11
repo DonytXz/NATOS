@@ -107,7 +107,7 @@ tipo_persona<input type="text" [(ngModel)]="proveedor.tipo_persona"><br>
                 </tr>
             </thead>
             <thead>
-                <tr *ngFor="let pro of proveedores | async">
+                <tr *ngFor="let pro of proveedores | async | paginate: { itemsPerPage: 5, currentPage: p }">
                     <td>{{ pro.id }}</td>
                     <td>{{ pro.empresa }}</td>
                     <td>{{ pro.nombre }}</td>
@@ -116,9 +116,13 @@ tipo_persona<input type="text" [(ngModel)]="proveedor.tipo_persona"><br>
                     <td>{{ pro.puesto }}</td>
                     <td>{{ pro.rfc }}</td>
                     <td>{{ pro.tipo_persona }}</td>
+                    <a value="Consultar todo" (click)="editEste(pro)" class="fas fa-edit"></a>
             </thead>
             </table>
-    
+            <div style="background-color: white; color: white; width: 15vw;">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>
+        
     
           </div>
         </div>
