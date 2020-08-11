@@ -41,6 +41,7 @@ import { VentasComponent } from './ventas/ventas.component';
 import { CartComponent } from './cart/cart.component';
 import { CartitemComponent } from './cart/cartitem/cartitem.component';
 import { ShopComponent } from './shop/shop.component';
+import { TempComponent } from './temp/temp.component';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { ShopComponent } from './shop/shop.component';
     VentasComponent,
     CartComponent,
     CartitemComponent,
-    ShopComponent
+    ShopComponent,
+    TempComponent
   ],
   imports: [ 
     BrowserModule,
