@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import {FormsModule} from '@angular/forms';
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 
 
 //declaración de servicios
@@ -69,7 +70,8 @@ import { ShopComponent } from './shop/shop.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
   ],
   providers:[ //Aquí van los servicios
     EmpleadosService,

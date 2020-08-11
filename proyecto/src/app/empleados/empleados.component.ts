@@ -22,6 +22,8 @@ export class EmpleadosComponent implements OnInit {
 
   constructor(private empleadoservicio:EmpleadosService) { }
 
+  p: number = 1;
+
   ngOnInit(): void {
     this.consultartodoempleado()
   }

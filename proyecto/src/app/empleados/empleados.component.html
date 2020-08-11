@@ -61,7 +61,7 @@ Sueldo &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input styl
             </tr>
         </thead>
         <thead>
-            <tr *ngFor="let emp of empleados | async">
+            <tr *ngFor="let emp of empleados | async | paginate: { itemsPerPage: 5, currentPage: p }">
                 <td>{{ emp.id }}</td>
                 <td>{{ emp.nombre }}</td>
                 <td>{{ emp.apellido_paterno }}</td>
@@ -74,6 +74,9 @@ Sueldo &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input styl
         </thead>
         </table>
 
+        <div style="background-color: white;">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
 
       </div>
     </div>
