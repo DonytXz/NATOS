@@ -14,6 +14,7 @@ export class ContactoComponent implements OnInit {
   asunto: string;
   nombre: string;
   correo: string;
+  numero: string;
   txt: string;
   url: string;
 
@@ -26,15 +27,17 @@ export class ContactoComponent implements OnInit {
   getCorreo(val){
     this.correo = val;
   }
-  // getNumero(val){
-  //   this.numero = val;
-  // }
+  getNumero(val){
+    this.numero = val;
+  }
   getTxt(val){
     this.txt = val;
   }
 
   generateUrl(){
-      this.url = "https://api.whatsapp.com/send?phone=+5216644198479"+"&text="+this.txt;
+      this.url = "https://api.whatsapp.com/send?phone=+5216644198479"+"&text=" + 
+     "Asunto: " + " " + this.asunto + "\n " + " "+ "Nombre: " + " " +  this.nombre + " "+ "\n" +
+      "Correo: " + " " + this.correo + "\n " + "Numero: " + " " +this.numero+ " "+ "Mensaje: " + " " + this.txt;
    }
 
 
