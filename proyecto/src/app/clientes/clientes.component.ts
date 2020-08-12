@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientesService } from '../servicios/clientes.service'
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-clientes',
@@ -23,8 +25,11 @@ export class ClientesComponent implements OnInit {
 
   constructor(private clienteservicio:ClientesService) { }
 
+  p: number = 1;
+
+
   ngOnInit(): void {
-    //this.consultartodocliente();
+    this.consultartodocliente();
   }
 
   //metodo guardar empleado
@@ -32,9 +37,14 @@ export class ClientesComponent implements OnInit {
     this.clienteservicio.insertarCliente(this.cliente)
     .subscribe(res=>{
       alert("El cliente ha sido registrado con éxito")
-      //this.limpiarcliente()
+      this.limpiarcliente();
+      this.consultartodocliente();
     },
     err=> console.log(err))
+  }
+
+  editEste(cli){
+    this.cliente = cli
   }
 
   //metodo modificar
@@ -43,15 +53,18 @@ export class ClientesComponent implements OnInit {
     .subscribe(res=>{
       alert("El cliente ha sido modificado con éxito")
       this.consultartodocliente()
-      //this.limpiarcliente()
+      this.limpiarcliente()
+      this.consultartodocliente()
     })
   }
 
+  //metodo eliminar
   eliminarcliente(){
-    this.clienteservicio.eliminarCliente(this.eliminarcliente)
+    this.clienteservicio.eliminarCliente(this.cliente)
     .subscribe(res=>{
       alert("El cliente ha sido eliminado con éxito")
-      //this.limpiarempleado()
+      this.limpiarcliente()
+      this.consultartodocliente()
     })
   }
 
@@ -61,7 +74,7 @@ export class ClientesComponent implements OnInit {
   }
 
   //metodo limpiar campos
-  /*limpiarcliente(){
+  limpiarcliente(){
     //esto para que se limpien los campos
     this.cliente.id=""
     this.cliente.empresa=""
@@ -71,6 +84,5 @@ export class ClientesComponent implements OnInit {
     this.cliente.puesto=""
     this.cliente.rfc=""
     this.cliente.tipo_persona=""
-  }*/
-
+  }
 }

@@ -26,6 +26,7 @@ export class ProveedoresComponent implements OnInit {
   p :number = 0; 
 
   ngOnInit(): void {
+    this.consultartodoproveedor()
   }
 
   //metodo guardar empleado

@@ -20,6 +20,8 @@ export class ArticulosComponent implements OnInit {
 
   constructor(private articuloservicio: ArticulosService) { }
 
+  p: number = 1;
+
   ngOnInit(): void {
     this.consultartodoarticulo()
   }
@@ -33,6 +35,10 @@ export class ArticulosComponent implements OnInit {
         this.consultartodoarticulo()
       },
         err => console.log(err))
+  }
+
+  editEste(art){
+    this.articulo = art
   }
 
   //metodo modificar

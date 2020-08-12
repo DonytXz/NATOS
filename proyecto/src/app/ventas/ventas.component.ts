@@ -8,8 +8,6 @@ import { VentasService } from '../servicios/ventas.service';
 })
 export class VentasComponent implements OnInit {
 
-  constructor(private ventaservicio:VentasService) { }
-
   ventas;
 
   venta={
@@ -21,11 +19,15 @@ export class VentasComponent implements OnInit {
     precio_tarima:""
   }
 
+  constructor(private ventaservicio:VentasService) { }
+
+  p: number = 1;
+
   ngOnInit(): void {
     this.consultartodoventa()
   }
 
-//metodo guardar empleado
+//metodo guardar venta
 guardarventa() {
   this.ventaservicio.insertarVenta(this.venta)
     .subscribe(res => {
@@ -34,6 +36,10 @@ guardarventa() {
       this.consultartodoventa()
     },
       err => console.log(err))
+}
+
+editEste(ven){
+  this.venta = ven
 }
 
 //metodo modificar
