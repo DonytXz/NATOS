@@ -34,7 +34,7 @@ export class CartitemComponent implements OnInit {
    }
 
   ngOnInit() {
-
+    console.log(this.cartItem);
   }
 
 
