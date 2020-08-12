@@ -5,12 +5,12 @@
     <div class="headerTabla">
       <div style="text-align: center; vertical-align: middle;">
   <tr >
-      <td style="width: 15vw;">ID</td>
-      <td style="width: 15vw;">NOMBRE</td>
-      <td style="width: 15vw;">Cantidad</td>
-      <td style="width: 15vw;">Precio</td>
-      <td style="width: 15vw;">Estatus</td>
-      <td style="width: 15vw;">Correo</td>
+      <td style="width: 100vw;">ID</td>
+      <td style="width: 100vw;">NOMBRE</td>
+      <td style="width: 100vw;">Cantidad</td>
+      <td style="width: 100vw;">Precio</td>
+      <td style="width: 100vw;">Estatus</td>
+      <td style="width: 100vw;">Correo</td>
   </tr>
   </div>
 </div>
@@ -19,11 +19,11 @@
   <div style="text-align: center; vertical-align: middle;">
   <tr *ngFor="let ped of pedidos | async ">
       <td>Identificador del pedido: {{ ped.id }}</td>
-      <td>{{ ped.name }}</td>
-      <td>{{ ped.quantity }}</td>
-      <td>{{ ped.price }}</td>
-      <td>{{ ped.status }}</td>
-      <td>{{ ped.correo }}</td>
+      <td style="width: 100vw">{{ ped.name }}</td>
+      <td style="width: 100vw">{{ ped.quantity }}</td>
+      <td style="width: 100vw">{{ ped.price }}</td>
+      <td style="width: 100vw">{{ ped.status }}</td>
+      <td style="width: 100vw">{{ ped.correo }}</td>
   </tr>
 </div>
 </thead>

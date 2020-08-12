@@ -59,19 +59,19 @@ td, th {
 ///////////////////////////*/ 
 @media (max-width: 400.98px) { 
     .headerTabla{
-        visibility: hidden
+        display: none;
     }
 
 }
 @media (min-width: 401px) and (max-width: 575.98px) { 
     .headerTabla{
-        visibility: hidden
+        display: none;
     }
 }
 
 @media (min-width: 576px) and (max-width: 768px) { 
     .headerTabla{
-        visibility: hidden
+        display: none;
     }
 }
 
