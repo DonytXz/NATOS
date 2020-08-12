@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RegistrarService } from '../servicios/registrar.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-registrar',
@@ -21,7 +22,12 @@ export class RegistrarComponent implements OnInit {
 
   insertar(){
     this.registrarservicio.insertar(this.usuario).subscribe(res =>{
-      alert("¡Te has registrado con éxito!")
+      Swal.fire({
+        icon: 'success',
+        title: 'Realizado',
+        text: 'Te registraste con exito',
+        // footer: '<a  <a href="#!" routerLink="Iniciar">Inicia sesion</a>'
+      })
       console.log(res)
     },
     err => console.log(err)

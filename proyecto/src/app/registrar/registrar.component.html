@@ -1,12 +1,27 @@
-<h3>Ingresar los datos a registrar</h3>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Montserrat:wght@600&display=swap" rel="stylesheet">
 
- <label class="text-primary"><b>Ingresa el código</b></label> <br>
-    <input class="text-primary" [(ngModel)]="usuario.codigo" type="text" placeholder="Código">
+<div class="container" style="text-align: center;   margin-top: 5em; width: 60%; height: 40%;" >
+    <div class="box" style="background-color: white;">
+        
+        <div class="form form--login">
+
+<h3 class="form__title">Ingresar los datos paraa registrarte</h3>
+<div class="form__helper">
+ <label class="form__label"><b>Ingresa el código</b></label> <br>
+    <input class="form__input" [(ngModel)]="usuario.codigo" type="text" placeholder="Código">
     <br>
-<label class="text-primary"><b>Ingresa tu nombre de usuario</b></label> <br>
-    <input class="text-primary" [(ngModel)]="usuario.username"  placeholder="Nombre de usuario">
+    </div>
+    <div class="form__helper">
+<label class="form__label"><b>Ingresa tu nombre de usuario</b></label> <br>
+    <input class="form__input" [(ngModel)]="usuario.username"  placeholder="Nombre de usuario">
     <br>    
-<label class="text-primary"><b>Ingresa tu contraseña</b></label> <br>
-    <input class="text-primary" [(ngModel)]="usuario.password"  placeholder="Contraseña">
+    </div>
+    <div class="form__helper">
+<label class="form__label"><b>Ingresa tu contraseña</b></label> <br>
+    <input class="form__input" [(ngModel)]="usuario.password"  placeholder="Contraseña">
     <br>
-    <button class="btn-dark" (click)="insertar()">Entrar</button>
+    </div>
+    <button class="form__button" (click)="insertar()" style="width: 100%; background-color: teal;">Entrar</button>
+</div>
+    </div>
+    </div>

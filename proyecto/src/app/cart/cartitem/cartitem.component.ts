@@ -28,6 +28,7 @@ export class CartitemComponent implements OnInit {
   }
   correo;
 
+  vacio =true;
   @Input() cartItem: CartItem;
   // @Output() cartItemO: CartItem;
   @Output() cartItemDeleted = new EventEmitter<{
@@ -101,16 +102,17 @@ export class CartitemComponent implements OnInit {
       this.pedidoo.name = this.cartItem.name;
       this.pedidoo.quantity =this.cartItem.quantity;
       this.pedidoo.price= this.cartItem.price
+      // if(this.pedidoo.id != 0) this.vacio=false
       // this.pedidoo.total= this.CartComponet.cartTotal;
       this.pedidoo.status="En proceso";
       this.pedidoo.correo=correoxD;
-      console.log(this.pedidoo.id)
-      console.log(this.pedidoo.name)
-      console.log(this.pedidoo.quantity)
-      // console.log(this.pedidoo.total)
-      console.log(this.pedidoo.status)
-      console.log(this.pedidoo.correo)
-      console.log(this.pedidoo)
+      // console.log(this.pedidoo.id)
+      // console.log(this.pedidoo.name)
+      // console.log(this.pedidoo.quantity)
+      // // console.log(this.pedidoo.total)
+      // console.log(this.pedidoo.status)
+      // console.log(this.pedidoo.correo)
+      // console.log(this.pedidoo)
     }
 
   }

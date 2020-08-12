@@ -9,11 +9,11 @@
 
             <div>
             <!--boton de registrarse-->
-            <a routerLink="Registrar" class="waves-effect text-white black btn-small" style="border-radius: 20px;"><i *ngIf="entrar" class="material-icons left">person_add</i>Registrarse</a>
+            <a *ngIf="!entrar" routerLink="Registrar" class="waves-effect text-white black btn-small" style="width: 20vw; border-radius: 20px;"><i class="material-icons left">person_add</i></a>
             &nbsp;
 
               <!-- Dropdown Trigger -->
-  <a class='dropdown-trigger text-white black btn-small' href='#' data-target='dropdown1' style="border-radius: 20px;" ><i class="material-icons left">keyboard_tab</i>Sesión</a>
+  <a class='dropdown-trigger text-white black btn-small' href='#' data-target='dropdown1' style="width: 15vw; border-radius: 20px;" ><i class="material-icons left">keyboard_tab</i></a>
 
   <!-- Dropdown Structure -->
   <ul id='dropdown1' class='dropdown-content black white-text' style="border-radius: 20px;">
