@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmpleadosService } from '../servicios/empleados.service'
 import Swal from 'sweetalert2'
-
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-empleados',
   templateUrl: './empleados.component.html',
