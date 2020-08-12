@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TarimasService } from '../servicios/tarimas.service'
-
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-tarimas',
@@ -21,7 +21,7 @@ export class TarimasComponent implements OnInit {
 
   constructor(private tarimaservicio: TarimasService) { }
 
-  p : number = 0;
+  p: number = 1;
 
   ngOnInit(): void {
     this.consultarTodoTarima()
@@ -31,9 +31,14 @@ export class TarimasComponent implements OnInit {
   guardarTarima(){
     this.tarimaservicio.insertarTarima(this.tarima)
     .subscribe(res=>{
-      alert("El tarima ha sido registrado con éxito")
-      this.consultarTodoTarima()
+      Swal.fire({
+        icon: 'success',
+        title: 'Realizado',
+        text: 'Registro guardado con exito',
+        // footer: '<a href>Pro</a>'
+      })
       this.limpiarTarima()
+      this.consultarTodoTarima()
     },
     err=> console.log(err))
   }
@@ -42,9 +47,14 @@ export class TarimasComponent implements OnInit {
   modificarTarima(){
     this.tarimaservicio.modificarTarima(this.tarima)
     .subscribe(res=>{
-      alert("El empleado ha sido modificado con éxito")
-      this.consultarTodoTarima();
+      Swal.fire({
+        icon: 'success',
+        title: 'Realizado',
+        text: 'Registro modificado con exito',
+        // footer: '<a href>Pro</a>'
+      })
       this.limpiarTarima()
+      this.consultarTodoTarima();
     })
   }
   editEste(tar){
@@ -55,9 +65,14 @@ export class TarimasComponent implements OnInit {
   eliminarTarima(){
     this.tarimaservicio.eliminarTarima(this.tarima)
     .subscribe(res=>{
-      alert("El empleado ha sido eliminado con éxito")
-      this.consultarTodoTarima()
+      Swal.fire({
+        icon: 'success',
+        title: 'Realizado',
+        text: 'Registro eliminado con exito',
+        // footer: '<a href>Pro</a>'
+      })
       this.limpiarTarima()
+      this.consultarTodoTarima()
     })
   }
 
@@ -68,6 +83,15 @@ export class TarimasComponent implements OnInit {
   //metodo consultar
   consultarTodoTarima(){
       this.tarimas=this.tarimaservicio.consultartodoTarima();
+
+      // Swal.fire({
+      //   icon: 'success',
+      //   title: 'Realizado',
+      //   text: 'Consulta exitosa',
+      //   // footer: '<a href>Pro</a>'
+      // })
+
+
   }
 
 

@@ -63,7 +63,7 @@ Precio<input type="text" [(ngModel)]="tarima.precio"><br>
     <br><br>
     <a  value="Eliminar" (click)="eliminarTarima()" class="waves-effect waves-light btn-small"><i class="material-icons left">delete</i>eliminar</a>
     &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp; 
-    <a value="Consultar todo" (click)="consultarTodoTarima()" class="waves-effect waves-light btn-small"><i class="material-icons left">zoom_in</i>consultar</a>
+    <a value="Consultar todo" (click)="consultarTodoTarima()" id="consultar" class="waves-effect waves-light btn-small"><i class="material-icons left">zoom_in</i>consultar</a>
     <br><br>
     
     
@@ -105,6 +105,7 @@ Precio<input type="text" [(ngModel)]="tarima.precio"><br>
                 </tr>
             </thead>
             </table>
+
             <div style="background-color: white; color: white; width: 15vw;">
                 <pagination-controls (pageChange)="p = $event"></pagination-controls>
                 </div>

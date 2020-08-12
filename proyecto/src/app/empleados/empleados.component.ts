@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmpleadosService } from '../servicios/empleados.service'
-
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-empleados',
@@ -45,7 +45,6 @@ export class EmpleadosComponent implements OnInit {
     this.empleadoservicio.modificarEmpleado(this.empleado)
     .subscribe(res=>{
       alert("El empleado ha sido modificado con éxito")
-
       this.limpiarempleado()
       this.consultartodoempleado();
     })
