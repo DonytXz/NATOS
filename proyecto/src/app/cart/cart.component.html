@@ -1,5 +1,39 @@
-<div id="printDiv">
+<div *ngIf="entrar" style="margin: 1px; padding: 1px;" class="pedidos">
+  <h1  style="text-align: center; width: auto; height: auto;">Pedidos</h1>
+<table class="table table-striped table-dark " style="border-radius: 20px ;" id="cssTable"> 
+  <thead>
+    <div class="headerTabla">
+      <div style="text-align: center; vertical-align: middle;">
+  <tr >
+      <td style="width: 15vw;">ID</td>
+      <td style="width: 15vw;">NOMBRE</td>
+      <td style="width: 15vw;">Cantidad</td>
+      <td style="width: 15vw;">Precio</td>
+      <td style="width: 15vw;">Estatus</td>
+      <td style="width: 15vw;">Correo</td>
+  </tr>
+  </div>
+</div>
+</thead>
+<thead>
+  <div style="text-align: center; vertical-align: middle;">
+  <tr *ngFor="let ped of pedidos | async ">
+      <td>Identificador del pedido: {{ ped.id }}</td>
+      <td>{{ ped.name }}</td>
+      <td>{{ ped.quantity }}</td>
+      <td>{{ ped.price }}</td>
+      <td>{{ ped.status }}</td>
+      <td>{{ ped.correo }}</td>
+  </tr>
+</div>
+</thead>
+</table>
+</div>
 
+
+
+<div *ngIf="!entrar" id="printDiv">
+  <h1 style="text-align: center;">Carrito</h1>
 <div class="cart-wrapper">
   <div class="panel panel-default">
     <!-- Default panel contents -->
@@ -39,6 +73,7 @@
     </div>
   </div>
 </div>
+<p style="text-align: right;" class="font-weight-bold">*Entregas en ZMG sin costo</p>
 </div>
 
   <!-- <input [(ngModel)]="vtText" type="text" [placeholder]="vtText">

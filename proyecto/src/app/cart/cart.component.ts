@@ -4,6 +4,7 @@ import { CartItem } from './cart.model';
 import Swal from 'sweetalert2'
 import { PedidoService } from '../servicios/pedido.service'
 import {CartitemComponent} from './cartitem/cartitem.component'
+import { LoginService } from '../servicios/login.service';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +38,7 @@ export class CartComponent implements OnInit {
   @Output() cartItemChanged = new EventEmitter<{
     productId: number
   }>();  
+  entrar: any;
 
   onCartItemDeleted(productData:{productId: number}) {
     this.cartItemDeleted.emit({
@@ -61,9 +63,12 @@ export class CartComponent implements OnInit {
     location.reload();
   }
 
+  consultarPedido(){
+    this.pedidos=this.pedidoServicio.consultarTodoPedido();
+}
 
   
-  constructor(public itemCarro : CartitemComponent) {
+  constructor(public itemCarro : CartitemComponent, private pedidoServicio:PedidoService, private loginservicio:LoginService) {
     // this.vacio = this.itemCarro.vacio;
     // if(this.vacio) this.vacio =false
     
@@ -71,9 +76,16 @@ export class CartComponent implements OnInit {
   } 
  
   ngOnInit() {
-
+    this.loginservicio.change.subscribe(isOpen =>{
+      this.entrar = isOpen;
+    })
+    this.llenarentrar();
+    this.consultarPedido();
 
   }
-  
+  llenarentrar(){
+    this.entrar=this.loginservicio.eslogueado();
+
+  }
 
 }

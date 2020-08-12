@@ -2,6 +2,8 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { ProductItem } from './product.model'
 import { Router } from '@angular/router';
 
+import { LoginService } from '../servicios/login.service';
+
 @Component({
   selector: 'app-catalogo',
   templateUrl: './catalogo.component.html',
@@ -25,11 +27,20 @@ export class CatalogoComponent implements OnInit {
     productName: string,
     productPrice: number
   }>();
+  entrar: any;
 
-  constructor(public router: Router) { }
+  constructor(public router: Router, private loginservicio:LoginService) { }
 
   ngOnInit() {
     this.router.navigate(['shop']);
+    this.loginservicio.change.subscribe(isOpen =>{
+      this.entrar = isOpen;
+    })
+    this.llenarentrar();
+  }
+  llenarentrar(){
+    this.entrar=this.loginservicio.eslogueado();
+
   }
 
   onCartUpdated(event) {

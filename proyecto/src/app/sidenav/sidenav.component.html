@@ -81,10 +81,14 @@
         </a>
 
             <li>
-                <a href="#" routerLink="Catalogo">
+                <a *ngIf="!entrar" href="#" routerLink="Catalogo" >
                 <i class="material-icons">import_contacts</i>
                     Catalogo
                 </a>
+                <a *ngIf="entrar" href="#" routerLink="Catalogo" >
+                    <i class="material-icons">import_contacts</i>
+                        Pedidos
+                    </a>
 
 
             </li>
@@ -184,11 +188,11 @@
 
             <div class="divider"></div>
             <li >
-               <a href="#" routerLink="Copy">
+<a>
                <i class="material-icons">copyright</i>
                NATOS
-               </a>
 
+            </a>
 
            </li>
 

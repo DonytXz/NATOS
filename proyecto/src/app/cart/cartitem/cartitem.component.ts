@@ -3,8 +3,8 @@ import { Component, OnInit, Input, EventEmitter, Output, Injectable} from '@angu
 import { CartItem } from '../cart.model';
 import { PedidoService } from '../../servicios/pedido.service'
 import { CartComponent } from '../cart.component'
-// import swal from 'sweetalert'
-// import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,7 +16,7 @@ import { CartComponent } from '../cart.component'
 })
 export class CartitemComponent implements OnInit {
   pedidos;
-
+ p =1;
   pedidoo={
     id: 0,
     name: "",
@@ -65,15 +65,23 @@ export class CartitemComponent implements OnInit {
 // }
 
       guardarPedido(){
-
-// this.getCorrero();
       this.pedidoServicio.insertarPedido(this.pedidoo)
       .subscribe(res=>{
-        alert("El pedido ha sido registrado con éxito")
         this.limpiarPedido()
         this.consultarPedido()
+        Swal.fire({
+          icon: 'success',
+          title: 'Realizado',
+          text: 'Pedido realizado con exito',
+          // footer: '<a href>Pro</a>'
+        })
       },
-      err=> console.log(err))
+      err=> Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Pedido no realizado',
+        // footer: '<a href>Pro</a>'
+      }))
     }
       // metodo consultar
   
@@ -91,13 +99,19 @@ export class CartitemComponent implements OnInit {
       this.pedidoo.correo=""
     }
 
+
+    
+
+  
+
   constructor(private pedidoServicio:PedidoService) {
  
    }
 
   ngOnInit() {
+    
     // console.log(this.cartItem);
-      var correoxD = prompt("Ingresa tu corrreo")
+      var correoxD = prompt("Ingresa tu corrreo");
       this.pedidoo.id = this.cartItem.id;
       this.pedidoo.name = this.cartItem.name;
       this.pedidoo.quantity =this.cartItem.quantity;
@@ -111,8 +125,9 @@ export class CartitemComponent implements OnInit {
       // console.log(this.pedidoo.quantity)
       // // console.log(this.pedidoo.total)
       // console.log(this.pedidoo.status)
-      // console.log(this.pedidoo.correo)
+      console.log(this.pedidoo.correo)
       // console.log(this.pedidoo)
+      this.consultarPedido()
     }
 
   }
