@@ -32,7 +32,12 @@ export class EmpleadosComponent implements OnInit {
   guardarempleado(){
     this.empleadoservicio.insertarEmpleado(this.empleado)
     .subscribe(res=>{
-      alert("El empleado ha sido registrado con éxito")
+      Swal.fire({
+        icon: 'success',
+        title: 'Realizado',
+        text: 'Registro guardado con exito',
+        // footer: '<a href>Pro</a>'
+      })
 
       this.limpiarempleado()
       this.consultartodoempleado()
@@ -44,7 +49,12 @@ export class EmpleadosComponent implements OnInit {
   modificarempleado(){
     this.empleadoservicio.modificarEmpleado(this.empleado)
     .subscribe(res=>{
-      alert("El empleado ha sido modificado con éxito")
+      Swal.fire({
+        icon: 'success',
+        title: 'Realizado',
+        text: 'Registro modificado con exito',
+        // footer: '<a href>Pro</a>'
+      })
       this.limpiarempleado()
       this.consultartodoempleado();
     })
@@ -58,7 +68,11 @@ export class EmpleadosComponent implements OnInit {
   eliminarempleado(){
     this.empleadoservicio.eliminarEmpleado(this.empleado)
     .subscribe(res=>{
-      alert("El empleado ha sido eliminado con éxito")
+      Swal.fire({
+        icon: 'success',
+        title: 'Realizado',
+        text: 'Registro eliminado con exito',
+      })
       this.limpiarempleado()
       this.consultartodoempleado()
     })

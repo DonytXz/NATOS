@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientesService } from '../servicios/clientes.service'
 import { HttpClient } from '@angular/common/http';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -36,7 +37,12 @@ export class ClientesComponent implements OnInit {
   guardarcliente(){
     this.clienteservicio.insertarCliente(this.cliente)
     .subscribe(res=>{
-      alert("El cliente ha sido registrado con éxito")
+      Swal.fire({
+        icon: 'success',
+        title: 'Realizado',
+        text: 'Registro guardado con exito',
+        // footer: '<a href>Pro</a>'
+      })
       this.limpiarcliente();
       this.consultartodocliente();
     },
@@ -51,7 +57,12 @@ export class ClientesComponent implements OnInit {
   modificarcliente(){
     this.clienteservicio.modificarCliente(this.cliente)
     .subscribe(res=>{
-      alert("El cliente ha sido modificado con éxito")
+      Swal.fire({
+        icon: 'success',
+        title: 'Realizado',
+        text: 'Registro modificado con exito',
+        // footer: '<a href>Pro</a>'
+      })
       this.consultartodocliente()
       this.limpiarcliente()
       this.consultartodocliente()
@@ -62,7 +73,11 @@ export class ClientesComponent implements OnInit {
   eliminarcliente(){
     this.clienteservicio.eliminarCliente(this.cliente)
     .subscribe(res=>{
-      alert("El cliente ha sido eliminado con éxito")
+      Swal.fire({
+        icon: 'success',
+        title: 'Realizado',
+        text: 'Registro eliminado con exito',
+      })
       this.limpiarcliente()
       this.consultartodocliente()
     })

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProveedoresService } from '../servicios/proveedores.service'
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-proveedores',
@@ -33,7 +34,12 @@ export class ProveedoresComponent implements OnInit {
   guardarproveedor(){
     this.proveedorservicio.insertarProveedor(this.proveedor)
     .subscribe(res=>{
-      alert("El proveedor ha sido registrado con éxito")
+      Swal.fire({
+        icon: 'success',
+        title: 'Realizado',
+        text: 'Registro guardado con exito',
+        // footer: '<a href>Pro</a>'
+      })
       this.consultartodoproveedor();
       this.limpiarProvedores()
     },
@@ -44,7 +50,12 @@ export class ProveedoresComponent implements OnInit {
   modificarproveedor(){
     this.proveedorservicio.modificarProveedor(this.proveedor)
     .subscribe(res=>{
-      alert("El proveedor ha sido modificado con éxito")
+      Swal.fire({
+        icon: 'success',
+        title: 'Realizado',
+        text: 'Registro modificado con exito',
+        // footer: '<a href>Pro</a>'
+      })
       this.consultartodoproveedor();
       this.limpiarProvedores()
     })
@@ -59,7 +70,11 @@ export class ProveedoresComponent implements OnInit {
   eliminarproveedor(){
     this.proveedorservicio.eliminarProveedor(this.proveedor)
     .subscribe(res=>{
-      alert("El proveeedor ha sido eliminado con éxito")
+      Swal.fire({
+        icon: 'success',
+        title: 'Realizado',
+        text: 'Registro eliminado con exito',
+      })
       this.limpiarProvedores()
       this.consultartodoproveedor()
 

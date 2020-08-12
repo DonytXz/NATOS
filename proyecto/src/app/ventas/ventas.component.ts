@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { VentasService } from '../servicios/ventas.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-ventas',
@@ -31,7 +32,12 @@ export class VentasComponent implements OnInit {
 guardarventa() {
   this.ventaservicio.insertarVenta(this.venta)
     .subscribe(res => {
-      alert("La solicitud de venta ha sido registrado con éxito")
+      Swal.fire({
+        icon: 'success',
+        title: 'Realizado',
+        text: 'Registro guardado con exito',
+        // footer: '<a href>Pro</a>'
+      })
       this.limpiarventa()
       this.consultartodoventa()
     },
@@ -46,7 +52,12 @@ editEste(ven){
 modificarventa() {
   this.ventaservicio.modificarVenta(this.venta)
     .subscribe(res => {
-      alert("La solicitud de venta ha sido modificado con éxito")
+      Swal.fire({
+        icon: 'success',
+        title: 'Realizado',
+        text: 'Registro modificado con exito',
+        // footer: '<a href>Pro</a>'
+      })
       this.consultartodoventa()
       this.limpiarventa()
     })
@@ -56,7 +67,11 @@ modificarventa() {
 eliminarventa() {
   this.ventaservicio.eliminarVenta(this.venta)
     .subscribe(res => {
-      alert("La solicitud de venta ha sido eliminado con éxito")
+      Swal.fire({
+        icon: 'success',
+        title: 'Realizado',
+        text: 'Registro eliminado con exito',
+      })
       this.limpiarventa()
       this.consultartodoventa()
     })

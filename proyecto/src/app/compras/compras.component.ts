@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ComprasService } from '../servicios/compras.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-compras',
@@ -30,7 +31,12 @@ export class ComprasComponent implements OnInit {
   guardarcompra() {
     this.compraservicio.insertarCompra(this.compra)
       .subscribe(res => {
-        alert("La solicitud de compra ha sido registrado con éxito")
+        Swal.fire({
+          icon: 'success',
+          title: 'Realizado',
+          text: 'Registro guardado con exito',
+          // footer: '<a href>Pro</a>'
+        })
         this.limpiarcompra()
         this.consultartodocompra()
       },
@@ -41,7 +47,12 @@ export class ComprasComponent implements OnInit {
   modificarcompra() {
     this.compraservicio.modificarCompra(this.compra)
       .subscribe(res => {
-        alert("La solicitud de compra ha sido modificado con éxito")
+        Swal.fire({
+          icon: 'success',
+          title: 'Realizado',
+          text: 'Registro modificado con exito',
+          // footer: '<a href>Pro</a>'
+        })
         this.limpiarcompra()
         this.consultartodocompra()
       })
@@ -54,7 +65,11 @@ export class ComprasComponent implements OnInit {
   eliminarcompra() {
     this.compraservicio.eliminarCompra(this.compra)
       .subscribe(res => {
-        alert("La solicitud de compra ha sido eliminado con éxito")
+        Swal.fire({
+          icon: 'success',
+          title: 'Realizado',
+          text: 'Registro eliminado con exito',
+        })
         this.limpiarcompra()
         this.consultartodocompra()
       })

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticulosService } from '../servicios/articulos.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-articulos',
@@ -30,7 +31,12 @@ export class ArticulosComponent implements OnInit {
   guardararticulo() {
     this.articuloservicio.insertarArticulo(this.articulo)
       .subscribe(res => {
-        alert("El articulo ha sido registrado con éxito")
+        Swal.fire({
+          icon: 'success',
+          title: 'Realizado',
+          text: 'Registro guardado con exito',
+          // footer: '<a href>Pro</a>'
+        })
         this.limpiararticulo()
         this.consultartodoarticulo()
       },
@@ -45,7 +51,12 @@ export class ArticulosComponent implements OnInit {
   modificararticulo() {
     this.articuloservicio.modificarArticulo(this.articulo)
       .subscribe(res => {
-        alert("El articulo ha sido modificado con éxito")
+        Swal.fire({
+          icon: 'success',
+          title: 'Realizado',
+          text: 'Registro modificado con exito',
+          // footer: '<a href>Pro</a>'
+        })
         this.consultartodoarticulo()
         this.limpiararticulo()
       })
@@ -55,7 +66,11 @@ export class ArticulosComponent implements OnInit {
   eliminararticulo() {
     this.articuloservicio.eliminarArticulo(this.articulo)
       .subscribe(res => {
-        alert("El articulo ha sido eliminado con éxito")
+        Swal.fire({
+          icon: 'success',
+          title: 'Realizado',
+          text: 'Registro eliminado con exito',
+        })
         this.limpiararticulo()
         this.consultartodoarticulo()
       })

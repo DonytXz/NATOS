@@ -65,13 +65,11 @@ export class TarimasComponent implements OnInit {
   eliminarTarima(){
     this.tarimaservicio.eliminarTarima(this.tarima)
     .subscribe(res=>{
-      alert("La tarima ha sido eliminada con exito");
-      //Swal.fire({
-        //icon: 'success',
-        //title: 'Realizado',
-        //text: 'Registro eliminado con exito',
-        // footer: '<a href>Pro</a>'
-      //})
+      Swal.fire({
+        icon: 'success',
+        title: 'Realizado',
+        text: 'Registro eliminado con exito',
+      })
       this.limpiarTarima()
       this.consultarTodoTarima()
     })
