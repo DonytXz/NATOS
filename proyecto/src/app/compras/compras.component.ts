@@ -20,6 +20,7 @@ export class ComprasComponent implements OnInit {
     cantidad_articulo:"",
     precio_articulo:""
   }
+  p: number = 1;
 
   ngOnInit(): void {
     this.consultartodocompra()
@@ -41,9 +42,12 @@ export class ComprasComponent implements OnInit {
     this.compraservicio.modificarCompra(this.compra)
       .subscribe(res => {
         alert("La solicitud de compra ha sido modificado con éxito")
-        this.consultartodocompra()
         this.limpiarcompra()
+        this.consultartodocompra()
       })
+  }
+  editEste(com){
+    this.compra = com
   }
 
   //metodo eliminar
@@ -65,7 +69,8 @@ export class ComprasComponent implements OnInit {
   limpiarcompra() {
     //esto para que se limpien los campos
     this.compra.id = ""
-    this.compra.id_articulo
+    this.compra.proveedor=""
+    this.compra.id_articulo =""
     this.compra.descripcion_articulo = ""
     this.compra.cantidad_articulo = ""
     this.compra.precio_articulo = ""

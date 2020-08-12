@@ -63,6 +63,7 @@
         </div>
     </div>
 </div>-->
+
 <div class="container-fluid">    
     <img class="img-responsive" src="../../assets/gempleados.gif" alt="" width="1550" height="740" style="max-width:100%;height:auto;border-radius: 20px;">
     </div>
@@ -81,8 +82,8 @@
     Codigo &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input  style="color: white;" class="col-6" type="text" [(ngModel)]="compra.id"><br>
     Proveedor &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; <input style="color: white;" class="col-6" type="text" [(ngModel)]="compra.proveedor"><br>
     Codigo de articulo &nbsp; <input style="color: white;" class="col-6" type="text" [(ngModel)]="compra.id_articulo"><br>
-    Descripción &nbsp; <input style="color: white;" class="col-6"  type="text" (ngModel)]="compra.descripcion_articulo"><br>
-    Cantidad &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input style="color: white;" class="col-6" type="text" [(ngModel)]="compra.cantidad_articulo"><br>
+    Descripción &nbsp; <input style="color: white;" class="col-6"  type="text" [(ngModel)]="compra.descripcion_articulo"><br>
+    Cantidad &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input style="color: white;" class="col-6" type="text" [(ngModel)]="compra.cantidad_articulo"><br> 
     Precio &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input style="color: white;" class="col-6" type="text" [(ngModel)]="compra.precio_articulo"><br>
     
     
@@ -126,17 +127,21 @@
                 </tr>
             </thead>
             <thead>
-                <tr *ngFor="let com of compras | async">
+                <tr *ngFor="let com of compras | async | paginate: { itemsPerPage: 5, currentPage: p }">
                     <td>{{ com.id }}</td>
                     <td>{{ com.proveedor }}</td>
                     <td>{{ com.id_articulo }}</td>
                     <td>{{ com.descripcion_articulo }}</td>
                     <td>{{ com.cantidad_articulo }}</td>
                     <td>{{ com.precio_articulo }}</td>
+                    <a value="Consultar todo" (click)="editEste(com)" class="fas fa-edit"></a>
                 </tr>
             </thead>
             </table>
     
+            <div style="background-color: white; color: white; width: 15vw;">
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                </div>
     
           </div>
         </div>
