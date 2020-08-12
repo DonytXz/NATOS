@@ -16,7 +16,7 @@ private ArticuloCons = 'http://localhost:3000/articulo/consultar';
 
   //metodo insertar
   insertarArticulo(articulos){
-    return this.http.post<any>(this.ArticuloIns, articulos) 
+    return this.http.post<any>(this.ArticuloIns, articulos)
   }
 
   //metodo modificar

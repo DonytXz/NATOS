@@ -1,15 +1,15 @@
-<div class="container section" > 
+<div class="container section" >
     <!--Inicio del codigo para la barra-->
-    
-    
+
+
     <div style="border-radius: 20;" class="container-fluid" class="navbar white" style="border-radius: 20px;">
         <a class="sidenav-trigger" data-target="menu-side" href="">
             <img class="z-depth-5" class="responsive-img" src="../../assets/logonatos.png" width="65" height="65">
-            </a> 
-        
+            </a>
+
             <div>
             <!--boton de registrarse-->
-            <a *ngIf="entrar" routerLink="Registrar" class="waves-effect text-white black btn-small" style="border-radius: 20px;"><i class="material-icons left">person_add</i>Registrarse</a>
+            <a routerLink="Registrar" class="waves-effect text-white black btn-small" style="border-radius: 20px;"><i *ngIf="entrar" class="material-icons left">person_add</i>Registrarse</a>
             &nbsp;
 
               <!-- Dropdown Trigger -->
@@ -26,32 +26,32 @@
 
 
         </div>
-            
+
     </div>
-    
-    
-    
+
+
+
     <ul class="sidenav" id="menu-side">
-    
+
     <!--Fondo/Icono/Nombre/Correo-->
     <li>
-    <div class="user-view"> 
-    
+    <div class="user-view">
+
     <div class="background">
-    
+
     <img class="responsive-img" src="../../assets/fondo.jpg" alt="">
     </div>
-    
-    
+
+
     <!--Inicio primer ancla-->
-    <a href="#"> 
+    <a href="#">
     <img src="../../assets/icon.gif" alt="" class="circle">
     </a>
     <!--Final Pripera ancla-->
-    
-    
-    
-    
+
+
+
+
     <!--Inicio segunda ancla-->
     <a href="#">
     <span class="name white-text">Invitado</span>
@@ -62,13 +62,13 @@
     <!--Final segunda ancla-->
     </div>
     </li>
-    
+
     <!--Final de   Fondo/Icono/Nombre/Correo-->
-    
+
     <!--Inicio Segunda Seccion-->
-    
-    
-    <li> 
+
+
+    <li>
     <a href="#" routerLink="Inicio">
     <i class="material-icons">home</i>
     Inicio
@@ -79,32 +79,32 @@
         <i class="material-icons">group</i>
         Nosotros
         </a>
-    
+
             <li>
                 <a href="#" routerLink="Catalogo">
                 <i class="material-icons">import_contacts</i>
                     Catalogo
                 </a>
-    
-            
+
+
             </li>
-    
+
             <li>
                 <a href="#" routerLink="Sugerencias">
                 <i class="material-icons">hearing</i>
                 Sugerencias
                 </a>
-    
-            
+
+
             </li>
-    
+
             <li>
                 <a href="#" routerLink="Contacto">
                 <i class="material-icons">local_phone</i>
                 Contacto
                 </a>
-    
-            
+
+
             </li>
             <div class="div divider"></div>
 
@@ -113,63 +113,63 @@
                 <i class="fas fa-temperature-low"></i>
                 Temperatura
                 </a>
-    
-            
+
+
             </li>
 
-        
-    
-        
-    
+
+
+
+
             <li *ngIf="entrar">
                 <a routerLink="Tarimas" href="#" >
                 <i class="material-icons">blur_linear</i>
                 Tarimas
                 </a>
-    
-            
+
+
             </li>
-    
+
             <li *ngIf="entrar">
                 <a routerLink="Empleados" href="#" >
                 <i class="material-icons">add_box</i>
                 Empleados
                 </a>
-    
+
              </li>
              <li *ngIf="entrar">
                 <a routerLink="Clientes" href="#" >
                 <i class="material-icons">account_circle</i>
                 Clientes
                 </a>
-    
+
              </li>
              <li *ngIf="entrar">
                 <a routerLink="Proveedores" href="#" >
                 <i class="material-icons">airport_shuttle</i>
                 Proveedores
                 </a>
-    
+
              </li>
-             
+
 
             <li *ngIf="entrar">
                 <a href="#" routerLink="Articulos">
                 <i class="material-icons">build</i>
                 Articulos
                 </a>
-    
-            
+
+
             </li>
 
-            
+
             <li *ngIf="entrar">
                 <a href="#" routerLink="Ventas">
                 <i class="material-icons">shopping_basket</i>
                 Ventas
                 </a>
-    
-            
+
+
             </li>
 
             <li *ngIf="entrar">
@@ -177,38 +177,36 @@
                 <i class="material-icons">shop_two</i>
                 Compras
                 </a>
-    
-            
             </li>
 
-            
-        
-    
+
+
+
             <div class="divider"></div>
             <li >
                <a href="#" routerLink="Copy">
                <i class="material-icons">copyright</i>
                NATOS
                </a>
-   
-           
+
+
            </li>
-        
-    
-    
-          
-    
-    
+
+
+
+
+
+
     <!--Final Segunda Seccion-->
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
     </ul>
     <!--Final del codigo para la barra-->
     </div>

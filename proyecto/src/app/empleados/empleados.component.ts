@@ -49,6 +49,7 @@ export class EmpleadosComponent implements OnInit {
       this.consultartodoempleado();
     })
   }
+
   editEste(emp){
     this.empleado = emp
   }
