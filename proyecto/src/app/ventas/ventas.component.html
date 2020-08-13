@@ -118,30 +118,33 @@
             <br>
             <table class="table table-striped table-dark" style="border-radius: 20px ;">
                 <thead>
+                    <div style="text-align: center; vertical-align: middle;">
                 <tr>
-                    <td>CODIGO</td>
-                    <td>CLIENTE</td>
-                    <td>CODIGO DE TARIMA</td>
-                    <td>DESCRIPCIÓN</td>
-                    <td>CANTIDAD</td>
+                    <td style="width: 100vw">CODIGO</td>
+                    <td style="width: 100vw">CLIENTE</td>
+                    <td style="width: 100vw">CODIGO DE TARIMA</td>
+                    <td style="width: 100vw">DESCRIPCIÓN</td>
+                    <td style="width: 100vw">CANTIDAD</td>
                     <td>PRECIO</td>
                 </tr>
+            </div>
             </thead>
             <thead>
+                <div style="text-align: center; vertical-align: middle;">
                 <tr *ngFor="let ven of ventas | async | paginate: { itemsPerPage: 5, currentPage: p }">
-                    <td>{{ ven.id }}</td>
-                    <td>{{ ven.cliente }}</td>
-                    <td>{{ ven.id_tarima }}</td>
-                    <td>{{ ven.descripcion_tarima }}</td>
-                    <td>{{ ven.cantidad }}</td>
-                    <td>{{ ven.precio_tarima }}</td>
+                    <td style="width: 100vw">{{ ven.id }}</td>
+                    <td style="width: 100vw">{{ ven.cliente }}</td>
+                    <td style="width: 100vw">{{ ven.id_tarima }}</td>
+                    <td style="width: 100vw">{{ ven.descripcion_tarima }}</td>
+                    <td style="width: 100vw">{{ ven.cantidad }}</td>
+                    <td style="width: 100vw">{{ ven.precio_tarima }}</td>
                     <a value="Consultar todo" (click)="editEste(ven)" class="fas fa-edit"></a>
-
                 </tr>
+            </div>
             </thead>
             </table>
 
-            <div style="background-color: white; color: white; width: 15vw;">
+            <div style="background-color: white; color: white; width: 100%; text-align: center;">
                 <pagination-controls (pageChange)="p = $event"></pagination-controls>
             </div>
 

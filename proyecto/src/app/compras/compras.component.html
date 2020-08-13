@@ -117,29 +117,33 @@
             <br>
             <table class="table table-striped table-dark" style="border-radius: 20px ;"> 
                 <thead>
+                    <div style="text-align: center; vertical-align: middle;"> 
                 <tr>
-                    <td>CODIGO</td>
-                    <td>PROVEEDOR</td>
-                    <td>CODIGO DE ARTÍCULO</td>
-                    <td>DESCRIPCIÓN</td>
-                    <td>CANTIDAD</td>
-                    <td>PRECIO</td>
+                    <td style="width: 100vw">CODIGO</td>
+                    <td style="width: 100vw">PROVEEDOR</td>
+                    <td style="width: 100vw">CODIGO DE ARTÍCULO</td>
+                    <td style="width: 100vw">DESCRIPCIÓN</td>
+                    <td style="width: 100vw">CANTIDAD</td>
+                    <td style="width: 100vw">PRECIO</td>
                 </tr>
+            </div>
             </thead>
             <thead>
+                <div style="text-align: center; vertical-align: middle;">
                 <tr *ngFor="let com of compras | async | paginate: { itemsPerPage: 5, currentPage: p }">
-                    <td>{{ com.id }}</td>
-                    <td>{{ com.proveedor }}</td>
-                    <td>{{ com.id_articulo }}</td>
-                    <td>{{ com.descripcion_articulo }}</td>
-                    <td>{{ com.cantidad_articulo }}</td>
-                    <td>{{ com.precio_articulo }}</td>
+                    <td style="width: 100vw">{{ com.id }}</td>
+                    <td style="width: 100vw">{{ com.proveedor }}</td>
+                    <td style="width: 100vw">{{ com.id_articulo }}</td>
+                    <td style="width: 100vw">{{ com.descripcion_articulo }}</td>
+                    <td style="width: 100vw">{{ com.cantidad_articulo }}</td>
+                    <td style="width: 100vw">{{ com.precio_articulo }}</td>
                     <a value="Consultar todo" (click)="editEste(com)" class="fas fa-edit"></a>
                 </tr>
+            </div>
             </thead>
             </table>
     
-            <div style="background-color: white; color: white; width: 15vw;">
+            <div style="background-color: white; color: white; width: 100%; text-align: center;">
                 <pagination-controls (pageChange)="p = $event"></pagination-controls>
                 </div>
     
