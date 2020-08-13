@@ -114,27 +114,31 @@
             <br>
             <table class="table table-striped table-dark" style="border-radius: 20px ;">
                 <thead>
+                    <div style="text-align: center; vertical-align: middle;"></div>
                 <tr>
-                    <td>ID</td>
-                    <td>DESCRIPCIÓN</td>
-                    <td>CANTIDAD</td>
-                    <td>PRECIO</td>
-                    <td>PROVEEDOR</td>
+                    <td style="width: 100vw">ID</td>
+                    <td style="width: 100vw">DESCRIPCIÓN</td>
+                    <td style="width: 100vw">CANTIDAD</td>
+                    <td style="width: 100vw">PRECIO</td>
+                    <td style="width: 100vw">PROVEEDOR</td>
                 </tr>
+            </div>
             </thead>
             <thead>
+                <div style="text-align: center; vertical-align: middle;"></div>
                 <tr *ngFor="let art of articulos | async | paginate: { itemsPerPage: 5, currentPage: p }">
-                    <td>{{ art.id }}</td>
-                    <td>{{ art.descripcion }}</td>
-                    <td>{{ art.cantidad }}</td>
-                    <td>{{ art.precio }}</td>
-                    <td>{{ art.proveedor }}</td>
+                    <td style="width: 100vw">{{ art.id }}</td>
+                    <td style="width: 100vw">{{ art.descripcion }}</td>
+                    <td style="width: 100vw">{{ art.cantidad }}</td>
+                    <td style="width: 100vw">{{ art.precio }}</td>
+                    <td style="width: 100vw">{{ art.proveedor }}</td>
                     <a value="Consultar todo" (click)="editEste(art)" class="fas fa-edit"></a>
                 </tr>
+            </div>
             </thead>
             </table>
 
-            <div style="background-color: white; color: white; width: 15vw;">
+            <div style="background-color: white; color: white; width: 100%; text-align: center;">
                 <pagination-controls (pageChange)="p = $event"></pagination-controls>
             </div>
 
