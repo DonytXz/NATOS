@@ -125,7 +125,7 @@
             </div>
             </thead>
             <thead>
-                <div style="text-align: center; vertical-align: middle;"></div>
+                <div style="text-align: center; vertical-align: middle;">
                 <tr *ngFor="let art of articulos | async | paginate: { itemsPerPage: 5, currentPage: p }">
                     <td style="width: 100vw">{{ art.id }}</td>
                     <td style="width: 100vw">{{ art.descripcion }}</td>
