@@ -1,5 +1,6 @@
-import { Component, OnInit, OnDestroy, Input,  EventEmitter, Output, Injectable } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, EventEmitter, Output, Injectable, ChangeDetectionStrategy } from '@angular/core';
 import { FormsModule } from '@angular/forms'; 
+import { Observable } from 'rxjs';
 import { CartItem } from './cart.model';
 import Swal from 'sweetalert2'
 import { PedidoService } from '../servicios/pedido.service'
@@ -11,12 +12,14 @@ import { LoginService } from '../servicios/login.service';
 })
 
 @Component({
-  selector: 'app-cart',
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+    selector: 'app-cart',
+    templateUrl: './cart.component.html',
+    styleUrls: ['./cart.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: false
 })
 export class CartComponent implements OnInit {
-  pedidos;
+  pedidos: Observable<any[]>;
 
   pedidoo={
     id: "",

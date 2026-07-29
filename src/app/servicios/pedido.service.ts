@@ -25,7 +25,7 @@ export class PedidoService {
   }
     //metodo consultar
     consultarTodoPedido(){
-      return this.http.get<any>(this.PedidoCons)
+      return this.http.get<any[]>(this.PedidoCons)
     }
 
 }

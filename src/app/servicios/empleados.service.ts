@@ -32,6 +32,6 @@ export class EmpleadosService {
 
   //metodo consultar
   consultartodoEmpleado(){
-    return this.http.get<any>(this.EmpleadoCons)
+    return this.http.get<any[]>(this.EmpleadoCons)
   }
 }

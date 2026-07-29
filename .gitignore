@@ -1,18 +1,17 @@
 # Dependencies
 node_modules/
 
-# Env files
+# Environment files
 .env
 
-# OS files
-.DS_Store
-
-# Build output
+# Angular build and test output
 dist/
 build/
+coverage/
+.angular/
 
-# Logs
-npm-debug.log*
-
-# Editor dirs
+# Local tooling and OS files
+.DS_Store
+*.log
 .vscode/
+npm-debug.log*

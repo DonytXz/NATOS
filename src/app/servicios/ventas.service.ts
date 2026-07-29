@@ -30,7 +30,7 @@ export class VentasService {
 
   //metodo consultar
   consultartodoVenta() {
-    return this.http.get<any>(this.VentaCons)
+    return this.http.get<any[]>(this.VentaCons)
   }
 
 }

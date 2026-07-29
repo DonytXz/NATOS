@@ -4,81 +4,79 @@
 
 
   <aside style="padding:1vw; background-color: white; color: black;">
-<p><strong>Estimado cliente<br></strong><br>
+    <p><strong>Estimado cliente<br></strong><br>
     Gracias por confiar en los servicios que ofrecemos. Nos gustaría saber cómo nos desempeñamos. Por favor, dedique unos momentos a darnos sus valiosos comentarios, ya que nos ayudarán a mejorar nuestro servicio.
-</p>
-<!-- <h4>Califique su experiencia de servicio para los siguientes parámetros</h4> -->
-<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdH2VIpfgu0dceLD1FqHVsdP7sXNr72XXGyUdavSmABkJr6CA/viewform?embedded=true"  width="88%" height="2600" frameborder="0" marginheight="1" marginwidth="0">Cargando…</iframe>
+  </p>
+  <!-- <h4>Califique su experiencia de servicio para los siguientes parámetros</h4> -->
+  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdH2VIpfgu0dceLD1FqHVsdP7sXNr72XXGyUdavSmABkJr6CA/viewform?embedded=true"  width="88%" height="2600" frameborder="0" marginheight="1" marginwidth="0">Cargando…</iframe>
 
-<!-- embed responsive iframe --> 
-<!-- ======================= -->
+  <!-- embed responsive iframe -->
+  <!-- ======================= -->
 
-<div *ngIf="entrar" id="Iframe-Training-Sheet" class="set-margin set-padding set-border set-box-shadow center-block-horiz">
+  @if (entrar) {
+    <div id="Iframe-Training-Sheet" class="set-margin set-padding set-border set-box-shadow center-block-horiz">
   <div class="responsive-wrapper 
      responsive-wrapper-wxh-800x800"
-     style="-webkit-overflow-scrolling: touch; overflow: auto;">
+        style="-webkit-overflow-scrolling: touch; overflow: auto;">
+        <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRuDpBa0tAfXqOtEYiPn-xOnGA23EuWL_oZ1k8tF3zi6aNkT-AFKE_nXQLhDUq4s3Z_e1yHZPEC54Iv/pubhtml?widget=true&amp;headers=false" style="margin: 2px;" width="88%" height="100%"></iframe>
+      </div>
+    </div>
+  }
 
-
-     <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRuDpBa0tAfXqOtEYiPn-xOnGA23EuWL_oZ1k8tF3zi6aNkT-AFKE_nXQLhDUq4s3Z_e1yHZPEC54Iv/pubhtml?widget=true&amp;headers=false" style="margin: 2px;" width="88%" height="100%"></iframe>
-
-    
-  </div>
-</div>
-
-<!-- 
-<form ngNoForm action="https://formspree.io/mjvaldnk" method="post" target="_blank">
-<label>1. ¿ Como fue su experiencia general con nosotros ?</label><br>
+  <!--
+  <form ngNoForm action="https://formspree.io/mjvaldnk" method="post" target="_blank">
+    <label>1. ¿ Como fue su experiencia general con nosotros ?</label><br>
 
     <input type="text" class="form-control"  id="Asunto" placeholder="Excelente - Buena - Regular - Mala" name="General" value="">
 
 
-  <div class="clear"></div> 
-  
-<label>2. ¿ La entrega fue en tiempo y forma ?</label><br>
+    <div class="clear"></div>
+
+    <label>2. ¿ La entrega fue en tiempo y forma ?</label><br>
 
     <input type="text" class="form-control"  id="Asunto" placeholder="Si - No" name="Entrega" value="">
 
 
-  <div class="clear"></div> 
-  
-<label>3. ¿ Se cumplieron sus expectativas respecto al producto ?</label><br>
+    <div class="clear"></div>
+
+    <label>3. ¿ Se cumplieron sus expectativas respecto al producto ?</label><br>
 
     <input type="text" class="form-control"  id="Asunto" placeholder="Si - No" name="Exprectativas" value="">
 
 
-  <div class="clear"></div> 
-  
-<label>4. ¿ Surgió algún percance con el operador ? </label><br>
+    <div class="clear"></div>
+
+    <label>4. ¿ Surgió algún percance con el operador ? </label><br>
 
     <input type="text" class="form-control"  id="Asunto" placeholder="Si - No" name="Percances" value="">
 
 
-  <div class="clear"></div> 
-  
-<label>5.¿ Calidad del producto ?</label><br>
+    <div class="clear"></div>
+
+    <label>5.¿ Calidad del producto ?</label><br>
 
     <input type="text" class="form-control"  id="Asunto" placeholder="Excelente - Buena - Regular - Mala" name="Calidad" value="">
 
 
-  <div class="clear"></div> 
-  
-<label>6. ¿ Como califica la comunicación con la empresa ?</label><br>
+    <div class="clear"></div>
+
+    <label>6. ¿ Como califica la comunicación con la empresa ?</label><br>
 
     <input type="text" class="form-control"  id="Asunto" placeholder="Excelente - Buena - Regular - Mala" name="Comunicación" value="">
 
-  <div class="clear"></div> 
-  
-<label>7. ¿ Del 1 al 10 que tan rápida fue la entrega ?</label><br><br/>
-<input type="text" class="form-control"  id="Asunto" placeholder="1 - 2 - 3 - 4 - 5 - 6 -7 - 8 - 9 - 10" name="Rapidez" value="">
+    <div class="clear"></div>
 
-  <div class="clear"></div> 
-   
-<label for="m_3189847521540640526commentText">8. ¿ Algún otro comentario o sugerencia ?</label><br/><br/>
-<textarea cols="75" name="Comentario" rows="5" style="width:320px"></textarea><br>
-<br>
-  <div class="clear"></div> 
-<input style="background:#43a7d5;color:#fff;padding:12px;border:0" type="submit" value="Envía tu comentario">&nbsp;
+    <label>7. ¿ Del 1 al 10 que tan rápida fue la entrega ?</label><br><br/>
+    <input type="text" class="form-control"  id="Asunto" placeholder="1 - 2 - 3 - 4 - 5 - 6 -7 - 8 - 9 - 10" name="Rapidez" value="">
 
-</form> -->
+    <div class="clear"></div>
+
+    <label for="m_3189847521540640526commentText">8. ¿ Algún otro comentario o sugerencia ?</label><br/><br/>
+    <textarea cols="75" name="Comentario" rows="5" style="width:320px"></textarea><br>
+    <br>
+      <div class="clear"></div>
+      <input style="background:#43a7d5;color:#fff;padding:12px;border:0" type="submit" value="Envía tu comentario">&nbsp;
+
+    </form> -->
   </aside>
 </section>

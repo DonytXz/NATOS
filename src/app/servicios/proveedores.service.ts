@@ -33,6 +33,6 @@ private ProveedorCons = 'http://localhost:3000/proveedor/consultar';
 
   //metodo consultar
   consultartodoProveedor(){
-    return this.http.get<any>(this.ProveedorCons)
+    return this.http.get<any[]>(this.ProveedorCons)
   }
 }

@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { LoginService } from '../servicios/login.service';
 
 @Component({
-  selector: 'app-sugerencias',
-  templateUrl: './sugerencias.component.html',
-  styleUrls: ['./sugerencias.component.css']
+    selector: 'app-sugerencias',
+    templateUrl: './sugerencias.component.html',
+    styleUrls: ['./sugerencias.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: false
 })
 export class SugerenciasComponent implements OnInit {
   asunto: string;

@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Observable } from 'rxjs';
 import { EmpleadosService } from '../servicios/empleados.service'
 import Swal from 'sweetalert2'
 import { HttpClient } from '@angular/common/http';
 @Component({
-  selector: 'app-empleados',
-  templateUrl: './empleados.component.html',
-  styleUrls: ['./empleados.component.css']
+    selector: 'app-empleados',
+    templateUrl: './empleados.component.html',
+    styleUrls: ['./empleados.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: false
 })
 export class EmpleadosComponent implements OnInit {
 
-  empleados;
+  empleados: Observable<any[]>;
 
   empleado={
     id:"",

@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Observable } from 'rxjs';
 import { VentasService } from '../servicios/ventas.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-ventas',
-  templateUrl: './ventas.component.html',
-  styleUrls: ['./ventas.component.css']
+    selector: 'app-ventas',
+    templateUrl: './ventas.component.html',
+    styleUrls: ['./ventas.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: false
 })
 export class VentasComponent implements OnInit {
 
-  ventas;
+  ventas: Observable<any[]>;
 
   venta={
     id:"",

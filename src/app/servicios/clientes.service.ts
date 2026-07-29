@@ -31,7 +31,7 @@ eliminarCliente(clientes){
 
 //metodo consultar
 consultartodoCliente(){
-  return this.http.get<any>(this.ClienteCons)
+  return this.http.get<any[]>(this.ClienteCons)
 }
 
 }

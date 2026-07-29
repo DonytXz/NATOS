@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output, Injectable} from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, Injectable, ChangeDetectionStrategy } from '@angular/core';
 
 import { CartItem } from '../cart.model';
 import { PedidoService } from '../../servicios/pedido.service'
@@ -10,9 +10,11 @@ import Swal from 'sweetalert2';
 })
 
 @Component({
-  selector: 'app-cartitem',
-  templateUrl: './cartitem.component.html',
-  styleUrls: ['./cartitem.component.css']
+    selector: 'app-cartitem',
+    templateUrl: './cartitem.component.html',
+    styleUrls: ['./cartitem.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: false
 })
 export class CartitemComponent implements OnInit {
   pedidos;

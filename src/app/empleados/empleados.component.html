@@ -1,92 +1,93 @@
-<div class="container-fluid">    
-<img class="img-responsive" src="../../assets/gempleados.gif" alt="" width="1550" height="740" style="max-width:100%;height:auto;border-radius: 20px;">
+<div class="container-fluid">
+  <img class="img-responsive" src="../../assets/gempleados.gif" alt="" width="1550" height="740" style="max-width:100%;height:auto;border-radius: 20px;">
 </div>
 
 
 <br>
-<div class="container-fluid">
+  <div class="container-fluid">
     <div class="row">
       &nbsp;
       &nbsp;
       <div class="col-md-3" style="background-color: black; border-radius: 20px; color: white;">
 
-            <img src="../../assets/icon.gif" alt="" class="circle" width="120" height="120" style="display: block; margin: auto;">
-        
-
-Codigo &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input  style="color: white;" class="col-6" type="text" [(ngModel)]="empleado.id"><br>
-Nombre &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; <input style="color: white;" class="col-6" type="text" [(ngModel)]="empleado.nombre"><br>
-Apellido Materno &nbsp; <input style="color: white;" class="col-6" type="text" [(ngModel)]="empleado.apellido_materno"><br>
-Apellido Paterno &nbsp; <input style="color: white;" class="col-6"  type="text" [(ngModel)]="empleado.apellido_paterno"><br>
-Puesto &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input style="color: white;" class="col-6" type="text" [(ngModel)]="empleado.puesto"><br>
-Sueldo &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input style="color: white;" class="col-6" type="text" [(ngModel)]="empleado.sueldo"><br>
+        <img src="../../assets/icon.gif" alt="" class="circle" width="120" height="120" style="display: block; margin: auto;">
 
 
-<br>
-<div class="inl">
-<a class="s" value="Guardar" (click)="guardarempleado()" class="waves-effect waves= btn-small"><i class="material-icons left">save</i>guardar</a>
-&nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp; 
-<a class="m" value="Modificar" (click)="modificarempleado()" class="waves-effect waves-light btn-small"><i class="material-icons left">refresh</i>modificar</a>
-<br><br>
-<a  class="e" value="Eliminar" (click)="eliminarempleado()" class="waves-effect waves-light btn-small"><i class="material-icons left">delete</i>eliminar</a>
-&nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp; 
-<a class="c" value="Consultar todo" (click)="consultartodoempleado()" class="waves-effect waves-light btn-small"><i class="material-icons left">zoom_in</i>consultar</a>
-<br><br>
-</div>
+        Codigo &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input  style="color: white;" class="col-6" type="text" [(ngModel)]="empleado.id"><br>
+        Nombre &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; <input style="color: white;" class="col-6" type="text" [(ngModel)]="empleado.nombre"><br>
+        Apellido Materno &nbsp; <input style="color: white;" class="col-6" type="text" [(ngModel)]="empleado.apellido_materno"><br>
+        Apellido Paterno &nbsp; <input style="color: white;" class="col-6"  type="text" [(ngModel)]="empleado.apellido_paterno"><br>
+        Puesto &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input style="color: white;" class="col-6" type="text" [(ngModel)]="empleado.puesto"><br>
+        Sueldo &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input style="color: white;" class="col-6" type="text" [(ngModel)]="empleado.sueldo"><br>
 
 
-      </div>
-
-      &nbsp;
-      &nbsp;
-      &nbsp; 
-      &nbsp;
-      &nbsp;
-      &nbsp;
-      &nbsp;
-      &nbsp;
-      &nbsp;
-      &nbsp;
-      &nbsp;
-      &nbsp;
-      &nbsp;
-      <div class="col-md-8" style="background-color: black; border-radius: 20px; color: white;">
         <br>
-        <table class="table table-striped table-dark" style="border-radius: 20px ;"> 
-            <thead>
-              <div style="text-align: center; vertical-align: middle;" class="headerTabla">
-            <tr>
-                <td style="width: 100vw">ID</td>
-                <td style="width: 100vw">NOMBRE</td>
-                <td style="width: 100vw">APELLIDO MATERNO</td>
-                <td style="width: 100vw">APELLIDO PATERNO</td>
-                <td style="width: 100vw">PUESTO</td>
-                <td style="width: 100vw">SUELDO</td>
-            </tr>
-            </div>
-        </thead>
-        <thead>
-          <div style="text-align: center; vertical-align: middle;">
-            <tr *ngFor="let emp of empleados | async | paginate: { itemsPerPage: 5, currentPage: p }">
-                <td style="width: 100vw">{{ emp.id }}</td>
-                <td style="width: 100vw">{{ emp.nombre }}</td>
-                <td style="width: 100vw">{{ emp.apellido_paterno }}</td>
-                <td style="width: 100vw">{{ emp.apellido_materno }}</td>
-                <td style="width: 100vw">{{ emp.puesto }}</td>
-                <td style="width: 100vw">{{ emp.sueldo }}</td>
-                <a value="Consultar todo" (click)="editEste(emp)" class="fas fa-edit"></a>
-
-            </tr>
+          <div class="inl">
+            <a class="s" value="Guardar" (click)="guardarempleado()" class="waves-effect waves= btn-small"><i class="material-icons left">save</i>guardar</a>
+            &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp;
+            <a class="m" value="Modificar" (click)="modificarempleado()" class="waves-effect waves-light btn-small"><i class="material-icons left">refresh</i>modificar</a>
+            <br><br>
+            <a  class="e" value="Eliminar" (click)="eliminarempleado()" class="waves-effect waves-light btn-small"><i class="material-icons left">delete</i>eliminar</a>
+            &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp; &nbsp;  &nbsp;  &nbsp;
+            <a class="c" value="Consultar todo" (click)="consultartodoempleado()" class="waves-effect waves-light btn-small"><i class="material-icons left">zoom_in</i>consultar</a>
+            <br><br>
           </div>
-        </thead>
-        </table>
 
-        <div style="background-color: white; color: white; width: 100%; text-align: center;">
-        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
         </div>
 
-      </div>
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        &nbsp;
+        <div class="col-md-8" style="background-color: black; border-radius: 20px; color: white;">
+          <br>
+            <table class="table table-striped table-dark" style="border-radius: 20px ;">
+              <thead>
+                <div style="text-align: center; vertical-align: middle;" class="headerTabla">
+                  <tr>
+                    <td style="width: 100vw">ID</td>
+                    <td style="width: 100vw">NOMBRE</td>
+                    <td style="width: 100vw">APELLIDO MATERNO</td>
+                    <td style="width: 100vw">APELLIDO PATERNO</td>
+                    <td style="width: 100vw">PUESTO</td>
+                    <td style="width: 100vw">SUELDO</td>
+                  </tr>
+                </div>
+              </thead>
+              <thead>
+                <div style="text-align: center; vertical-align: middle;">
+                  @for (emp of empleados | async | paginate: { itemsPerPage: 5, currentPage: p }; track emp) {
+                    <tr>
+                      <td style="width: 100vw">{{ emp.id }}</td>
+                      <td style="width: 100vw">{{ emp.nombre }}</td>
+                      <td style="width: 100vw">{{ emp.apellido_paterno }}</td>
+                      <td style="width: 100vw">{{ emp.apellido_materno }}</td>
+                      <td style="width: 100vw">{{ emp.puesto }}</td>
+                      <td style="width: 100vw">{{ emp.sueldo }}</td>
+                      <a value="Consultar todo" (click)="editEste(emp)" class="fas fa-edit"></a>
+                    </tr>
+                  }
+                </div>
+              </thead>
+            </table>
 
-  </div>
+            <div style="background-color: white; color: white; width: 100%; text-align: center;">
+              <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </div>
+
+          </div>
+
+        </div>
 
 
 
@@ -100,12 +101,12 @@ Sueldo &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <input styl
 
 
 
-<!--por si la cago, botones originales-->
+        <!--por si la cago, botones originales-->
 
-<!--<input type="button" value="Guardar" (click)="guardarempleado()">
-<input type="button" value="Modificar" (click)="modificarempleado()">
-<input type="button" value="Eliminar" (click)="eliminarempleado()">
-<input type="button" value="Consultar todo" (click)="consultartodoempleado()">-->
+        <!--<input type="button" value="Guardar" (click)="guardarempleado()">
+        <input type="button" value="Modificar" (click)="modificarempleado()">
+        <input type="button" value="Eliminar" (click)="eliminarempleado()">
+        <input type="button" value="Consultar todo" (click)="consultartodoempleado()">-->
 
 
 
