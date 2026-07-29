@@ -1,4 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { ProveedoresComponent } from './proveedores.component';
 
@@ -6,8 +8,9 @@ describe('ProveedoresComponent', () => {
   let component: ProveedoresComponent;
   let fixture: ComponentFixture<ProveedoresComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
+      imports: [FormsModule, NgxPaginationModule],
       declarations: [ ProveedoresComponent ]
     })
     .compileComponents();

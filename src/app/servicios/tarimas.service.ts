@@ -31,6 +31,6 @@ private TarimaCons = 'http://localhost:3000/tarima/consultar';
 
   //metodo consultar
   consultartodoTarima(){
-    return this.http.get<any>(this.TarimaCons)
+    return this.http.get<any[]>(this.TarimaCons)
   }
 }

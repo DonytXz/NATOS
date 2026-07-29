@@ -1,66 +1,69 @@
 <div class="container section" >
-    <!--Inicio del codigo para la barra-->
+  <!--Inicio del codigo para la barra-->
 
 
-    <div style="border-radius: 20;" class="container-fluid" class="navbar white" style="border-radius: 20px;">
-        <a class="sidenav-trigger" data-target="menu-side" href="">
-            <img class="z-depth-5" class="responsive-img" src="../../assets/logonatos.png" width="65" height="65">
-            </a>
+  <div style="border-radius: 20;" class="container-fluid" class="navbar white" style="border-radius: 20px;">
+    <a class="sidenav-trigger" data-target="menu-side" href="">
+      <img class="z-depth-5" class="responsive-img" src="../../assets/logonatos.png" width="65" height="65">
+    </a>
 
-            <div>
-            <!--boton de registrarse-->
-            <a *ngIf="!entrar" routerLink="Registrar" class="waves-effect text-white black btn-small" style="width: 20vw; border-radius: 20px;"><i class="material-icons left">person_add</i></a>
-            &nbsp;
+    <div>
+      <!--boton de registrarse-->
+      @if (!entrar) {
+        <a routerLink="Registrar" class="waves-effect text-white black btn-small" style="width: 20vw; border-radius: 20px;"><i class="material-icons left">person_add</i></a>
+      }
+      &nbsp;
 
-              <!-- Dropdown Trigger -->
-  <a class='dropdown-trigger text-white black btn-small' href='#' data-target='dropdown1' style="width: 15vw; border-radius: 20px;" ><i class="material-icons left">keyboard_tab</i></a>
+      <!-- Dropdown Trigger -->
+      <a class='dropdown-trigger text-white black btn-small' href='#' data-target='dropdown1' style="width: 15vw; border-radius: 20px;" ><i class="material-icons left">keyboard_tab</i></a>
 
-  <!-- Dropdown Structure -->
-  <ul id='dropdown1' class='dropdown-content black white-text' style="border-radius: 20px;">
-    <ng-template #esfalsa>
-    <li><a href="#!" routerLink="Iniciar"><i class="material-icons">vertical_align_top</i>Iniciar</a></li>
-    </ng-template>
-    <li class="divider" tabindex="-1"></li>
-    <li *ngIf="entrar; else esfalsa"><a href="#!" (click)="cerrarsesion()"><i class="material-icons">vertical_align_bottom</i>Cerrar</a></li>
-  </ul>
+      <!-- Dropdown Structure -->
+      <ul id='dropdown1' class='dropdown-content black white-text' style="border-radius: 20px;">
+        <li class="divider" tabindex="-1"></li>
+        @if (entrar) {
+          <li><a href="#!" (click)="cerrarsesion()"><i class="material-icons">vertical_align_bottom</i>Cerrar</a></li>
+        } @else {
+          <li><a href="#!" routerLink="Iniciar"><i class="material-icons">vertical_align_top</i>Iniciar</a></li>
+        }
+      </ul>
 
-
-        </div>
 
     </div>
 
+  </div>
 
 
-    <ul class="sidenav" id="menu-side">
+
+  <ul class="sidenav" id="menu-side">
 
     <!--Fondo/Icono/Nombre/Correo-->
     <li>
-    <div class="user-view">
+      <div class="user-view">
 
-    <div class="background">
+        <div class="background">
 
-    <img class="responsive-img" src="../../assets/fondo.jpg" alt="">
-    </div>
-
-
-    <!--Inicio primer ancla-->
-    <a href="#">
-    <img src="../../assets/icon.gif" alt="" class="circle">
-    </a>
-    <!--Final Pripera ancla-->
+          <img class="responsive-img" src="../../assets/fondo.jpg" alt="">
+        </div>
 
 
+        <!--Inicio primer ancla-->
+        <a href="#">
+          <img src="../../assets/icon.gif" alt="" class="circle">
+        </a>
+        <!--Final Pripera ancla-->
 
 
-    <!--Inicio segunda ancla-->
-    <a href="#">
-    <span class="name white-text">Invitado</span>
-    </a>
-    <a href="#">
-    <span class="email white-text">Ejemplo@gmail.com</span>
-    </a>
-    <!--Final segunda ancla-->
-    </div>
+
+
+        <!--Inicio segunda ancla-->
+        <a href="#">
+          <span class="name white-text">Invitado</span>
+        </a>
+        <a href="#">
+          <span class="email white-text">Ejemplo&#64;gmail.com</span>
+        </a>
+        <!--Final segunda ancla-->
+      </div>
     </li>
 
     <!--Final de   Fondo/Icono/Nombre/Correo-->
@@ -69,139 +72,148 @@
 
 
     <li>
-    <a href="#" routerLink="Inicio">
-    <i class="material-icons">home</i>
-    Inicio
-    </a>
+      <a href="#" routerLink="Inicio">
+        <i class="material-icons">home</i>
+        Inicio
+      </a>
     </li>
     <li>
-        <a href="#" routerLink="Nosotros">
+      <a href="#" routerLink="Nosotros">
         <i class="material-icons">group</i>
         Nosotros
+      </a>
+
+      <li>
+        @if (!entrar) {
+          <a href="#" routerLink="Catalogo" >
+            <i class="material-icons">import_contacts</i>
+            Catalogo
+          </a>
+        }
+        @if (entrar) {
+          <a href="#" routerLink="Catalogo" >
+            <i class="material-icons">import_contacts</i>
+            Pedidos
+          </a>
+        }
+
+
+      </li>
+
+      <li>
+        <a href="#" routerLink="Sugerencias">
+          <i class="material-icons">hearing</i>
+          Sugerencias
         </a>
 
-            <li>
-                <a *ngIf="!entrar" href="#" routerLink="Catalogo" >
-                <i class="material-icons">import_contacts</i>
-                    Catalogo
-                </a>
-                <a *ngIf="entrar" href="#" routerLink="Catalogo" >
-                    <i class="material-icons">import_contacts</i>
-                        Pedidos
-                    </a>
+
+      </li>
+
+      <li>
+        <a href="#" routerLink="Contacto">
+          <i class="material-icons">local_phone</i>
+          Contacto
+        </a>
 
 
-            </li>
+      </li>
+      <div class="div divider"></div>
 
-            <li>
-                <a href="#" routerLink="Sugerencias">
-                <i class="material-icons">hearing</i>
-                Sugerencias
-                </a>
-
-
-            </li>
-
-            <li>
-                <a href="#" routerLink="Contacto">
-                <i class="material-icons">local_phone</i>
-                Contacto
-                </a>
-
-
-            </li>
-            <div class="div divider"></div>
-
-            <li *ngIf="entrar">
-                <a href="#" routerLink="temp">
-                <i class="fas fa-temperature-low"></i>
-                Temperatura
-                </a>
-
-
-            </li>
+      @if (entrar) {
+        <li>
+          <a href="#" routerLink="temp">
+            <i class="fas fa-temperature-low"></i>
+            Temperatura
+          </a>
+        </li>
+      }
 
 
 
 
 
-            <li *ngIf="entrar">
-                <a routerLink="Tarimas" href="#" >
-                <i class="material-icons">blur_linear</i>
-                Tarimas
-                </a>
+      @if (entrar) {
+        <li>
+          <a routerLink="Tarimas" href="#" >
+            <i class="material-icons">blur_linear</i>
+            Tarimas
+          </a>
+        </li>
+      }
+
+      @if (entrar) {
+        <li>
+          <a routerLink="Empleados" href="#" >
+            <i class="material-icons">add_box</i>
+            Empleados
+          </a>
+        </li>
+      }
+      @if (entrar) {
+        <li>
+          <a routerLink="Clientes" href="#" >
+            <i class="material-icons">account_circle</i>
+            Clientes
+          </a>
+        </li>
+      }
+      @if (entrar) {
+        <li>
+          <a routerLink="Proveedores" href="#" >
+            <i class="material-icons">airport_shuttle</i>
+            Proveedores
+          </a>
+        </li>
+      }
 
 
-            </li>
-
-            <li *ngIf="entrar">
-                <a routerLink="Empleados" href="#" >
-                <i class="material-icons">add_box</i>
-                Empleados
-                </a>
-
-             </li>
-             <li *ngIf="entrar">
-                <a routerLink="Clientes" href="#" >
-                <i class="material-icons">account_circle</i>
-                Clientes
-                </a>
-
-             </li>
-             <li *ngIf="entrar">
-                <a routerLink="Proveedores" href="#" >
-                <i class="material-icons">airport_shuttle</i>
-                Proveedores
-                </a>
-
-             </li>
+      @if (entrar) {
+        <li>
+          <a href="#" routerLink="Articulos">
+            <i class="material-icons">build</i>
+            Articulos
+          </a>
+        </li>
+      }
 
 
-            <li *ngIf="entrar">
-                <a href="#" routerLink="Articulos">
-                <i class="material-icons">build</i>
-                Articulos
-                </a>
+      @if (entrar) {
+        <li>
+          <a href="#" routerLink="Ventas">
+            <i class="material-icons">shopping_basket</i>
+            Ventas
+          </a>
+        </li>
+      }
 
-
-            </li>
-
-
-            <li *ngIf="entrar">
-                <a href="#" routerLink="Ventas">
-                <i class="material-icons">shopping_basket</i>
-                Ventas
-                </a>
-
-
-            </li>
-
-            <li *ngIf="entrar">
-                <a  routerLink="Compras">
-                <i class="material-icons">shop_two</i>
-                Compras
-                </a>
-            </li>
+      @if (entrar) {
+        <li>
+          <a  routerLink="Compras">
+            <i class="material-icons">shop_two</i>
+            Compras
+          </a>
+        </li>
+      }
 
 
 
 
-            <div class="divider"></div>
-            <li >
-<a>
-               <i class="material-icons">copyright</i>
-               NATOS
+      <div class="divider"></div>
+      <li >
+        <a>
+          <i class="material-icons">copyright</i>
+          NATOS
 
-            </a>
+        </a>
 
-           </li>
+      </li>
 
 
 
 
 
 
-    <!--Final Segunda Seccion-->
+      <!--Final Segunda Seccion-->
 
 
 
@@ -213,4 +225,4 @@
 
     </ul>
     <!--Final del codigo para la barra-->
-    </div>
+  </div>

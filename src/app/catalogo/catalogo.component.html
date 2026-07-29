@@ -2,31 +2,35 @@
 
 
 
-  <h1 *ngIf="!entrar" style="text-align: center;">Productos</h1>
-<div *ngIf="!entrar" class="row product-wrapper" >
-  
-  <div class="col-sm-6 col-md-4 col-lg-3 product-item"
-    *ngFor="let item of productItem"  >
-    <div class="thumbnail">
-      <img [src]="item.imageUrl"
-        alt="{{item.name}}">
-      <div class="caption">
-        <h3>{{item.name}}</h3>
-        <p>
-          Precio: {{item.price}} MX
-        </p>
-        <button class="btn btn-primary" style="margin-bottom: 20px;"
-          role="button" 
-          id={{item.id}}
-          (click)="onCartUpdated($event)"
-          >
-          Agregar al carrito
-        </button>
+@if (!entrar) {
+  <h1 style="text-align: center;">Productos</h1>
+}
+@if (!entrar) {
+  <div class="row product-wrapper" >
+    @for (item of productItem; track item) {
+      <div class="col-sm-6 col-md-4 col-lg-3 product-item"
+        >
+        <div class="thumbnail">
+          <img [src]="item.imageUrl"
+            alt="{{item.name}}">
+          <div class="caption">
+            <h3>{{item.name}}</h3>
+            <p>
+              Precio: {{item.price}} MX
+            </p>
+            <button class="btn btn-primary" style="margin-bottom: 20px;"
+              role="button"
+              id={{item.id}}
+              (click)="onCartUpdated($event)"
+              >
+              Agregar al carrito
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
+    }
   </div>
-  
-</div>
+}
 
 
 

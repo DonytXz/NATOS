@@ -1,13 +1,15 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, ChangeDetectionStrategy } from '@angular/core';
 import { ProductItem } from './product.model'
 import { Router } from '@angular/router';
 
 import { LoginService } from '../servicios/login.service';
 
 @Component({
-  selector: 'app-catalogo',
-  templateUrl: './catalogo.component.html',
-  styleUrls: ['./catalogo.component.css']
+    selector: 'app-catalogo',
+    templateUrl: './catalogo.component.html',
+    styleUrls: ['./catalogo.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: false
 })
 export class CatalogoComponent implements OnInit {
 

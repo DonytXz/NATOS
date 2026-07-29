@@ -1,17 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ComprasService } from '../servicios/compras.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-compras',
-  templateUrl: './compras.component.html',
-  styleUrls: ['./compras.component.css']
+    selector: 'app-compras',
+    templateUrl: './compras.component.html',
+    styleUrls: ['./compras.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: false
 })
 export class ComprasComponent implements OnInit {
 
   constructor(private compraservicio: ComprasService) { }
 
-  compras;
+  compras: Observable<any[]>;
 
   compra = {
     id:"",

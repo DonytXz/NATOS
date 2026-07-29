@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ProveedoresService } from '../servicios/proveedores.service'
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-proveedores',
-  templateUrl: './proveedores.component.html',
-  styleUrls: ['./proveedores.component.css']
+    selector: 'app-proveedores',
+    templateUrl: './proveedores.component.html',
+    styleUrls: ['./proveedores.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: false
 })
 export class ProveedoresComponent implements OnInit {
 
-  proveedores;
+  proveedores: Observable<any[]>;
 
   proveedor={
     id:"",

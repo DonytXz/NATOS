@@ -30,7 +30,7 @@ eliminarCompra(compras){
 
 //metodo consultar
 consultartodoCompra(){
-  return this.http.get<any>(this.CompraCons)
+  return this.http.get<any[]>(this.CompraCons)
 }
 
 }

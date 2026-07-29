@@ -1,17 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ClientesService } from '../servicios/clientes.service'
 import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
 
 
 @Component({
-  selector: 'app-clientes',
-  templateUrl: './clientes.component.html',
-  styleUrls: ['./clientes.component.css']
+    selector: 'app-clientes',
+    templateUrl: './clientes.component.html',
+    styleUrls: ['./clientes.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: false
 })
 export class ClientesComponent implements OnInit {
 
-  clientes;
+  clientes: Observable<any[]>;
 
   cliente={
     id:"",

@@ -1,12 +1,14 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ChangeDetectionStrategy } from '@angular/core';
 import { LoginService } from '../servicios/login.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-iniciar',
-  templateUrl: './iniciar.component.html',
-  styleUrls: ['./iniciar.component.css']
+    selector: 'app-iniciar',
+    templateUrl: './iniciar.component.html',
+    styleUrls: ['./iniciar.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: false
 })
 export class IniciarComponent implements OnInit {
   

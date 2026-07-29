@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import {FormsModule} from '@angular/forms';
 import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
@@ -44,49 +44,43 @@ import { ShopComponent } from './shop/shop.component';
 import { TempComponent } from './temp/temp.component';
 
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    SidenavComponent,
-    InicioComponent,
-    NosotrosComponent,
-    CatalogoComponent,
-    SugerenciasComponent,
-    ContactoComponent,
-    IniciarComponent,
-    RegistrarComponent,
-    CopyComponent,
-    EmpleadosComponent,
-    ClientesComponent,
-    ProveedoresComponent,
-    ArticulosComponent,
-    TarimasComponent,
-    ComprasComponent,
-    VentasComponent,
-    CartComponent,
-    CartitemComponent,
-    ShopComponent,
-    TempComponent
-  ],
-  imports: [ 
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    NgxPaginationModule
-  ],
-  providers:[ //Aquí van los servicios
-    EmpleadosService,
-    ClientesService,
-    ProveedoresService,
-    ArticulosService,
-    TarimasService,
-    LoginService,
-    ComprasService,
-    VentasService,
-    RegistrarService,
-    LogingGuard
-  ],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        SidenavComponent,
+        InicioComponent,
+        NosotrosComponent,
+        CatalogoComponent,
+        SugerenciasComponent,
+        ContactoComponent,
+        IniciarComponent,
+        RegistrarComponent,
+        CopyComponent,
+        EmpleadosComponent,
+        ClientesComponent,
+        ProveedoresComponent,
+        ArticulosComponent,
+        TarimasComponent,
+        ComprasComponent,
+        VentasComponent,
+        CartComponent,
+        CartitemComponent,
+        ShopComponent,
+        TempComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        NgxPaginationModule], providers: [
+        EmpleadosService,
+        ClientesService,
+        ProveedoresService,
+        ArticulosService,
+        TarimasService,
+        LoginService,
+        ComprasService,
+        VentasService,
+        RegistrarService,
+        LogingGuard,
+        provideHttpClient(withXhr(), withInterceptorsFromDi())
+    ] })
 export class AppModule { }

@@ -31,6 +31,6 @@ private ArticuloCons = 'http://localhost:3000/articulo/consultar';
 
   //metodo consultar
   consultartodoArticulo(){
-    return this.http.get<any>(this.ArticuloCons)
+    return this.http.get<any[]>(this.ArticuloCons)
   }
 }

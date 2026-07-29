@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Observable } from 'rxjs';
 import { TarimasService } from '../servicios/tarimas.service'
 import Swal from 'sweetalert2'
 
 @Component({
-  selector: 'app-tarimas',
-  templateUrl: './tarimas.component.html',
-  styleUrls: ['./tarimas.component.css']
+    selector: 'app-tarimas',
+    templateUrl: './tarimas.component.html',
+    styleUrls: ['./tarimas.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
+    standalone: false
 })
 export class TarimasComponent implements OnInit {
 
-  tarimas;
+  tarimas: Observable<any[]>;
 
   tarima={
     id:"",
