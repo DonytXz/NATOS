@@ -1,5 +1,8 @@
 name: Build and deploy to gh-pages
 
+permissions:
+  contents: write
+
 on:
   push:
     branches: [ "main", "master" ]
@@ -22,12 +25,12 @@ jobs:
             npm install
           fi
       - name: Build
-        run: npm run build
+        run: npm run build -- --configuration production --base-href /NATOS/
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+          publish_dir: ./dist/proyecto/browser
           publish_branch: gh-pages
           user_name: github-actions[bot]
           user_email: github-actions[bot]@users.noreply.github.com
