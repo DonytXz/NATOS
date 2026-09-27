@@ -1,36 +1,32 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'; //para la comunicacion con mongodb
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ComprasService {
-//rutas expressjs
-private CompraIns = 'http://localhost:3000/solicitud_compra/insertar';
-private CompraMod = 'http://localhost:3000/solicitud_compra/modificar';
-private CompraEli = 'http://localhost:3000/solicitud_compra/eliminar';
-private CompraCons = 'http://localhost:3000/solicitud_compra/consultar';
 
-  constructor(private http:HttpClient) { }
+  private CompraIns = `${environment.apiUrl}/solicitud_compra/insertar`;
+  private CompraMod = `${environment.apiUrl}/solicitud_compra/modificar`;
+  private CompraEli = `${environment.apiUrl}/solicitud_compra/eliminar`;
+  private CompraCons = `${environment.apiUrl}/solicitud_compra/consultar`;
 
-//metodo insertar
-insertarCompra(compras){
-  return this.http.post<any>(this.CompraIns, compras) 
-}
+  constructor(private http: HttpClient) { }
 
-//metodo modificar
-modificarCompra(compras){
-  return this.http.put<any>(this.CompraMod, compras);
-}
+  insertarCompra(compras){
+    return this.http.post<any>(this.CompraIns, compras);
+  }
 
-//metodo eliminar
-eliminarCompra(compras){
-  return this.http.post<any>(this.CompraEli, compras);
-}
+  modificarCompra(compras){
+    return this.http.put<any>(this.CompraMod, compras);
+  }
 
-//metodo consultar
-consultartodoCompra(){
-  return this.http.get<any[]>(this.CompraCons)
-}
+  eliminarCompra(compras){
+    return this.http.post<any>(this.CompraEli, compras);
+  }
 
+  consultartodoCompra(){
+    return this.http.get<any[]>(this.CompraCons);
+  }
 }

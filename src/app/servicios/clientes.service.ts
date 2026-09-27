@@ -1,37 +1,32 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'; //Ayuda a tener comunicación con el servidor
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClientesService {
-  ///declaracion de las rutas de express
-  private ClienteIns = "http://localhost:3000/cliente/insertar"
-  private ClienteMod = "http://localhost:3000/cliente/modificar"
-  private ClienteEli = "http://localhost:3000/cliente/eliminar"
-  private ClienteCons = "http://localhost:3000/cliente/consultar"
 
-  constructor(private http:HttpClient) { }
-//metodos para CRUD
+  private ClienteIns = `${environment.apiUrl}/cliente/insertar`;
+  private ClienteMod = `${environment.apiUrl}/cliente/modificar`;
+  private ClienteEli = `${environment.apiUrl}/cliente/eliminar`;
+  private ClienteCons = `${environment.apiUrl}/cliente/consultar`;
 
-//metodo insertar
-insertarCliente(clientes){
-  return this.http.post<any>(this.ClienteIns,clientes);
-}
+  constructor(private http: HttpClient) { }
 
-//metodo modificar
-modificarCliente(clientes){
-  return this.http.put<any>(this.ClienteMod,clientes);
-}
+  insertarCliente(clientes){
+    return this.http.post<any>(this.ClienteIns, clientes);
+  }
 
-//metodo eliminar
-eliminarCliente(clientes){
-  return this.http.post<any>(this.ClienteEli, clientes);
-}
+  modificarCliente(clientes){
+    return this.http.put<any>(this.ClienteMod, clientes);
+  }
 
-//metodo consultar
-consultartodoCliente(){
-  return this.http.get<any[]>(this.ClienteCons)
-}
+  eliminarCliente(clientes){
+    return this.http.post<any>(this.ClienteEli, clientes);
+  }
 
+  consultartodoCliente(){
+    return this.http.get<any[]>(this.ClienteCons);
+  }
 }

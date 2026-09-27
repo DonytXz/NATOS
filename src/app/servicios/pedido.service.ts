@@ -1,31 +1,26 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'; //Ayuda a tener comunicación con el servidor
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PedidoService {
 
-  //declaración de rutas de express
-  private PedidoIns = 'http://localhost:3000/carrito/insertar';
-  private PedidoCons = 'http://localhost:3000/carrito/consultar';
+  private PedidoIns = `${environment.apiUrl}/carrito/insertar`;
+  private PedidoCons = `${environment.apiUrl}/carrito/consultar`;
 
+  constructor(private http: HttpClient) { }
 
-  constructor(private http:HttpClient) { }
-
-
-  //metodo insertar
   insertarPedido(pedidos){
-    return this.http.post<any>(this.PedidoIns,pedidos) 
+    return this.http.post<any>(this.PedidoIns, pedidos);
   }
 
-  //metodo modificar
   modificarPedido(pedidos){
-    return this.http.put<any>(this.PedidoCons,pedidos);
+    return this.http.put<any>(this.PedidoCons, pedidos);
   }
-    //metodo consultar
-    consultarTodoPedido(){
-      return this.http.get<any[]>(this.PedidoCons)
-    }
 
+  consultarTodoPedido(){
+    return this.http.get<any[]>(this.PedidoCons);
+  }
 }

@@ -1,12 +1,13 @@
 import { Injectable,Output,EventEmitter } from '@angular/core';
-import { HttpClient } from '@angular/common/http'; //se importa para la comunicaión con la bd 
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  private Loginurl = 'http://localhost:3000/user/login'
+  private Loginurl = `${environment.apiUrl}/user/login`;
 
   @Output() change: EventEmitter<boolean> = new EventEmitter();
 
