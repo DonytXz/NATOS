@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://natos-api.vercel.app'
+  apiUrl: 'https://natos-mean-eight.vercel.app'
 };
