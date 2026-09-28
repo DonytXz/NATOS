@@ -1,5 +1,7 @@
-import { Component, OnInit, HostBinding, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, AfterViewInit, HostBinding, ChangeDetectionStrategy } from '@angular/core';
 import { LoginService } from '../servicios/login.service';
+
+declare var M: any;
 
 @Component({
     selector: 'app-sidenav',
@@ -8,7 +10,7 @@ import { LoginService } from '../servicios/login.service';
     changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
-export class SidenavComponent implements OnInit {
+export class SidenavComponent implements OnInit, AfterViewInit {
 
   @HostBinding('class.is-open')
   entrar=false
@@ -22,6 +24,19 @@ export class SidenavComponent implements OnInit {
     this.llenarentrar();
   }
 
+  ngAfterViewInit(): void {
+    if (typeof M !== 'undefined') {
+      const sidenavs = document.querySelectorAll('.sidenav');
+      if (sidenavs.length && M.Sidenav) {
+        M.Sidenav.init(sidenavs);
+      }
+      const dropdowns = document.querySelectorAll('.dropdown-trigger');
+      if (dropdowns.length && M.Dropdown) {
+        M.Dropdown.init(dropdowns);
+      }
+    }
+  }
+
   llenarentrar(){
     this.entrar=this.loginservicio.eslogueado();
 
@@ -33,3 +48,4 @@ export class SidenavComponent implements OnInit {
   }
 
 }
+

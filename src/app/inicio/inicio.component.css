@@ -1,4 +1,13 @@
-.parallax-container{
-
-    height:740px;
+.parallax-container {
+    height: 740px;
 }
+
+.parallax-container .parallax img {
+    opacity: 1;
+}
+
+@media only screen and (max-width: 600px) {
+    .parallax-container {
+        height: 380px;
+    }
+}

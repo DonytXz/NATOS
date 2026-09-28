@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "postbuild": "node -e \"const fs=require('fs'); const src='dist/proyecto/browser/index.html'; const dest='dist/proyecto/browser/404.html'; if(fs.existsSync(src)) fs.copyFileSync(src, dest);\"",
     "test": "ng test --watch=false"
   },
   "private": true,

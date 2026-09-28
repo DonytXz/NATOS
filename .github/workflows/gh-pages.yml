@@ -25,7 +25,9 @@ jobs:
             npm install
           fi
       - name: Build
-        run: npm run build -- --configuration production --base-href /NATOS/
+        run: |
+          npm run build -- --configuration production --base-href /NATOS/
+          cp ./dist/proyecto/browser/index.html ./dist/proyecto/browser/404.html
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:

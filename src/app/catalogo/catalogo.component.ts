@@ -14,14 +14,14 @@ import { LoginService } from '../servicios/login.service';
 export class CatalogoComponent implements OnInit {
 
   productItem: ProductItem[] = [
-    new ProductItem(1,'x20 Chep + x30 Tacon  -40%', 3960, '../../assets/promocion1.gif'),
-    new ProductItem(2,'x100 Plastico -30%', 17500, '../../assets/promocion2.gif'),
-    new ProductItem(3,'x20 Plastico + x30 Tacon  -40%', 3960, '../../assets/promocion1.gif'),
-    new ProductItem(4,'x100 Chep -30%', 17500, '../../assets/promocion2.gif'),
-    new ProductItem(5, 'x50 Chep', 9000, '../../assets/chep.jpg'),
-    new ProductItem(6,'x50 Medidas especiales', 15000, '../../assets/personalizada.gif'),
-    new ProductItem(7,'x50 Tacon', 7500, '../../assets/tarima1.png'),
-    new ProductItem(8,'x50 Plastico', 12500, '../../assets/plastico.png'),
+    new ProductItem(1,'x20 Chep + x30 Tacon  -40%', 3960, 'assets/promocion1.gif'),
+    new ProductItem(2,'x100 Plastico -30%', 17500, 'assets/promocion2.gif'),
+    new ProductItem(3,'x20 Plastico + x30 Tacon  -40%', 3960, 'assets/promocion1.gif'),
+    new ProductItem(4,'x100 Chep -30%', 17500, 'assets/promocion2.gif'),
+    new ProductItem(5, 'x50 Chep', 9000, 'assets/chep.jpg'),
+    new ProductItem(6,'x50 Medidas especiales', 15000, 'assets/personalizada.gif'),
+    new ProductItem(7,'x50 Tacon', 7500, 'assets/tarima1.png'),
+    new ProductItem(8,'x50 Plastico', 12500, 'assets/plastico.png'),
   ]
 
   @Output() cartUpdated = new EventEmitter<{
