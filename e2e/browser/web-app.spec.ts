@@ -234,7 +234,7 @@ test('two tabs share cart outcomes and cannot submit concurrently', async ({ pag
   await expect(other.getByText('Solicitud enviada.', { exact: false }).first()).toBeVisible();
   await expect(page.getByRole('spinbutton', { name: 'Paquetes de Plástico · 100 piezas' })).toHaveValue('1');
   await other.getByRole('button', { name: /Enviar solicitud de pedido/ }).click();
+  await expect.poll(() => submitted).toEqual([1, 2]);
   await expect(other.getByRole('button', { name: /Enviar solicitud de pedido/ })).toHaveCount(0);
-  expect(submitted).toEqual([1, 2]);
   await other.close();
 });
