@@ -63,7 +63,7 @@ export class OrdersComponent implements OnInit {
       this.changeDetector.markForCheck();
     })).subscribe({
       next: orders => {
-        if (!Array.isArray(orders)) {
+        if (!Array.isArray(orders) || orders.some(order => order === null || typeof order !== 'object' || Array.isArray(order))) {
           this.error = 'No pudimos leer los pedidos recibidos. Intenta actualizar la lista.';
           this.changeDetector.markForCheck();
           return;

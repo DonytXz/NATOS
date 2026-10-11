@@ -10,7 +10,7 @@ import { RegistrarService } from '../servicios/registrar.service';
   selector: 'app-registrar',
   imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './registrar.component.html',
-  styleUrls: ['../iniciar/iniciar.component.css'],
+  styleUrls: ['./registrar.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegistrarComponent {

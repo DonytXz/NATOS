@@ -4,11 +4,9 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { filter } from 'rxjs';
 import { LoginService } from '../servicios/login.service';
 @Component({
+  selector: 'app-staff-shell',
   standalone: true, imports: [RouterLink, RouterLinkActive, RouterOutlet],
-  template: `<div class="staff-layout" (keydown.escape)="closeMenu()">
-    <aside class="staff-sidebar" [class.open]="menuOpen()" id="staff-navigation"><a routerLink="/inicio" class="staff-brand">NATOS <span>ESPACIO DE TRABAJO</span></a><nav #staffNav aria-label="Administración">@for(group of groups; track group.name) { <div class="nav-group"><p>{{ group.name }}</p>@for(link of group.links; track link.path) {<a [routerLink]="link.path" routerLinkActive="active" ariaCurrentWhenActive="page">{{ link.label }}<span aria-hidden="true">↗</span></a>}</div>}</nav><a routerLink="/inicio" class="back-store">← Ir al sitio público</a></aside>
-    <div class="staff-main"><header class="staff-topbar"><button #menuButton type="button" class="staff-toggle button-secondary" [attr.aria-expanded]="menuOpen()" aria-controls="staff-navigation" (click)="toggleMenu()">{{menuOpen() ? 'Cerrar menú' : 'Menú'}}</button><span>Administración <span class="topbar-separator">/</span> NATOS</span><button type="button" class="logout" (click)="auth.logout()">Cerrar sesión <span aria-hidden="true">↗</span></button></header><main id="contenido" tabindex="-1"><router-outlet /></main></div>
-  </div>`, styleUrl: './staff-shell.component.css'
+  templateUrl: './staff-shell.component.html', styleUrls: ['./staff-shell.component.css']
 })
 export class StaffShellComponent {
   readonly auth = inject(LoginService); readonly menuOpen = signal(false);

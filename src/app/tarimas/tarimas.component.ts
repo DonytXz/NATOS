@@ -7,6 +7,7 @@ import { RecordWorkspace, RecordWorkspaceComponent } from '../shared/ui/record-w
   standalone: true,
   imports: [RecordWorkspaceComponent],
   templateUrl: './tarimas.component.html',
+  styleUrls: ['./tarimas.component.css'],
 })
 export class TarimasComponent {
   private readonly service = inject(TarimasService);

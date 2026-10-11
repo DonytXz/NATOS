@@ -54,6 +54,32 @@ describe('OrdersComponent', () => {
     expect(fixture.nativeElement.querySelectorAll('tbody tr').length).toBe(2);
   });
 
+  it.each([null, {}, [null], [undefined], ['invalid'], [42], [true], [[]]].map(response => ({ response })))(
+    'rejects malformed order responses ($response) and allows retry', ({ response }) => {
+      service.consultarTodoPedido.mockReturnValueOnce(of(response));
+      const fixture = TestBed.createComponent(OrdersComponent);
+      fixture.detectChanges();
+      expect(fixture.componentInstance.orders).toEqual([]);
+      expect(fixture.componentInstance.loading).toBe(false);
+      expect(fixture.nativeElement.querySelector('[role="alert"]').textContent).toContain('No pudimos leer');
+      fixture.componentInstance.load();
+      fixture.detectChanges();
+      expect(fixture.componentInstance.error).toBe('');
+      expect(fixture.nativeElement.querySelectorAll('tbody tr').length).toBe(2);
+    },
+  );
+
+  it('preserves the previous list when a refresh includes an invalid record', () => {
+    const fixture = TestBed.createComponent(OrdersComponent);
+    fixture.detectChanges();
+    service.consultarTodoPedido.mockReturnValueOnce(of([orders[0], null]));
+    fixture.componentInstance.load();
+    fixture.detectChanges();
+    expect(fixture.componentInstance.orders).toEqual(orders);
+    expect(fixture.nativeElement.querySelector('[role="alert"]').textContent).toContain('No pudimos leer');
+    expect(fixture.nativeElement.querySelectorAll('tbody tr').length).toBe(2);
+  });
+
   it('does not issue duplicate reads while a refresh is pending', () => {
     const response = new Subject<typeof orders>();
     service.consultarTodoPedido.mockReturnValue(response);

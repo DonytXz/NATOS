@@ -160,11 +160,11 @@ export class RecordWorkspaceComponent implements OnInit {
     }
     // Preserve server-provided fields and untouched values during edits. Existing
     // text inputs send strings for newly entered values; retain that wire format.
-    const payload = { ...this.originalRecord, ...Object.fromEntries(this.config.fields.map(field => [
-      field.key,
-      this.editing && this.draft[field.key] === this.originalRecord[field.key]
-        ? this.originalRecord[field.key]
-        : String(this.draft[field.key] ?? '').trim(),
+    const normalizedOriginal = this.pickFields(this.originalRecord);
+    const changedFields = this.config.fields.filter(field =>
+      !this.editing || this.draft[field.key] !== normalizedOriginal[field.key]);
+    const payload = { ...this.originalRecord, ...Object.fromEntries(changedFields.map(field => [
+      field.key, String(this.draft[field.key] ?? '').trim(),
     ])) };
     this.pending = true;
     this.mutationError = '';

@@ -162,6 +162,31 @@ describe('RecordWorkspaceComponent', () => {
     expect(returnedRecord.descripcion).toBe('Tarima de pino');
   });
 
+  it('preserves untouched null, undefined, and absent optional fields when editing', () => {
+    config.fields.push(
+      { key: 'nullable', label: 'Nullable' },
+      { key: 'undefinedValue', label: 'Undefined' },
+      { key: 'missing', label: 'Missing' },
+    );
+    const returnedRecord = { ...row, nullable: null, undefinedValue: undefined };
+    component.edit(returnedRecord);
+    component.draft['descripcion'] = '  Tarima reparada  ';
+    component.save();
+    expect(config.update).toHaveBeenCalledOnce();
+    const payload = vi.mocked(config.update).mock.calls[0][0];
+    expect(payload).toStrictEqual({ ...returnedRecord, descripcion: 'Tarima reparada' });
+    expect(Object.hasOwn(payload, 'missing')).toBe(false);
+  });
+
+  it('trims changed optional fields even when their original values are null or absent', () => {
+    config.fields.push({ key: 'nullable', label: 'Nullable' }, { key: 'missing', label: 'Missing' });
+    component.edit({ ...row, nullable: null });
+    component.draft['nullable'] = '  Nuevo valor  ';
+    component.draft['missing'] = '  Otro valor  ';
+    component.save();
+    expect(config.update).toHaveBeenCalledExactlyOnceWith({ ...row, nullable: 'Nuevo valor', missing: 'Otro valor' });
+  });
+
   it('allows verifying an uncertain save result without discarding the draft or issuing another mutation', () => {
     config.update = vi.fn(() => throwError(() => new Error('timeout')));
     component.edit(row);

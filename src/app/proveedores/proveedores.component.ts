@@ -7,6 +7,7 @@ import { RecordWorkspace, RecordWorkspaceComponent } from '../shared/ui/record-w
   standalone: true,
   imports: [RecordWorkspaceComponent],
   templateUrl: './proveedores.component.html',
+  styleUrls: ['./proveedores.component.css'],
 })
 export class ProveedoresComponent {
   private readonly service = inject(ProveedoresService);
