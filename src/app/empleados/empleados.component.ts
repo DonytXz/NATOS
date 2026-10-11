@@ -1,103 +1,57 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Observable } from 'rxjs';
-import { EmpleadosService } from '../servicios/empleados.service'
-import Swal from 'sweetalert2'
-import { HttpClient } from '@angular/common/http';
+import { Component, inject } from '@angular/core';
+import { EmpleadosService } from '../servicios/empleados.service';
+import { RecordWorkspace, RecordWorkspaceComponent } from '../shared/ui/record-workspace.component';
+
 @Component({
-    selector: 'app-empleados',
-    templateUrl: './empleados.component.html',
-    styleUrls: ['./empleados.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+  selector: 'app-empleados',
+  standalone: true,
+  imports: [RecordWorkspaceComponent],
+  templateUrl: './empleados.component.html',
+  styleUrls: ['./empleados.component.css'],
 })
-export class EmpleadosComponent implements OnInit {
-
-  empleados: Observable<any[]>;
-
-  empleado={
-    id:"",
-    nombre:"",
-    apellido_paterno:"",
-    apellido_materno:"",
-    puesto:"",
-    sueldo:""
-  }
-
-  constructor(private empleadoservicio:EmpleadosService) { }
-
-  p: number = 1;
-
-  ngOnInit(): void {
-    this.consultartodoempleado()
-  }
-
-  //metodo guardar empleado
-  guardarempleado(){
-    this.empleadoservicio.insertarEmpleado(this.empleado)
-    .subscribe(res=>{
-      Swal.fire({
-        icon: 'success',
-        title: 'Realizado',
-        text: 'Registro guardado con exito',
-        // footer: '<a href>Pro</a>'
-      })
-
-      this.limpiarempleado()
-      this.consultartodoempleado()
-    },
-    err=> console.log(err))
-  }
-
-  //metodo modificar
-  modificarempleado(){
-    this.empleadoservicio.modificarEmpleado(this.empleado)
-    .subscribe(res=>{
-      Swal.fire({
-        icon: 'success',
-        title: 'Realizado',
-        text: 'Registro modificado con exito',
-        // footer: '<a href>Pro</a>'
-      })
-      this.limpiarempleado()
-      this.consultartodoempleado();
-    })
-  }
-
-  editEste(emp){
-    this.empleado = emp
-  }
-
-  //metodo eliminar
-  eliminarempleado(){
-    this.empleadoservicio.eliminarEmpleado(this.empleado)
-    .subscribe(res=>{
-      Swal.fire({
-        icon: 'success',
-        title: 'Realizado',
-        text: 'Registro eliminado con exito',
-      })
-      this.limpiarempleado()
-      this.consultartodoempleado()
-    })
-  }
-
-
-
-
-
-  //metodo consultar
-  consultartodoempleado(){
-      this.empleados=this.empleadoservicio.consultartodoEmpleado();
-  }
-
-  //metodo limpiar campos
-  limpiarempleado(){
-    //esto para que se limpien los campos
-    this.empleado.id=""
-    this.empleado.nombre=""
-    this.empleado.apellido_materno=""
-    this.empleado.apellido_paterno=""
-    this.empleado.puesto=""
-    this.empleado.sueldo=""
-  }
+export class EmpleadosComponent {
+  private readonly service = inject(EmpleadosService);
+  readonly workspace: RecordWorkspace = {
+    title: 'Empleados',
+    singular: 'Empleado',
+    group: 'Directorio',
+    description: 'Consulta y actualiza los datos del equipo de NATOS.',
+    nameKey: 'nombre',
+    fields: [
+      {
+        "key": "id",
+        "label": "Código",
+        "required": true
+      },
+      {
+        "key": "nombre",
+        "label": "Nombre",
+        "required": true
+      },
+      {
+        "key": "apellido_paterno",
+        "label": "Apellido paterno"
+      },
+      {
+        "key": "apellido_materno",
+        "label": "Apellido materno"
+      },
+      {
+        "key": "puesto",
+        "label": "Puesto",
+        "required": true
+      },
+      {
+        "key": "sueldo",
+        "label": "Sueldo (MXN)",
+        "required": true,
+        "kind": "money",
+        "min": 0.01
+      }
+    ],
+    list: () => this.service.consultartodoEmpleado(),
+    create: record => this.service.insertarEmpleado(record),
+    update: record => this.service.modificarEmpleado(record),
+    remove: record => this.service.eliminarEmpleado(record),
+  };
 }

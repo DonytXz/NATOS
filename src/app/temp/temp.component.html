@@ -1,24 +1,16 @@
-
-<!-- <h2>Nos ubicamos en: </h2><br>
-<p>De Los Pinos 67-43, Las Liebres, 45623 San Pedro Tlaquepaque, Jal.</p> -->
-<h1 style="text-align: center; margin: 5px;"><strong>Clima en la ciudad</strong></h1> 
-<div class="d-flex justify-content-center">
-  <iframe src="https://www.meteoblue.com/en/weather/widget/three/guadalajara_mexico_4005539?geoloc=fixed&nocurrent=0&noforecast=0&days=4&tempunit=CELSIUS&windunit=KILOMETER_PER_HOUR&layout=image"  frameborder="0" scrolling="NO" allowtransparency="true" sandbox="allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox" style="width: 70vw; height: 80vh"></iframe>
-  <div><!-- DO NOT REMOVE THIS LINK -->
-    <a href="https://www.meteoblue.com/en/weather/week/guadalajara_mexico_4005539?utm_source=weather_widget&utm_medium=linkus&utm_content=three&utm_campaign=Weather%2BWidget" target="_blank"></a>
-  </div>
-</div> 
-<h1 style="text-align: center; margin: 5px;"><strong>Almacen 1</strong></h1> 
-<div class="d-flex justify-content-center">
-  <div style="display:inline-block">
-    <iframe width="450px" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1114699/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
-    <iframe width="450px" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1114699/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
-  </div>
-</div>
-<h1 style="text-align: center; margin: 5px;"><strong>Almacen 2</strong></h1> 
-<div class="d-flex justify-content-center">
-  <div style="display:inline-block">
-    <iframe width="450px" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1114699/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
-    <iframe width="450px" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1114699/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
-  </div>
-</div>
+<section class="page" aria-labelledby="monitoring-title">
+  <header class="page-header"><div><p class="eyebrow">HERRAMIENTAS</p><h1 id="monitoring-title">Monitoreo</h1><p>Consulta el pronóstico de Guadalajara y las gráficas del canal de sensores configurado.</p></div></header>
+  <div class="notice">Las gráficas dependen de servicios externos. Verifica las fechas que muestran: su presencia no confirma que los sensores estén enviando datos actuales.</div>
+  <section class="surface weather-section" aria-labelledby="weather-title">
+    <div class="embed-header"><h2 id="weather-title">Clima en Guadalajara</h2><a href="https://www.meteoblue.com/en/weather/week/guadalajara_mexico_4005539?utm_source=weather_widget&amp;utm_medium=linkus&amp;utm_content=three&amp;utm_campaign=Weather%2BWidget" target="_blank" rel="noopener noreferrer">Ver en meteoblue ↗</a></div>
+    <iframe title="Pronóstico meteorológico de Guadalajara proporcionado por meteoblue" loading="lazy" src="https://www.meteoblue.com/en/weather/widget/three/guadalajara_mexico_4005539?geoloc=fixed&amp;nocurrent=0&amp;noforecast=0&amp;days=4&amp;tempunit=CELSIUS&amp;windunit=KILOMETER_PER_HOUR&amp;layout=image" sandbox="allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox" width="100%" height="480"></iframe>
+  </section>
+  <section aria-labelledby="channel-title" class="channel-section">
+    <div class="embed-header"><h2 id="channel-title">Canal de sensores 1114699</h2><a href="https://thingspeak.com/channels/1114699" target="_blank" rel="noopener noreferrer">Abrir canal en ThingSpeak ↗</a></div>
+    <p>Se muestran dos campos del mismo canal. La fuente disponible no permite identificar almacenes distintos.</p>
+    <div class="chart-grid">
+      <article class="surface"><h3>Campo 1</h3><iframe title="Gráfica del campo 1 del canal ThingSpeak 1114699" loading="lazy" src="https://thingspeak.com/channels/1114699/charts/1?bgcolor=%23ffffff&amp;color=%2377502c&amp;dynamic=true&amp;results=60&amp;type=line&amp;update=15" width="100%" height="290"></iframe><a href="https://thingspeak.com/channels/1114699/charts/1" target="_blank" rel="noopener noreferrer">Abrir gráfica 1 ↗</a></article>
+      <article class="surface"><h3>Campo 2</h3><iframe title="Gráfica del campo 2 del canal ThingSpeak 1114699" loading="lazy" src="https://thingspeak.com/channels/1114699/charts/2?bgcolor=%23ffffff&amp;color=%232c6552&amp;dynamic=true&amp;results=60&amp;type=line&amp;update=15" width="100%" height="290"></iframe><a href="https://thingspeak.com/channels/1114699/charts/2" target="_blank" rel="noopener noreferrer">Abrir gráfica 2 ↗</a></article>
+    </div>
+  </section>
+</section>

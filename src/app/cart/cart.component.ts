@@ -1,94 +1,77 @@
-import { Component, OnInit, OnDestroy, Input, EventEmitter, Output, Injectable, ChangeDetectionStrategy } from '@angular/core';
-import { FormsModule } from '@angular/forms'; 
-import { Observable } from 'rxjs';
-import { CartItem } from './cart.model';
-import Swal from 'sweetalert2'
-import { PedidoService } from '../servicios/pedido.service'
-import {CartitemComponent} from './cartitem/cartitem.component'
-import { LoginService } from '../servicios/login.service';
-
-@Injectable({
-  providedIn: 'root'
-})
+import { ChangeDetectionStrategy, Component, computed, effect, inject, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
+import { CartStateService, validOrderEmail, validQuantity } from '../core/cart-state.service';
+import { formatMxn } from '../catalogo/catalog.data';
+import { CartitemComponent } from './cartitem/cartitem.component';
 
 @Component({
-    selector: 'app-cart',
-    templateUrl: './cart.component.html',
-    styleUrls: ['./cart.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+  selector: 'app-cart',
+  standalone: true,
+  imports: [FormsModule, RouterLink, CartitemComponent],
+  templateUrl: './cart.component.html',
+  styleUrls: ['./cart.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CartComponent implements OnInit {
-  pedidos: Observable<any[]>;
+export class CartComponent {
+  readonly cart = inject(CartStateService);
+  readonly money = formatMxn;
+  readonly email = signal('');
+  readonly error = signal('');
+  private readonly invalidQuantities = signal<Record<number, number>>({});
+  readonly invalidIds = computed(() => this.cart.items().filter(item =>
+    this.cart.canEdit(item) && this.invalidQuantities()[item.product.id] === item.quantity
+  ).map(item => item.product.id));
+  readonly results = computed(() => this.cart.items().filter(item => item.status === 'succeeded' || item.status === 'failed' || item.status === 'unknown'));
+  readonly sentCount = computed(() => this.cart.items().filter(item => item.status === 'succeeded').length);
+  readonly sendTotal = computed(() => this.cart.items().filter(item => this.cart.canEdit(item)).reduce((sum, item) => sum + item.quantity * item.product.price, 0));
+  readonly unknownCount = computed(() => this.cart.items().filter(item => item.status === 'unknown').length);
 
-  pedidoo={
-    id: "",
-    name: "",
-    quantity: "",
-    price: "",
-    total: "",
-    status: "",
-    correo: ""
-  }
-  // vacio =true;
-  total: number = 0;
-  @Input() cartTotal: number;
-  @Input() cartItem: CartItem;
-  @Input() cartItems: CartItem[];
-  @Output() cartItemDeleted = new EventEmitter<{
-    productId: number
-  }>();
-  @Output() cartItemChanged = new EventEmitter<{
-    productId: number
-  }>();  
-  entrar: any;
-
-  onCartItemDeleted(productData:{productId: number}) {
-    this.cartItemDeleted.emit({
-        productId: productData.productId
-      });    
-
+  constructor() {
+    effect(() => {
+      const active = new Set(this.invalidIds());
+      const saved = this.invalidQuantities();
+      if (Object.keys(saved).some(id => !active.has(Number(id)))) {
+        this.invalidQuantities.set(Object.fromEntries(Object.entries(saved).filter(([id]) => active.has(Number(id)))));
+      }
+    });
   }
 
-  onCartItemChanged(productData:{productId: number}) {
-    this.cartItemChanged.emit({
-        productId: productData.productId
-      });    
+  changeQuantity(change: { id: number; quantity: number }): void {
+    const otherQuantities = { ...this.invalidQuantities() };
+    delete otherQuantities[change.id];
+    if (!validQuantity(change.quantity)) {
+      const item = this.cart.items().find(item => item.product.id === change.id);
+      this.invalidQuantities.set(item ? { ...otherQuantities, [change.id]: item.quantity } : otherQuantities);
+      return;
+    }
+    this.invalidQuantities.set(otherQuantities);
+    this.cart.setQuantity(change.id, change.quantity);
+    this.error.set('');
   }
 
-  print(){
-    // window.print();
-    var printContents = document.getElementById('printDiv').innerHTML;
-    var originalContents = document.body.innerHTML;
-    document.body.innerHTML = printContents;
-    window.print();
-    document.body.innerHTML = originalContents;
-    location.reload();
+  remove(id: number): void {
+    this.cart.remove(id);
+    this.invalidQuantities.update(values => {
+      const remaining = { ...values };
+      delete remaining[id];
+      return remaining;
+    });
   }
 
-  consultarPedido(){
-    this.pedidos=this.pedidoServicio.consultarTodoPedido();
-}
-
-  
-  constructor(public itemCarro : CartitemComponent, private pedidoServicio:PedidoService, private loginservicio:LoginService) {
-    // this.vacio = this.itemCarro.vacio;
-    // if(this.vacio) this.vacio =false
-    
-
-  } 
- 
-  ngOnInit() {
-    this.loginservicio.change.subscribe(isOpen =>{
-      this.entrar = isOpen;
-    })
-    this.llenarentrar();
-    this.consultarPedido();
-
-  }
-  llenarentrar(){
-    this.entrar=this.loginservicio.eslogueado();
-
+  async submit(): Promise<void> {
+    if (this.cart.isSubmitting()) return;
+    if (this.invalidIds().length) {
+      this.error.set('Revisa las cantidades marcadas antes de enviar.');
+      return;
+    }
+    if (!validOrderEmail(this.email().trim())) {
+      this.error.set('Introduce un correo electrónico válido para esta solicitud.');
+      return;
+    }
+    this.error.set('');
+    await this.cart.submit(this.email());
   }
 
+  print(): void { window.print(); }
 }

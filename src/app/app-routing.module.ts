@@ -1,54 +1,51 @@
-import { NgModule } from '@angular/core';
+import { NgModule, inject } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { InicioComponent } from './inicio/inicio.component';
-import { NosotrosComponent } from './nosotros/nosotros.component';
-import { CatalogoComponent } from './catalogo/catalogo.component';
-import { SugerenciasComponent } from './sugerencias/sugerencias.component';
-import { ContactoComponent } from './contacto/contacto.component';
-import { IniciarComponent } from './iniciar/iniciar.component';
-import { RegistrarComponent } from './registrar/registrar.component';
-import { CopyComponent } from './copy/copy.component';
-import { EmpleadosComponent } from './empleados/empleados.component';
-import { TarimasComponent } from './tarimas/tarimas.component';
-import { ClientesComponent } from './clientes/clientes.component';
-import { ProveedoresComponent } from './proveedores/proveedores.component';
-import { ArticulosComponent } from './articulos/articulos.component';
-import { ComprasComponent } from './compras/compras.component';
-import { VentasComponent } from './ventas/ventas.component';
 import { LogingGuard } from './loging.guard';
-import { ShopComponent } from './shop/shop.component';
-import { TempComponent } from './temp/temp.component';
-
-
-const routes: Routes = [
-  {path: 'Inicio', component:InicioComponent},
-  {path: 'Nosotros', component: NosotrosComponent},
-  {path: 'Catalogo', component:CatalogoComponent},
-  {path: 'Sugerencias', component:SugerenciasComponent},
-  {path: 'Contacto', component:ContactoComponent},
-  {path: 'Iniciar', component:IniciarComponent},
-  {path: 'Registrar', component:RegistrarComponent},
-  {path: 'Copy', component:CopyComponent},
-  {path: 'Empleados', component:EmpleadosComponent, canActivate:[LogingGuard]},
-  {path: 'Tarimas', component:TarimasComponent, canActivate:[LogingGuard]},
-  {path: 'Clientes', component: ClientesComponent, canActivate:[LogingGuard]},
-  {path: 'Proveedores', component:ProveedoresComponent, canActivate:[LogingGuard]},
-  {path: 'Articulos', component: ArticulosComponent, canActivate:[LogingGuard]},
-  {path: 'Compras', component: ComprasComponent, canActivate:[LogingGuard]},
-  {path: 'Ventas', component: VentasComponent, canActivate:[LogingGuard]},
-  {path: 'shop', component: ShopComponent },
-  {path: 'temp', component: TempComponent },
-
-
-  //Comodines de redireccionamiento
-  {path: '', redirectTo:'Inicio' , pathMatch:'full'},
-  {path: '**', redirectTo:'Inicio' , pathMatch: 'full'},
-
-
+import { LoginService } from './servicios/login.service';
+export const routes: Routes = [
+  { path: 'Inicio', redirectTo: 'inicio', pathMatch: 'full' },
+  { path: 'Nosotros', redirectTo: 'nosotros', pathMatch: 'full' },
+  { path: 'Catalogo', redirectTo: 'catalogo', pathMatch: 'full' },
+  { path: 'Contacto', redirectTo: 'contacto', pathMatch: 'full' },
+  { path: 'Sugerencias', redirectTo: 'sugerencias', pathMatch: 'full' },
+  { path: 'Iniciar', redirectTo: 'acceso', pathMatch: 'full' },
+  { path: 'Registrar', redirectTo: 'registro', pathMatch: 'full' },
+  { path: 'Copy', redirectTo: 'creditos', pathMatch: 'full' },
+  { path: 'Empleados', redirectTo: 'admin/empleados', pathMatch: 'full' },
+  { path: 'Clientes', redirectTo: 'admin/clientes', pathMatch: 'full' },
+  { path: 'Proveedores', redirectTo: 'admin/proveedores', pathMatch: 'full' },
+  { path: 'Tarimas', redirectTo: 'admin/tarimas', pathMatch: 'full' },
+  { path: 'Articulos', redirectTo: 'admin/articulos', pathMatch: 'full' },
+  { path: 'Compras', redirectTo: 'admin/compras', pathMatch: 'full' },
+  { path: 'Ventas', redirectTo: 'admin/ventas', pathMatch: 'full' },
+  { path: 'temp', redirectTo: 'admin/temperatura', pathMatch: 'full' },
+  { path: 'shop', pathMatch: 'full', redirectTo: () => inject(LoginService).eslogueado() ? '/admin/pedidos' : '/catalogo' },
+  { path: 'admin', canActivate: [LogingGuard], loadComponent: () => import('./layouts/staff-shell.component').then(m => m.StaffShellComponent), children: [
+    { path: '', pathMatch: 'full', redirectTo: 'pedidos' },
+    { path: 'pedidos', title: 'Pedidos | NATOS', canActivate: [LogingGuard], loadComponent: () => import('./features/orders/orders.component').then(m => m.OrdersComponent) },
+    { path: 'clientes', title: 'Clientes | NATOS', canActivate: [LogingGuard], loadComponent: () => import('./clientes/clientes.component').then(m => m.ClientesComponent) },
+    { path: 'proveedores', title: 'Proveedores | NATOS', canActivate: [LogingGuard], loadComponent: () => import('./proveedores/proveedores.component').then(m => m.ProveedoresComponent) },
+    { path: 'empleados', title: 'Empleados | NATOS', canActivate: [LogingGuard], loadComponent: () => import('./empleados/empleados.component').then(m => m.EmpleadosComponent) },
+    { path: 'tarimas', title: 'Tarimas | NATOS', canActivate: [LogingGuard], loadComponent: () => import('./tarimas/tarimas.component').then(m => m.TarimasComponent) },
+    { path: 'articulos', title: 'Artículos | NATOS', canActivate: [LogingGuard], loadComponent: () => import('./articulos/articulos.component').then(m => m.ArticulosComponent) },
+    { path: 'compras', title: 'Compras | NATOS', canActivate: [LogingGuard], loadComponent: () => import('./compras/compras.component').then(m => m.ComprasComponent) },
+    { path: 'ventas', title: 'Ventas | NATOS', canActivate: [LogingGuard], loadComponent: () => import('./ventas/ventas.component').then(m => m.VentasComponent) },
+    { path: 'sugerencias', title: 'Sugerencias | NATOS', canActivate: [LogingGuard], loadComponent: () => import('./sugerencias/sugerencias.component').then(m => m.SugerenciasComponent) },
+    { path: 'temperatura', title: 'Temperatura | NATOS', canActivate: [LogingGuard], loadComponent: () => import('./temp/temp.component').then(m => m.TempComponent) },
+  ] },
+  { path: '', loadComponent: () => import('./layouts/public-shell.component').then(m => m.PublicShellComponent), children: [
+    { path: '', pathMatch: 'full', redirectTo: 'inicio' },
+    { path: 'inicio', title: 'Tarimas para tu operación | NATOS', loadComponent: () => import('./inicio/inicio.component').then(m => m.InicioComponent) },
+    { path: 'catalogo', title: 'Catálogo | NATOS', loadComponent: () => import('./catalogo/catalogo.component').then(m => m.CatalogoComponent) },
+    { path: 'carrito', title: 'Carrito | NATOS', loadComponent: () => import('./cart/cart.component').then(m => m.CartComponent) },
+    { path: 'nosotros', title: 'Nosotros | NATOS', loadComponent: () => import('./nosotros/nosotros.component').then(m => m.NosotrosComponent) },
+    { path: 'contacto', title: 'Contacto | NATOS', loadComponent: () => import('./contacto/contacto.component').then(m => m.ContactoComponent) },
+    { path: 'sugerencias', title: 'Sugerencias | NATOS', loadComponent: () => import('./sugerencias/sugerencias.component').then(m => m.SugerenciasComponent) },
+    { path: 'acceso', title: 'Acceso del personal | NATOS', loadComponent: () => import('./iniciar/iniciar.component').then(m => m.IniciarComponent) },
+    { path: 'registro', title: 'Registro del personal | NATOS', loadComponent: () => import('./registrar/registrar.component').then(m => m.RegistrarComponent) },
+    { path: 'creditos', title: 'Créditos | NATOS', loadComponent: () => import('./copy/copy.component').then(m => m.CopyComponent) },
+    { path: '**', title: 'Página no encontrada | NATOS', loadComponent: () => import('./shared/not-found.component').then(m => m.NotFoundComponent) }
+  ] }
 ];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes, {}),],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
+@NgModule({ imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled' })], exports: [RouterModule] })
+export class AppRoutingModule {}

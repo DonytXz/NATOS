@@ -1,97 +1,62 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, inject } from '@angular/core';
 import { ComprasService } from '../servicios/compras.service';
-import Swal from 'sweetalert2';
+import { RecordWorkspace, RecordWorkspaceComponent } from '../shared/ui/record-workspace.component';
 
 @Component({
-    selector: 'app-compras',
-    templateUrl: './compras.component.html',
-    styleUrls: ['./compras.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+  selector: 'app-compras',
+  standalone: true,
+  imports: [RecordWorkspaceComponent],
+  templateUrl: './compras.component.html',
+  styleUrls: ['./compras.component.css'],
 })
-export class ComprasComponent implements OnInit {
-
-  constructor(private compraservicio: ComprasService) { }
-
-  compras: Observable<any[]>;
-
-  compra = {
-    id:"",
-    proveedor:"",
-    id_articulo:"",
-    descripcion_articulo:"",
-    cantidad_articulo:"",
-    precio_articulo:""
-  }
-  p: number = 1;
-
-  ngOnInit(): void {
-    this.consultartodocompra()
-  }
-
-  //metodo guardar empleado
-  guardarcompra() {
-    this.compraservicio.insertarCompra(this.compra)
-      .subscribe(res => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Realizado',
-          text: 'Registro guardado con exito',
-          // footer: '<a href>Pro</a>'
-        })
-        this.limpiarcompra()
-        this.consultartodocompra()
+export class ComprasComponent {
+  private readonly service = inject(ComprasService);
+  readonly workspace: RecordWorkspace = {
+    title: 'Compras',
+    singular: 'Compra',
+    group: 'Operaciones',
+    description: 'Consulta y registra las solicitudes de compra a proveedores.',
+    nameKey: 'descripcion_articulo',
+    fields: [
+      {
+        "key": "id",
+        "label": "Código",
+        "required": true
       },
-        err => console.log(err))
-  }
-
-  //metodo modificar
-  modificarcompra() {
-    this.compraservicio.modificarCompra(this.compra)
-      .subscribe(res => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Realizado',
-          text: 'Registro modificado con exito',
-          // footer: '<a href>Pro</a>'
-        })
-        this.limpiarcompra()
-        this.consultartodocompra()
-      })
-  }
-  editEste(com){
-    this.compra = com
-  }
-
-  //metodo eliminar
-  eliminarcompra() {
-    this.compraservicio.eliminarCompra(this.compra)
-      .subscribe(res => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Realizado',
-          text: 'Registro eliminado con exito',
-        })
-        this.limpiarcompra()
-        this.consultartodocompra()
-      })
-  }
-
-  //metodo consultar
-  consultartodocompra() {
-    this.compras = this.compraservicio.consultartodoCompra();
-  }
-
-  //metodo limpiar campos
-  limpiarcompra() {
-    //esto para que se limpien los campos
-    this.compra.id = ""
-    this.compra.proveedor=""
-    this.compra.id_articulo =""
-    this.compra.descripcion_articulo = ""
-    this.compra.cantidad_articulo = ""
-    this.compra.precio_articulo = ""
-  }
-
+      {
+        "key": "proveedor",
+        "label": "Proveedor",
+        "required": true
+      },
+      {
+        "key": "id_articulo",
+        "label": "Código de artículo",
+        "required": true
+      },
+      {
+        "key": "descripcion_articulo",
+        "label": "Descripción del artículo",
+        "required": true
+      },
+      {
+        "key": "cantidad_articulo",
+        "label": "Cantidad",
+        "required": true,
+        "kind": "number",
+        "min": 1,
+        "integer": true
+      },
+      {
+        "key": "precio_articulo",
+        "label": "Precio (MXN)",
+        "required": true,
+        "kind": "money",
+        "min": 0.01
+      }
+    ],
+    list: () => this.service.consultartodoCompra(),
+    create: record => this.service.insertarCompra(record),
+    update: record => this.service.modificarCompra(record),
+    remove: record => this.service.eliminarCompra(record),
+  };
 }

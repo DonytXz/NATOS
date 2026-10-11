@@ -1,25 +1,12 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-
+import { TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { InicioComponent } from './inicio.component';
-
-describe('InicioComponent', () => {
-  let component: InicioComponent;
-  let fixture: ComponentFixture<InicioComponent>;
-
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ InicioComponent ]
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(InicioComponent);
-    component = fixture.componentInstance;
+describe('Inicio', () => {
+  it('offers a direct catalog entry and static product imagery', async () => {
+    await TestBed.configureTestingModule({ imports: [InicioComponent], providers: [provideRouter([])] }).compileComponents();
+    const fixture = TestBed.createComponent(InicioComponent);
     fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('a[href="/catalogo"]')).not.toBeNull();
+    expect(fixture.nativeElement.querySelector('img[fetchpriority="high"]').getAttribute('src')).toContain('.webp');
   });
 });

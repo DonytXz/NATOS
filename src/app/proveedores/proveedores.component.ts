@@ -1,105 +1,63 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Observable } from 'rxjs';
-import { ProveedoresService } from '../servicios/proveedores.service'
-import Swal from 'sweetalert2';
+import { Component, inject } from '@angular/core';
+import { ProveedoresService } from '../servicios/proveedores.service';
+import { RecordWorkspace, RecordWorkspaceComponent } from '../shared/ui/record-workspace.component';
 
 @Component({
-    selector: 'app-proveedores',
-    templateUrl: './proveedores.component.html',
-    styleUrls: ['./proveedores.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+  selector: 'app-proveedores',
+  standalone: true,
+  imports: [RecordWorkspaceComponent],
+  templateUrl: './proveedores.component.html',
+  styleUrls: ['./proveedores.component.css'],
 })
-export class ProveedoresComponent implements OnInit {
-
-  proveedores: Observable<any[]>;
-
-  proveedor={
-    id:"",
-    empresa:"",
-    nombre:"",
-    apellido_paterno:"",
-    apellido_materno:"",
-    puesto:"",
-    rfc:"",
-    tipo_persona:""
-  }
-
-  constructor(private proveedorservicio:ProveedoresService) { }
- 
-  p :number = 0; 
-
-  ngOnInit(): void {
-    this.consultartodoproveedor()
-  }
-
-  //metodo guardar empleado
-  guardarproveedor(){
-    this.proveedorservicio.insertarProveedor(this.proveedor)
-    .subscribe(res=>{
-      Swal.fire({
-        icon: 'success',
-        title: 'Realizado',
-        text: 'Registro guardado con exito',
-        // footer: '<a href>Pro</a>'
-      })
-      this.consultartodoproveedor();
-      this.limpiarProvedores()
-    },
-    err=> console.log(err))
-  }
-
-  //metodo modificar
-  modificarproveedor(){
-    this.proveedorservicio.modificarProveedor(this.proveedor)
-    .subscribe(res=>{
-      Swal.fire({
-        icon: 'success',
-        title: 'Realizado',
-        text: 'Registro modificado con exito',
-        // footer: '<a href>Pro</a>'
-      })
-      this.consultartodoproveedor();
-      this.limpiarProvedores()
-    })
-  }
-
-  editEste(pro){
-    this.proveedor = pro
-  }
-
-
-  //metodo eliminar
-  eliminarproveedor(){
-    this.proveedorservicio.eliminarProveedor(this.proveedor)
-    .subscribe(res=>{
-      Swal.fire({
-        icon: 'success',
-        title: 'Realizado',
-        text: 'Registro eliminado con exito',
-      })
-      this.limpiarProvedores()
-      this.consultartodoproveedor()
-
-    })
-  }
-
-  //metodo consultar
-  consultartodoproveedor(){
-      this.proveedores=this.proveedorservicio.consultartodoProveedor();
-  }
-
-  //metodo limpiar campos
-  limpiarProvedores(){
-    //esto para que se limpien los campos
-    this.proveedor.id=""
-    this.proveedor.empresa=""
-    this.proveedor.nombre=""
-    this.proveedor.apellido_paterno=""
-    this.proveedor.apellido_materno=""
-    this.proveedor.puesto=""
-    this.proveedor.rfc=""
-    this.proveedor.tipo_persona=""
-  }
-
+export class ProveedoresComponent {
+  private readonly service = inject(ProveedoresService);
+  readonly workspace: RecordWorkspace = {
+    title: 'Proveedores',
+    singular: 'Proveedor',
+    group: 'Directorio',
+    description: 'Organiza los contactos que abastecen tu operación.',
+    nameKey: 'empresa',
+    fields: [
+      {
+        "key": "id",
+        "label": "Código",
+        "required": true
+      },
+      {
+        "key": "empresa",
+        "label": "Empresa",
+        "required": true
+      },
+      {
+        "key": "nombre",
+        "label": "Nombre",
+        "required": true
+      },
+      {
+        "key": "apellido_paterno",
+        "label": "Apellido paterno"
+      },
+      {
+        "key": "apellido_materno",
+        "label": "Apellido materno"
+      },
+      {
+        "key": "puesto",
+        "label": "Puesto"
+      },
+      {
+        "key": "rfc",
+        "label": "RFC"
+      },
+      {
+        "key": "tipo_persona",
+        "label": "Tipo de persona",
+        "hint": "Usa el valor registrado: por ejemplo, física o moral."
+      }
+    ],
+    list: () => this.service.consultartodoProveedor(),
+    create: record => this.service.insertarProveedor(record),
+    update: record => this.service.modificarProveedor(record),
+    remove: record => this.service.eliminarProveedor(record),
+  };
 }

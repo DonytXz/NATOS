@@ -1,25 +1,12 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-
+import { TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { NosotrosComponent } from './nosotros.component';
 
 describe('NosotrosComponent', () => {
-  let component: NosotrosComponent;
-  let fixture: ComponentFixture<NosotrosComponent>;
-
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ NosotrosComponent ]
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(NosotrosComponent);
-    component = fixture.componentInstance;
+  it('renders its standalone page', async () => {
+    await TestBed.configureTestingModule({ imports: [NosotrosComponent], providers: [provideRouter([])] }).compileComponents();
+    const fixture = TestBed.createComponent(NosotrosComponent);
     fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('h1')).toBeTruthy();
   });
 });

@@ -1,97 +1,58 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, inject } from '@angular/core';
 import { ArticulosService } from '../servicios/articulos.service';
-import Swal from 'sweetalert2';
+import { RecordWorkspace, RecordWorkspaceComponent } from '../shared/ui/record-workspace.component';
 
 @Component({
-    selector: 'app-articulos',
-    templateUrl: './articulos.component.html',
-    styleUrls: ['./articulos.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+  selector: 'app-articulos',
+  standalone: true,
+  imports: [RecordWorkspaceComponent],
+  templateUrl: './articulos.component.html',
+  styleUrls: ['./articulos.component.css'],
 })
-export class ArticulosComponent implements OnInit {
-
-  articulos: Observable<any[]>;
-
-  articulo = {
-    id:"",
-    descripcion:"",
-    cantidad:"",
-    precio:"",
-    proveedor: ""
-  }
-
-  constructor(private articuloservicio: ArticulosService) { }
-
-  p: number = 1;
-
-  ngOnInit(): void {
-    this.consultartodoarticulo()
-  }
-
-  //metodo guardar empleado
-  guardararticulo() {
-    this.articuloservicio.insertarArticulo(this.articulo)
-      .subscribe(res => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Realizado',
-          text: 'Registro guardado con exito',
-          // footer: '<a href>Pro</a>'
-        })
-        this.limpiararticulo()
-        this.consultartodoarticulo()
+export class ArticulosComponent {
+  private readonly service = inject(ArticulosService);
+  readonly workspace: RecordWorkspace = {
+    title: 'Artículos',
+    singular: 'Artículo',
+    group: 'Inventario',
+    description: 'Administra los artículos, sus existencias y su proveedor.',
+    nameKey: 'descripcion',
+    fields: [
+      {
+        "key": "id",
+        "label": "Código",
+        "required": true
       },
-        err => console.log(err))
-  }
-
-  editEste(art){
-    this.articulo = art
-  }
-
-  //metodo modificar
-  modificararticulo() {
-    this.articuloservicio.modificarArticulo(this.articulo)
-      .subscribe(res => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Realizado',
-          text: 'Registro modificado con exito',
-          // footer: '<a href>Pro</a>'
-        })
-        this.consultartodoarticulo()
-        this.limpiararticulo()
-      })
-  }
-
-  //metodo eliminar
-  eliminararticulo() {
-    this.articuloservicio.eliminarArticulo(this.articulo)
-      .subscribe(res => {
-        Swal.fire({
-          icon: 'success',
-          title: 'Realizado',
-          text: 'Registro eliminado con exito',
-        })
-        this.limpiararticulo()
-        this.consultartodoarticulo()
-      })
-  }
-
-  //metodo consultar
-  consultartodoarticulo() {
-    this.articulos = this.articuloservicio.consultartodoArticulo();
-  }
-
-  //metodo limpiar campos
-  limpiararticulo() {
-    //esto para que se limpien los campos
-    this.articulo.id = ""
-    this.articulo.descripcion = ""
-    this.articulo.cantidad = ""
-    this.articulo.precio = ""
-    this.articulo.proveedor = ""
-  }
-
+      {
+        "key": "descripcion",
+        "label": "Descripción",
+        "required": true
+      },
+      {
+        "key": "cantidad",
+        "label": "Cantidad",
+        "required": true,
+        "kind": "number",
+        "min": 0,
+        "integer": true
+      },
+      {
+        "key": "precio",
+        "label": "Precio (MXN)",
+        "required": true,
+        "kind": "money",
+        "min": 0.01
+      },
+      {
+        "key": "proveedor",
+        "label": "Proveedor",
+        "required": true,
+        "hint": "Conserva el nombre o código que utiliza tu registro actual."
+      }
+    ],
+    list: () => this.service.consultartodoArticulo(),
+    create: record => this.service.insertarArticulo(record),
+    update: record => this.service.modificarArticulo(record),
+    remove: record => this.service.eliminarArticulo(record),
+  };
 }

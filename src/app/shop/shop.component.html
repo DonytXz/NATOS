@@ -1,17 +1,1 @@
-
-  <app-cart 
-    [cartItems]="cartItems"
-    [cartTotal]="cartTotal"
-    (cartItemDeleted)="onCartItemDeleted($event)"
-    (cartItemChanged)="onCartItemChanged($event)"
-    >
-  </app-cart>
- 
-
-
-
-
-  <app-catalogo
-    (cartUpdated)="onCartUpdated($event)"
-    >
-  </app-catalogo>
+<section class="page"><h1>Catálogo NATOS</h1><p>Explora nuestros formatos de tarima y prepara tu solicitud.</p><a class="button" routerLink="/catalogo">Ver catálogo</a><a class="button button-secondary" routerLink="/carrito">Ver carrito</a></section>

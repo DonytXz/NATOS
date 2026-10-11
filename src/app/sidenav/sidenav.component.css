@@ -1,0 +1,14 @@
+.site-header { background: var(--canvas); border-bottom: 1px solid var(--border); }
+.header-inner { max-width: 1360px; min-height: 92px; padding: 18px 40px; margin: auto; display: flex; align-items: center; gap: 36px; }
+.brand { color: var(--ink); display: flex; align-items: center; gap: 13px; text-decoration: none; flex-shrink: 0; } .brand img { object-fit: contain; mix-blend-mode: multiply; }
+.brand-caption { border-left: 1px solid #c5c8bc; padding-left: 13px; font-size: .55rem; letter-spacing: .12em; font-weight: 650; }
+.public-navigation { display: flex; align-items: center; gap: 28px; flex: 1; justify-content: center; }
+.public-navigation a { color: var(--muted); font-size: .86rem; text-decoration: none; padding-block: 10px; white-space: nowrap; }
+.public-navigation a:hover, .public-navigation a.active { color: var(--ink); }
+.public-navigation a.active { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 8px; }
+.public-navigation .staff-link { margin-left: auto; font-size: .75rem; }
+.cart-link { color: var(--ink); border: 1px solid var(--border); padding: 10px 12px; display: inline-flex; align-items: center; gap: 8px; border-radius: 6px; text-decoration: none; font-size: .8rem; flex-shrink: 0; }
+.cart-count { min-width: 22px; height: 22px; display: inline-grid; place-items: center; background: var(--ink); color: white; border-radius: 50%; font-size: .7rem; } .menu-toggle { display: none; }
+@media (max-width: 1120px) { .brand-caption { display: none; } .header-inner { gap: 24px; padding-inline: 28px; } .public-navigation { gap: 22px; } }
+@media (max-width: 900px) { .header-inner { position: relative; min-height: 76px; flex-wrap: wrap; gap: 16px; padding: 16px 24px; } .brand { margin-right: auto; } .menu-toggle { display: inline-flex; gap: 10px; align-items: center; padding: 10px 12px; border: 1px solid var(--border); border-radius: 6px; background: transparent; color: var(--ink); font-size: .86rem; } .public-navigation { display: none; order: 4; width: 100%; flex: 0 0 100%; padding: 12px 0; border-top: 1px solid var(--border); align-items: flex-start; gap: 4px; } .public-navigation.open { display: flex; flex-direction: column; } .public-navigation a { padding: 12px 0; width: 100%; } .public-navigation .staff-link { margin: 0; } }
+@media (max-width: 480px) { .header-inner { padding-inline: 16px; gap: 10px; } .cart-text { display: none; } .cart-link { padding-inline: 9px; } }

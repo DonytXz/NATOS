@@ -1,27 +1,38 @@
-<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Montserrat:wght@600&display=swap" rel="stylesheet">
-
-<div class="container" style="text-align: center;   margin-top: 5em; width: 60%; height: 40%;" >
-    <div class="box" style="background-color: white;">
-        
-        <div class="form form--login">
-
-<h3 class="form__title">Ingresar los datos para registrarte</h3>
-<div class="form__helper">
- <label class="form__label"><b>Ingresa el código</b></label> <br>
-    <input class="form__input" [(ngModel)]="usuario.codigo" type="text" placeholder="Código">
-    <br>
-    </div>
-    <div class="form__helper">
-<label class="form__label"><b>Ingresa tu nombre de usuario</b></label> <br>
-    <input class="form__input" [(ngModel)]="usuario.username"  placeholder="Nombre de usuario">
-    <br>    
-    </div>
-    <div class="form__helper">
-<label class="form__label"><b>Ingresa tu contraseña</b></label> <br>
-    <input class="form__input" [(ngModel)]="usuario.password"  placeholder="Contraseña">
-    <br>
-    </div>
-    <button class="form__button" (click)="insertar()" style="width: 100%; background-color: teal;">Entrar</button>
-</div>
-    </div>
-    </div>
+<section class="page auth-page" aria-labelledby="register-title">
+  <div class="auth-intro">
+    <p class="eyebrow">ESPACIO DE TRABAJO</p>
+    <h1 id="register-title">Registro del personal</h1>
+    <p>Necesitas un código de registro para crear tu cuenta de trabajo.</p>
+    <a routerLink="/acceso">Ya tengo una cuenta <span aria-hidden="true">→</span></a>
+  </div>
+  <form class="surface auth-form" [formGroup]="form" (ngSubmit)="insertar()" [attr.aria-busy]="pending()" novalidate>
+    <h2>Crear cuenta</h2>
+    <p>Todos los campos son obligatorios.</p>
+    @if (error()) { <p class="notice error-notice" role="alert">{{ error() }}</p> }
+    @if (success()) { <p class="notice" role="status">El servicio confirmó el registro. <a routerLink="/acceso">Inicia sesión con tu cuenta</a>.</p> }
+    <fieldset [disabled]="pending()">
+      <div class="field">
+        <label for="register-code">Código de registro</label>
+        <input id="register-code" formControlName="codigo" autocomplete="off" required
+          [attr.aria-invalid]="form.controls.codigo.touched && form.controls.codigo.invalid" aria-describedby="register-code-error">
+        <span id="register-code-error" class="field-error">@if (form.controls.codigo.touched && form.controls.codigo.invalid) { Escribe tu código de registro. }</span>
+      </div>
+      <div class="field">
+        <label for="register-username">Nombre de usuario</label>
+        <input id="register-username" formControlName="username" autocomplete="username" autocapitalize="none" spellcheck="false" required
+          [attr.aria-invalid]="form.controls.username.touched && form.controls.username.invalid" aria-describedby="register-username-error">
+        <span id="register-username-error" class="field-error">@if (form.controls.username.touched && form.controls.username.invalid) { Escribe un nombre de usuario. }</span>
+      </div>
+      <div class="field">
+        <label for="register-password">Contraseña</label>
+        <div class="password-control">
+          <input id="register-password" formControlName="password" [type]="showPassword() ? 'text' : 'password'" autocomplete="new-password" required
+            [attr.aria-invalid]="form.controls.password.touched && form.controls.password.invalid" aria-describedby="register-password-error">
+          <button class="password-toggle" type="button" (click)="showPassword.set(!showPassword())" [attr.aria-pressed]="showPassword()" aria-controls="register-password">{{ showPassword() ? 'Ocultar' : 'Mostrar' }}</button>
+        </div>
+        <span id="register-password-error" class="field-error">@if (form.controls.password.touched && form.controls.password.invalid) { Escribe una contraseña. }</span>
+      </div>
+      <button class="button submit-button" type="submit">{{ pending() ? 'Registrando…' : 'Crear cuenta del personal' }}</button>
+    </fieldset>
+  </form>
+</section>

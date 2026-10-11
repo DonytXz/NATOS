@@ -1,17 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-    selector: 'app-copy',
-    templateUrl: './copy.component.html',
-    styleUrls: ['./copy.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+  selector: 'app-copy',
+  templateUrl: './copy.component.html',
+  styleUrls: ['./copy.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CopyComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class CopyComponent {}

@@ -1,38 +1,48 @@
-# Proyecto
+# NATOS web app
 
-This project runs on Angular 22.0.8 and TypeScript 6. See
-[MIGRATION.md](MIGRATION.md) for the completed version-by-version migration
-and verification results.
+Spanish-language pallet storefront and staff workspace built with Angular 22 and TypeScript 6. The v2 redesign adds separate public/staff navigation, a persistent order-request cart, responsive layouts, and consistent record editing with recoverable errors.
 
-Use Node.js 22.22.3+, 24.15+, or 26+.
+The API, database, endpoint paths, and existing payload contracts are unchanged. Catalog prices remain local reference data; submitting a request does not collect payment or reserve stock.
 
-## Development server
+## Run locally
 
-Run `npm start` (or `ng serve`) for a dev server. Navigate to
-`http://localhost:4201/`. Port 4201 is configured for this project so it does
-not conflict with other Angular applications that commonly use port 4200. The
-app will automatically reload if you change any of the source files.
+Use Node **24.19.0**, pinned in `.nvmrc`, and npm. The lockfile pins the dependency tree.
 
-## Code scaffolding
+```sh
+npm ci
+npm start
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Open `http://localhost:4201/`. Production uses `/NATOS/` as its base path.
 
-## Build
+## Verify and preview
 
-Run `npm run build` to create a development build, or
-`npm run build -- --configuration production` for a production build. Output
-is written to `dist/proyecto/`.
+```sh
+npm test
+npm run build:production
+npx playwright install chromium
+npm run test:e2e
+npm run preview
+```
 
-## Running unit tests
+The preview opens at `http://127.0.0.1:4301/NATOS/`. Build output is `dist/proyecto/browser`; the production build also creates the GitHub Pages `404.html` fallback. Run the build before browser tests. Playwright starts the local preview server and intercepts external requests, so its fixtures do not create production records.
 
-Run `npm test` to execute the 34 unit tests with Vitest and jsdom.
+Unit tests use Vitest and jsdom. Browser tests cover the storefront, order outcomes, authentication, staff editing, mobile navigation, and deep links. Historical Protractor files under `e2e/` are retained as reference; the active suite is `e2e/browser/`.
 
-## Running end-to-end tests
+## Application structure
 
-The retired Protractor source remains in `e2e/` as migration reference, but
-there is no active end-to-end runner. Add Playwright or another maintained
-runner when rebuilding those tests.
+- `layouts/`: public header/footer and staff navigation.
+- `core/cart-state.service.ts`: cart validation, persistence, and per-product request outcomes.
+- `servicios/`: adapters for the existing API; session state and API 401 handling live in `login.service.ts`.
+- `shared/ui/`: consistent record workspace with independent drafts, validation, pagination, and named deletion confirmation.
+- Existing feature folders retain their paths and load as standalone components. `features/orders/` contains the staff order list.
 
-## Further help
+Public routes include `/inicio`, `/catalogo`, `/carrito`, `/nosotros`, `/contacto`, `/sugerencias`, `/acceso`, `/registro`, and `/creditos`. Staff routes live under `/admin/`. Legacy capitalized URLs and `/shop` redirect to the corresponding experience.
 
-Run `npx ng help` or consult the [Angular CLI documentation](https://angular.dev/tools/cli).
+The cart stores product IDs, quantities, and delivery outcomes in browser storage; it does not persist the order email. Completed requests are not sent again automatically. An ambiguous response requires checking with NATOS before retrying. Client route guards retain the existing session contract and do not establish server authorization.
+
+## Delivery
+
+Pull requests run deterministic installation, unit tests, production build, and Chromium browser tests. Verified pushes to `main` or `master` can deploy to `gh-pages`; feature branches do not deploy. Rollback requires only reverting the frontend release and redeploying.
+
+See the [v2 plan](docs/web-app-v2-plan.md), [implementation and validation](docs/web-app-v2-validation.md), and [earlier Angular migration](MIGRATION.md).
