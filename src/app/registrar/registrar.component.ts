@@ -1,39 +1,47 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { RouterLink } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+import { finalize } from 'rxjs';
 import { RegistrarService } from '../servicios/registrar.service';
-import Swal from 'sweetalert2';
 
 @Component({
-    selector: 'app-registrar',
-    templateUrl: './registrar.component.html',
-    styleUrls: ['./registrar.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+  selector: 'app-registrar',
+  imports: [ReactiveFormsModule, RouterLink],
+  templateUrl: './registrar.component.html',
+  styleUrls: ['../iniciar/iniciar.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RegistrarComponent implements OnInit {
+export class RegistrarComponent {
+  private readonly registrar = inject(RegistrarService);
+  private readonly destroyRef = inject(DestroyRef);
+  readonly form = inject(NonNullableFormBuilder).group({
+    codigo: ['', [Validators.required, Validators.pattern(/\S/)]],
+    username: ['', [Validators.required, Validators.pattern(/\S/)]],
+    password: ['', Validators.required]
+  });
+  readonly pending = signal(false);
+  readonly error = signal('');
+  readonly success = signal(false);
+  readonly showPassword = signal(false);
 
-  usuario={
-    codigo:"",
-    username:"",
-    password:""
+  insertar(): void {
+    if (this.pending()) return;
+    this.form.markAllAsTouched();
+    this.error.set('');
+    this.success.set(false);
+    if (this.form.invalid) return;
+    const values = this.form.getRawValue();
+    this.pending.set(true);
+    this.registrar.insertar({ ...values, codigo: values.codigo.trim(), username: values.username.trim() }).pipe(
+      takeUntilDestroyed(this.destroyRef),
+      finalize(() => this.pending.set(false))
+    ).subscribe({
+      next: () => { this.success.set(true); this.form.reset(); },
+      error: (error: unknown) => this.error.set(error instanceof HttpErrorResponse && error.status === 0
+        ? 'No pudimos conectar con el servicio. Revisa tu conexión e intenta de nuevo.'
+        : 'No se pudo completar el registro. Revisa el código y los datos, o intenta más tarde.')
+    });
   }
-
-  constructor(private registrarservicio:RegistrarService) { }
-
-  ngOnInit(): void {
-  }
-
-  insertar(){
-    this.registrarservicio.insertar(this.usuario).subscribe(res =>{
-      Swal.fire({
-        icon: 'success',
-        title: 'Realizado',
-        text: 'Te registraste con exito',
-        // footer: '<a  <a href="#!" routerLink="Iniciar">Inicia sesion</a>'
-      })
-      console.log(res)
-    },
-    err => console.log(err)
-    )
-  }
-
 }

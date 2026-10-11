@@ -1,0 +1,116 @@
+<section class="page record-page">
+  <header class="page-header workspace-heading">
+    <div>
+      <p class="eyebrow">Administración / {{ config.group }}</p>
+      <h1>{{ config.title }}</h1>
+      <p class="workspace-description">{{ config.description }}</p>
+    </div>
+    <button class="button" type="button" (click)="create()" [disabled]="pending || loading || editorOpen || !!pendingDelete">+ {{ config.singular }}</button>
+  </header>
+
+  @if (notice) { <p class="notice success-notice" role="status">{{ notice }}</p> }
+
+  @if (editorOpen) {
+    <section class="surface record-editor" aria-labelledby="record-editor-title" (keydown.escape)="cancel()">
+      <div class="editor-heading">
+        <div>
+          <p class="eyebrow">{{ editing ? 'Editar registro' : 'Crear registro' }}</p>
+          <h2 id="record-editor-title" tabindex="-1">{{ config.singular }}</h2>
+        </div>
+        <p class="field-help">Los campos con * son obligatorios.</p>
+      </div>
+      <form (ngSubmit)="save()" novalidate [attr.aria-busy]="pending">
+        <fieldset [disabled]="pending || loading">
+          <legend class="sr-only">Datos de {{ config.singular }}</legend>
+          <div class="fields-grid">
+            @for (field of config.fields; track field.key) {
+              <div class="field">
+                <label [for]="'record-' + field.key">{{ field.label }}{{ field.required ? ' *' : '' }}</label>
+                <input [id]="'record-' + field.key" [name]="field.key"
+                  [type]="field.kind ? 'number' : 'text'" [attr.min]="field.min ?? null"
+                  [attr.step]="field.integer ? 1 : (field.kind ? '0.01' : null)"
+                  [(ngModel)]="draft[field.key]" [required]="!!field.required"
+                  [readOnly]="editing && field.key === 'id'"
+                  [attr.aria-invalid]="submitted && fieldError(field) ? 'true' : null"
+                  [attr.aria-describedby]="submitted && fieldError(field) ? 'error-' + field.key : (field.hint ? 'hint-' + field.key : null)">
+                @if (field.hint) { <span class="field-help" [id]="'hint-' + field.key">{{ field.hint }}</span> }
+                @if (submitted && fieldError(field)) { <span class="field-error" [id]="'error-' + field.key">{{ fieldError(field) }}</span> }
+              </div>
+            }
+          </div>
+          <div class="editor-actions">
+            <button class="button" type="submit">{{ pending ? 'Guardando…' : 'Guardar cambios' }}</button>
+            <button class="button button-secondary" type="button" (click)="cancel()">Cancelar</button>
+          </div>
+        </fieldset>
+        @if (mutationError) {
+          <p class="notice error-notice" role="alert">{{ mutationError }}</p>
+          <button class="button button-secondary" type="button" (click)="load()" [disabled]="loading || pending">{{ loading ? 'Verificando…' : 'Verificar en la lista' }}</button>
+        }
+      </form>
+    </section>
+  }
+
+  @if (pendingDelete) {
+    <section class="surface delete-confirmation" role="alertdialog" aria-labelledby="record-delete-title" aria-describedby="record-delete-description" (keydown.escape)="cancelDelete()">
+      <h2 id="record-delete-title" tabindex="-1">Eliminar {{ name(pendingDelete) }}</h2>
+      <p id="record-delete-description">Eliminarás este registro de {{ config.title.toLocaleLowerCase('es-MX') }} (código {{ pendingDelete['id'] }}). Esta acción no se puede deshacer.</p>
+      <div class="editor-actions">
+        <button type="button" class="button button-secondary" (click)="cancelDelete()" [disabled]="pending">Conservar registro</button>
+        <button type="button" class="button danger-button" (click)="confirmDelete()" [disabled]="pending || loading">{{ pending ? 'Eliminando…' : 'Sí, eliminar' }}</button>
+      </div>
+      @if (mutationError) {
+        <p class="notice error-notice" role="alert">{{ mutationError }}</p>
+        <button class="button button-secondary" type="button" (click)="load()" [disabled]="loading || pending">{{ loading ? 'Verificando…' : 'Verificar en la lista' }}</button>
+      }
+    </section>
+  }
+
+  <section class="surface record-list" aria-label="Lista de registros" [attr.aria-busy]="loading">
+    <div class="list-toolbar">
+      <div class="field search-field">
+        <label for="record-search">Buscar en {{ config.title.toLocaleLowerCase('es-MX') }}</label>
+        <input id="record-search" type="search" [(ngModel)]="query" (ngModelChange)="page = 1" placeholder="Código, nombre o cualquier dato…">
+      </div>
+      <button type="button" class="button button-secondary" (click)="load()" [disabled]="loading || pending || ((editorOpen || !!pendingDelete) && !mutationError)">{{ loading ? 'Actualizando…' : 'Actualizar' }}</button>
+    </div>
+    @if (listError) { <p class="notice error-notice" role="alert">{{ listError }}</p> }
+    @if (loading && !rows.length) {
+      <p class="empty-state" role="status">Cargando {{ config.title.toLocaleLowerCase('es-MX') }}…</p>
+    } @else if (visibleRows.length) {
+      <div class="table-scroll" role="region" [attr.aria-label]="'Tabla de ' + config.title" tabindex="0">
+        <table>
+          <caption class="sr-only">{{ config.title }}: {{ filteredRows.length }} registros encontrados</caption>
+          <thead><tr>
+            @for (field of config.fields; track field.key) { <th scope="col" [class.numeric]="field.kind">{{ field.label }}</th> }
+            <th scope="col">Acciones</th>
+          </tr></thead>
+          <tbody>
+            @for (row of visibleRows; track $index) {
+              <tr>
+                @for (field of config.fields; track field.key) { <td [class.numeric]="field.kind">{{ display(row, field) }}</td> }
+                <td class="row-actions">
+                  <button type="button" class="text-button" (click)="edit(row)" [disabled]="loading || pending || editorOpen || !!pendingDelete" [attr.aria-label]="'Editar ' + name(row)">Editar</button>
+                  <button type="button" class="text-button text-danger" (click)="askDelete(row)" [disabled]="loading || pending || editorOpen || !!pendingDelete" [attr.aria-label]="'Eliminar ' + name(row)">Eliminar</button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <nav class="pagination" aria-label="Páginas de resultados">
+        <p>{{ filteredRows.length }} registros · Página {{ page }} de {{ pageCount }}</p>
+        <div class="pagination-buttons">
+          <button class="button button-secondary" type="button" (click)="page = page - 1" [disabled]="page <= 1">Anterior</button>
+          <button class="button button-secondary" type="button" (click)="page = page + 1" [disabled]="page >= pageCount">Siguiente</button>
+        </div>
+      </nav>
+    } @else if (!listError) {
+      <div class="empty-state">
+        <h2>{{ query ? 'Sin coincidencias' : 'Todavía no hay registros' }}</h2>
+        <p>{{ query ? 'Prueba con otro nombre o código.' : 'Crea el primer registro con el botón de arriba.' }}</p>
+        @if (query) { <button class="button button-secondary" type="button" (click)="query = ''; page = 1">Limpiar búsqueda</button> }
+      </div>
+    }
+  </section>
+</section>

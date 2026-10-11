@@ -1,61 +1,35 @@
-import { Component, OnInit, EventEmitter, Output, ChangeDetectionStrategy } from '@angular/core';
-import { ProductItem } from './product.model'
-import { Router } from '@angular/router';
-
-import { LoginService } from '../servicios/login.service';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
+import { CartStateService } from '../core/cart-state.service';
+import { CATALOG_PRODUCTS, CatalogProduct, formatMxn } from './catalog.data';
 
 @Component({
-    selector: 'app-catalogo',
-    templateUrl: './catalogo.component.html',
-    styleUrls: ['./catalogo.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+  selector: 'app-catalogo',
+  standalone: true,
+  imports: [FormsModule, RouterLink],
+  templateUrl: './catalogo.component.html',
+  styleUrls: ['./catalogo.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CatalogoComponent implements OnInit {
+export class CatalogoComponent {
+  readonly cart = inject(CartStateService);
+  readonly query = signal('');
+  readonly sort = signal('featured');
+  readonly message = signal('');
+  readonly money = formatMxn;
+  readonly products = computed(() => {
+    const query = this.query().trim().toLocaleLowerCase('es').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    const items = CATALOG_PRODUCTS.filter(item => `${item.name} ${item.bundle} ${item.material}`.toLocaleLowerCase('es').normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(query));
+    if (this.sort() === 'price-asc') return items.sort((a, b) => a.price - b.price);
+    if (this.sort() === 'price-desc') return items.sort((a, b) => b.price - a.price);
+    if (this.sort() === 'name') return items.sort((a, b) => a.name.localeCompare(b.name, 'es'));
+    return items;
+  });
 
-  productItem: ProductItem[] = [
-    new ProductItem(1,'x20 Chep + x30 Tacon  -40%', 3960, 'assets/promocion1.gif'),
-    new ProductItem(2,'x100 Plastico -30%', 17500, 'assets/promocion2.gif'),
-    new ProductItem(3,'x20 Plastico + x30 Tacon  -40%', 3960, 'assets/promocion1.gif'),
-    new ProductItem(4,'x100 Chep -30%', 17500, 'assets/promocion2.gif'),
-    new ProductItem(5, 'x50 Chep', 9000, 'assets/chep.jpg'),
-    new ProductItem(6,'x50 Medidas especiales', 15000, 'assets/personalizada.gif'),
-    new ProductItem(7,'x50 Tacon', 7500, 'assets/tarima1.png'),
-    new ProductItem(8,'x50 Plastico', 12500, 'assets/plastico.png'),
-  ]
-
-  @Output() cartUpdated = new EventEmitter<{
-    productId: number,
-    productName: string,
-    productPrice: number
-  }>();
-  entrar: any;
-
-  constructor(public router: Router, private loginservicio:LoginService) { }
-
-  ngOnInit() {
-    this.router.navigate(['shop']);
-    this.loginservicio.change.subscribe(isOpen =>{
-      this.entrar = isOpen;
-    })
-    this.llenarentrar();
+  add(product: CatalogProduct): void {
+    this.message.set(this.cart.add(product.id)
+      ? `${product.name}: agregamos un paquete a tu carrito.`
+      : 'Revisa este producto en tu carrito antes de agregar otro paquete.');
   }
-  llenarentrar(){
-    this.entrar=this.loginservicio.eslogueado();
-
-  }
-
-  onCartUpdated(event) {
-    const id = event.target.getAttribute('id');
-    const index = this.productItem.findIndex(elem => elem.id == id);
-    this.cartUpdated.emit({
-        productId: this.productItem[index].id,
-        productName: this.productItem[index].name,
-        productPrice: this.productItem[index].price
-      });
 }
-
-
-}
-
-

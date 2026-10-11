@@ -1,21 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { LoginService } from './servicios/login.service';
+import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { LoginService, safeReturnUrl } from './servicios/login.service';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class LogingGuard  {
-  constructor(private router:Router, private loginservicio:LoginService){
+@Injectable({ providedIn: 'root' })
+export class LogingGuard {
+  constructor(private router: Router, private loginservicio: LoginService) {}
 
+  canActivate(_route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree {
+    return this.loginservicio.eslogueado() || this.router.createUrlTree(['/acceso'], {
+      queryParams: { returnUrl: safeReturnUrl(state.url) }
+    });
   }
-  canActivate(): boolean{
-    if(this.loginservicio.eslogueado()){
-      return true;
-    }else{ //si es falso se redirige a login
-      this.router.navigate(['/Iniciar'])
-      return false;
-    }
-    
-  } 
 }

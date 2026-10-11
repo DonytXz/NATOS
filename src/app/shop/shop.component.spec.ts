@@ -1,27 +1,12 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-
+import { TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { ShopComponent } from './shop.component';
 
 describe('ShopComponent', () => {
-  let component: ShopComponent;
-  let fixture: ComponentFixture<ShopComponent>;
-
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ShopComponent ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ShopComponent);
-    component = fixture.componentInstance;
+  it('keeps compatibility navigation available', async () => {
+    await TestBed.configureTestingModule({ imports: [ShopComponent], providers: [provideRouter([])] }).compileComponents();
+    const fixture = TestBed.createComponent(ShopComponent);
     fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(fixture.nativeElement.querySelector('a').getAttribute('href')).toBe('/catalogo');
   });
 });

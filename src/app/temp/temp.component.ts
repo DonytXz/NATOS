@@ -1,17 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-    selector: 'app-temp',
-    templateUrl: './temp.component.html',
-    styleUrls: ['./temp.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+  selector: 'app-temp',
+  templateUrl: './temp.component.html',
+  styleUrls: ['./temp.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TempComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class TempComponent {}

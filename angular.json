@@ -23,15 +23,20 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "assets",
+                "ignore": [
+                  "**/*.psd",
+                  "**/*.gif"
+                ]
+              }
             ],
             "styles": [
               "src/styles.css"
             ],
             "scripts": [],
-            "allowedCommonJsDependencies": [
-              "sweetalert2"
-            ],
             "extractLicenses": false,
             "sourceMap": true,
             "optimization": false,
@@ -71,7 +76,7 @@
             "testing": {
               "aot": false,
               "polyfills": [
-                "src/polyfills.ts",
+                "zone.js",
                 "zone.js/testing",
                 "zone.js/plugins/vitest-patch"
               ]

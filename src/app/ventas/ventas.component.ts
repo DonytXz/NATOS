@@ -1,100 +1,61 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, inject } from '@angular/core';
 import { VentasService } from '../servicios/ventas.service';
-import Swal from 'sweetalert2';
+import { RecordWorkspace, RecordWorkspaceComponent } from '../shared/ui/record-workspace.component';
 
 @Component({
-    selector: 'app-ventas',
-    templateUrl: './ventas.component.html',
-    styleUrls: ['./ventas.component.css'],
-    changeDetection: ChangeDetectionStrategy.Eager,
-    standalone: false
+  selector: 'app-ventas',
+  standalone: true,
+  imports: [RecordWorkspaceComponent],
+  templateUrl: './ventas.component.html',
 })
-export class VentasComponent implements OnInit {
-
-  ventas: Observable<any[]>;
-
-  venta={
-    id:"",
-    cliente:"",
-    id_tarima:"",
-    descripcion_tarima:"",
-    cantidad:"",
-    precio_tarima:""
-  }
-
-  constructor(private ventaservicio:VentasService) { }
-
-  p: number = 1;
-
-  ngOnInit(): void {
-    this.consultartodoventa()
-  }
-
-//metodo guardar venta
-guardarventa() {
-  this.ventaservicio.insertarVenta(this.venta)
-    .subscribe(res => {
-      Swal.fire({
-        icon: 'success',
-        title: 'Realizado',
-        text: 'Registro guardado con exito',
-        // footer: '<a href>Pro</a>'
-      })
-      this.limpiarventa()
-      this.consultartodoventa()
-    },
-      err => console.log(err))
-}
-
-editEste(ven){
-  this.venta = ven
-}
-
-//metodo modificar
-modificarventa() {
-  this.ventaservicio.modificarVenta(this.venta)
-    .subscribe(res => {
-      Swal.fire({
-        icon: 'success',
-        title: 'Realizado',
-        text: 'Registro modificado con exito',
-        // footer: '<a href>Pro</a>'
-      })
-      this.consultartodoventa()
-      this.limpiarventa()
-    })
-}
-
-//metodo eliminar
-eliminarventa() {
-  this.ventaservicio.eliminarVenta(this.venta)
-    .subscribe(res => {
-      Swal.fire({
-        icon: 'success',
-        title: 'Realizado',
-        text: 'Registro eliminado con exito',
-      })
-      this.limpiarventa()
-      this.consultartodoventa()
-    })
-}
-
-//metodo consultar
-consultartodoventa() {
-  this.ventas = this.ventaservicio.consultartodoVenta();
-}
-
-//metodo limpiar campos
-limpiarventa() {
-  //esto para que se limpien los campos
-  this.venta.id = ""
-  this.venta.cliente = ""
-  this.venta.id_tarima = ""
-  this.venta.descripcion_tarima = ""
-  this.venta.cantidad = ""
-  this.venta.precio_tarima = ""
-}
-
-
+export class VentasComponent {
+  private readonly service = inject(VentasService);
+  readonly workspace: RecordWorkspace = {
+    title: 'Ventas',
+    singular: 'Venta',
+    group: 'Operaciones',
+    description: 'Consulta y registra las solicitudes de venta de tarimas.',
+    nameKey: 'descripcion_tarima',
+    fields: [
+      {
+        "key": "id",
+        "label": "Código",
+        "required": true
+      },
+      {
+        "key": "cliente",
+        "label": "Cliente",
+        "required": true
+      },
+      {
+        "key": "id_tarima",
+        "label": "Código de tarima",
+        "required": true
+      },
+      {
+        "key": "descripcion_tarima",
+        "label": "Descripción de la tarima",
+        "required": true
+      },
+      {
+        "key": "cantidad",
+        "label": "Cantidad",
+        "required": true,
+        "kind": "number",
+        "min": 1,
+        "integer": true
+      },
+      {
+        "key": "precio_tarima",
+        "label": "Precio (MXN)",
+        "required": true,
+        "kind": "money",
+        "min": 0.01
+      }
+    ],
+    list: () => this.service.consultartodoVenta(),
+    create: record => this.service.insertarVenta(record),
+    update: record => this.service.modificarVenta(record),
+    remove: record => this.service.eliminarVenta(record),
+  };
 }

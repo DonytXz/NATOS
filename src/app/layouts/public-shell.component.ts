@@ -1,0 +1,10 @@
+import { Component } from '@angular/core';
+import { RouterLink, RouterOutlet } from '@angular/router';
+import { SidenavComponent } from '../sidenav/sidenav.component';
+@Component({
+  standalone: true, imports: [RouterOutlet, RouterLink, SidenavComponent],
+  template: `<app-sidenav /><main id="contenido" tabindex="-1"><router-outlet /></main>
+    <footer class="site-footer"><div class="footer-top"><div><a class="footer-brand" routerLink="/inicio">NATOS<span>COMERCIALIZADORA</span></a><p>Una base sólida para cada carga.</p></div><nav aria-label="Enlaces del pie de página"><a routerLink="/catalogo">Catálogo</a><a routerLink="/contacto">Contacto</a><a routerLink="/sugerencias">Sugerencias</a><a routerLink="/acceso">Acceso del personal</a></nav></div><div class="footer-bottom"><span>© {{ year }} NATOS</span><span>Tarimas de madera y plástico</span><a routerLink="/creditos">Créditos del proyecto</a></div></footer>`,
+  styles: [`main { min-height: 60vh; } .site-footer { padding: 44px max(32px, calc((100% - 1200px) / 2)); border-top: 1px solid var(--border); background: #eceee6; } .footer-top { display: flex; justify-content: space-between; gap: 32px; } .footer-brand { font-size: 2rem; font-weight: 750; letter-spacing: -.07em; text-decoration: none; color: var(--ink); } .footer-brand span { display: block; font-size: .55rem; letter-spacing: .15em; } p { font-size: .85rem; color: var(--muted); margin-top: 18px; } nav { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 28px; padding-top: 14px; } nav a, .footer-bottom a { color: var(--ink); font-size: .8rem; text-decoration: none; } a:hover { text-decoration: underline; } .footer-bottom { border-top: 1px solid #ccd0c4; margin-top: 34px; padding-top: 20px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 14px; font-size: .72rem; color: var(--muted); } @media(max-width:640px) { .site-footer { padding: 32px 20px; } .footer-top { flex-direction: column; } nav { gap: 18px; } .footer-bottom { justify-content: flex-start; } }`]
+})
+export class PublicShellComponent { readonly year = new Date().getFullYear(); }

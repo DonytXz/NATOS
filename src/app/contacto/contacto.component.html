@@ -1,129 +1,47 @@
-
-
-<section id="contact" style="background-color: white!important;">
-
-    <h1 class="section-header">Contacto</h1>
-    
-    <div class="contact-wrapper">
-      
-        <!---------------- 
-  
-        CONTACT PAGE LEFT 
-      
-        -----------------> 
-      
-    <form id="formulario" ngNoForm class="form-horizontal" role="form" action="https://formspree.io/mwkrzbjj" target="popup" method="POST">
-
-        <div class="form-group">
-            <div class="col-sm-12">
-              <input required (keyup)='getAsunto($event.target.value)' type="text" class="form-control"  id="Asunto" placeholder="Asunto" name="Asunto" value="">
-            </div>
-        </div>
-
-        <div class="form-group">
-          <div class="col-sm-12">
-            <input required (keyup)='getNombre($event.target.value)' type="text" class="form-control" id="name" placeholder="Nombre" name="Nombre" value="">
-          </div>
-        </div>
-  
-        <div class="form-group">
-          <div class="col-sm-12">
-            <input required (keyup)='getCorreo($event.target.value)' type="email" class="form-control" id="email" placeholder="Correo" name="Correo" value="">
-          </div>
-        </div>
-
-          
-        <div class="form-group">
-            <div class="col-sm-12">
-              <input required (keyup)="getNumero($event.target.value)" type="number" class="form-control" id="Numero" placeholder="Numero (opcional)" name="Numero" value="">
-            </div>
-        </div>
-
-  
-        <textarea required (keyup)='getTxt($event.target.value)' class="form-control" rows="10" id="txt" placeholder="Mensaje" name="Mensaje"></textarea>
-        
-        <button class="btn btn-primary send-button" id="submit" type="submit" value="SEND">
-          <div class="button">
-            <span class="send-text">Correo</span><i class="far fa-envelope fa-xs"></i>
-          </div>
-        </button>
-                
-        
-        <div style="background-color: greenyellow;" class="btn btn-primary send-button" id="wats">
-          <div class="button" >
-            <span class="send-text">Whatsapp</span>
-            <a (click)="generateUrl();" class="fab fa-whatsapp fa-xs" style="text-decoration: none; font-size: 24px;" target="popup" 
-            href="{{url}}"></a>
-          </div>
-        </div>
-
- 
-      </form>
-      
-        <!---------------- 
-  
-        CONTACT PAGE RIGHT 
-      
-        -----------------> 
-      
-        <div class="direct-contact-container">
-
-            <div class="contact-info" class="contact-list">
-                <div class="card">
-                  <i class="icon fas fa-envelope"></i>
-                  <div class="card-content">
-                    <h3>Email</h3>
-                    <span>ContactoNatos&#64;gmail.com</span>
-                  </div>
-                </div>
-              
-                <div class="card">
-                  <i class="icon fas fa-phone"></i>
-                  <div class="card-content">
-                    <h3>Numero:</h3>
-                    <span>+52 3333333333</span>
-                  </div>
-                </div>
-              
-                <div class="card">
-                  <i class="icon fas fa-map-marker-alt"></i>
-                  <div class="card-content">
-                    <h3>Ubicacion</h3>
-                    <span>Guadalajara, MX</span>
-                  </div>
-                </div>
-              </div>
-
-
-  
-          <hr>
-          <ul class="social-media-list">
-            <li><a href="https://www.facebook.com/Natos-Comercilizadora-127986545396071/?modal=admin_todo_tour" target="_blank" class="contact-icon">
-              <i class="fab fa-facebook-square" aria-hidden="true"></i></a>
-            </li>
-            <li><a href="https://twitter.com/NatosComercial1" target="_blank" class="contact-icon">
-              <i class="fab fa-twitter" aria-hidden="true"></i></a>
-            </li>
-            <li><a href="https://www.instagram.com/natoscomercializadora/?hl=es-la" target="_blank" class="contact-icon">
-              <i class="fab fa-instagram" aria-hidden="true"></i></a>
-            </li>
-            <li><a href="#" target="_blank" class="contact-icon">
-              <i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
-            </li>
-          </ul>
-          <hr>
-  
-
-  
-        </div>
-
+<section class="page" aria-labelledby="contact-title">
+  <header class="page-header">
+    <div>
+      <p class="eyebrow">HABLEMOS DE TU PROYECTO</p>
+      <h1 id="contact-title">Contacto</h1>
+      <p>Cuéntanos qué tipo de tarima necesitas, la cantidad y el uso que tienes en mente.</p>
     </div>
-
-  </section>  
-    
-    
-
-
-  <div class="googleMap">
-    <iframe style="pointer-events: auto;"  src="https://www.google.com/maps/d/u/0/embed?mid=1zVqU378kV7vtlP4hDFgr0LQIwijBhZbt" width="640" height="480"></iframe>
-</div>
+  </header>
+  <div class="contact-grid">
+    <form class="surface contact-form" ngNoForm action="https://formspree.io/mwkrzbjj" target="_blank" rel="noopener noreferrer" method="POST" aria-describedby="contact-provider">
+      <h2>Escríbenos</h2>
+      <p id="contact-provider">El envío se procesa en Formspree y abre una pestaña nueva. Revisa allí la confirmación del proveedor; esta página no puede comprobar la entrega.</p>
+      <div class="field"><label for="contact-subject">Asunto</label><input id="contact-subject" name="Asunto" required maxlength="200" autocomplete="off"></div>
+      <div class="field"><label for="contact-name">Nombre</label><input id="contact-name" name="Nombre" required maxlength="200" autocomplete="name"></div>
+      <div class="contact-fields">
+        <div class="field"><label for="contact-email">Correo electrónico</label><input id="contact-email" name="Correo" type="email" required autocomplete="email"></div>
+        <div class="field"><label for="contact-phone">Teléfono <span>(opcional)</span></label><input id="contact-phone" name="Numero" type="tel" autocomplete="tel"></div>
+      </div>
+      <div class="field"><label for="contact-message">Mensaje</label><textarea id="contact-message" name="Mensaje" required rows="5" maxlength="5000"></textarea></div>
+      <p class="form-note">Los campos son obligatorios salvo el teléfono. Al enviar, compartirás estos datos con el proveedor del formulario.</p>
+      <button class="button" type="submit">Enviar con Formspree <span aria-hidden="true">↗</span></button>
+    </form>
+    <aside class="contact-details" aria-label="Otros medios de contacto">
+      <div class="surface">
+        <p class="eyebrow">CONTACTO DIRECTO</p>
+        <h2>Estamos para escucharte</h2>
+        <dl>
+          <dt>Correo electrónico</dt>
+          <dd><a href="mailto:ContactoNatos@gmail.com">ContactoNatos&#64;gmail.com</a></dd>
+          <dt>Ubicación</dt>
+          <dd>Guadalajara, México</dd>
+        </dl>
+        <p>Si el formulario no está disponible, puedes escribir al correo indicado.</p>
+      </div>
+      <div class="surface">
+        <h2>Tu experiencia nos ayuda</h2>
+        <p>Comparte tus comentarios sobre el servicio en nuestro formulario de sugerencias.</p>
+        <a routerLink="/sugerencias">Dejar una sugerencia <span aria-hidden="true">→</span></a>
+      </div>
+    </aside>
+  </div>
+  <section class="map-section" aria-labelledby="map-title">
+    <h2 id="map-title">Encuéntranos</h2>
+    <p>Si el mapa no carga, <a href="https://www.google.com/maps/d/u/0/viewer?mid=1zVqU378kV7vtlP4hDFgr0LQIwijBhZbt" target="_blank" rel="noopener noreferrer">ábrelo en Google Maps (pestaña nueva)</a>.</p>
+    <iframe title="Mapa de ubicación de NATOS en Google Maps" loading="lazy" src="https://www.google.com/maps/d/u/0/embed?mid=1zVqU378kV7vtlP4hDFgr0LQIwijBhZbt" width="100%" height="380" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+  </section>
+</section>

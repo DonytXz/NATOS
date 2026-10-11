@@ -1,0 +1,68 @@
+<section class="page orders-page">
+  <header class="page-header orders-heading">
+    <div>
+      <p class="eyebrow">Administración / Pedidos</p>
+      <h1>Pedidos del catálogo</h1>
+      <p>Revisa los productos solicitados y el correo de contacto de cada cliente.</p>
+    </div>
+    <button class="button button-secondary" type="button" (click)="load()" [disabled]="loading">{{ loading ? 'Actualizando…' : 'Actualizar pedidos' }}</button>
+  </header>
+
+  <section class="surface orders-list" aria-label="Pedidos recibidos" [attr.aria-busy]="loading">
+    <div class="orders-toolbar">
+      <div class="field search-field">
+        <label for="order-search">Buscar pedidos</label>
+        <input id="order-search" type="search" [(ngModel)]="query" (ngModelChange)="page = 1" placeholder="Producto, código o correo…">
+      </div>
+      <div class="field status-field">
+        <label for="order-status">Estado</label>
+        <select id="order-status" [(ngModel)]="status" (ngModelChange)="page = 1">
+          <option value="">Todos los estados</option>
+          @for (value of statuses; track value) { <option [value]="value">{{ value }}</option> }
+        </select>
+      </div>
+    </div>
+
+    @if (error) { <p class="notice error-notice" role="alert">{{ error }}</p> }
+    @if (loading && !orders.length) {
+      <p class="empty-state" role="status">Cargando pedidos…</p>
+    } @else if (visibleOrders.length) {
+      <div class="table-scroll" role="region" aria-label="Tabla de pedidos" tabindex="0">
+        <table>
+          <caption class="sr-only">Pedidos del catálogo. Cada fila corresponde a un producto solicitado.</caption>
+          <thead><tr>
+            <th scope="col">Código</th><th scope="col">Producto</th><th scope="col" class="numeric">Cantidad</th>
+            <th scope="col" class="numeric">Precio registrado</th><th scope="col">Estado</th><th scope="col">Correo de contacto</th>
+          </tr></thead>
+          <tbody>
+            @for (order of visibleOrders; track $index) {
+              <tr>
+                <td class="order-code">{{ order.id }}</td>
+                <td class="order-name">{{ order.name || 'Sin descripción' }}</td>
+                <td class="numeric">{{ order.quantity }}</td>
+                <td class="numeric">{{ price(order.price) }}</td>
+                <td><span class="status-badge">{{ order.status || 'Sin estado' }}</span></td>
+                <td>{{ order.correo || 'Sin correo' }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <div class="list-footer">
+        <p>{{ filteredOrders.length }} registros · Página {{ page }} de {{ pageCount }}</p>
+        <nav aria-label="Páginas de pedidos">
+          <button class="button button-secondary" type="button" (click)="page = page - 1" [disabled]="page <= 1">Anterior</button>
+          <button class="button button-secondary" type="button" (click)="page = page + 1" [disabled]="page >= pageCount">Siguiente</button>
+        </nav>
+      </div>
+    } @else if (!error) {
+      <div class="empty-state">
+        <span class="empty-mark" aria-hidden="true">↗</span>
+        <h2>{{ query || status ? 'No encontramos coincidencias' : 'Aquí aparecerán los próximos pedidos' }}</h2>
+        <p>{{ query || status ? 'Prueba con otro producto, correo o estado.' : 'Actualiza la lista para consultar nuevas solicitudes del catálogo.' }}</p>
+        @if (query || status) { <button class="button button-secondary" type="button" (click)="clearFilters()">Limpiar filtros</button> }
+      </div>
+    }
+  </section>
+  <p class="orders-note">Los pedidos se registran por producto. Consulta cada fila para revisar su cantidad, precio y estado.</p>
+</section>

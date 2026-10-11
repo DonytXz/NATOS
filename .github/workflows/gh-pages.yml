@@ -1,38 +1,52 @@
-name: Build and deploy to gh-pages
-
-permissions:
-  contents: write
-
+name: Verify and deploy web app
 on:
+  pull_request:
   push:
-    branches: [ "main", "master" ]
+    branches: [main, master]
   workflow_dispatch:
-
+permissions:
+  contents: read
+concurrency:
+  group: web-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
-  build-and-deploy:
+  verify:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 'lts/*'
-      - name: Install dependencies
-        run: |
-          if [ -f package-lock.json ]; then
-            npm ci
-          else
-            npm install
-          fi
-      - name: Build
-        run: |
-          npm run build -- --configuration production --base-href /NATOS/
-          cp ./dist/proyecto/browser/index.html ./dist/proyecto/browser/404.html
-      - name: Deploy to gh-pages
-        uses: peaceiris/actions-gh-pages@v3
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build:production
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+      - uses: actions/upload-artifact@v4
+        with:
+          name: web-build
+          path: dist/proyecto/browser
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: browser-test-results
+          path: test-results
+  deploy:
+    needs: verify
+    if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: web-build
+          path: dist
+      - uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist/proyecto/browser
+          publish_dir: dist
           publish_branch: gh-pages
           user_name: github-actions[bot]
           user_email: github-actions[bot]@users.noreply.github.com
